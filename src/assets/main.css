@@ -1,0 +1,20 @@
+
+/* Aplicamos la fuente a todo el documento */
+:root {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333333; /* Tu color Dark-333333 */
+}
+
+/* Forzamos a que los encabezados también la usen */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Negrita para títulos */
+}

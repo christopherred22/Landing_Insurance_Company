@@ -1,19 +1,19 @@
 <template>
   <v-app>
     <!-- Menú fijo -->
-    <MenuComponent class="menu-fixed" />
+    <Navbar class="menu-fixed" />
 
     <!-- Contenido centrado -->
     <v-main class="main-centered">
   <div class="content-wrapper">
-    <ContactanosView />
+      <RouterView />
   </div>
 </v-main>
   </v-app>
 </template>
 
 <script setup>
-import MenuComponent from './components/MenuComponent.vue'
+import Navbar from './components/Navbar.vue';
 import ContactanosView from './views/ContactanosView.vue'
 </script>
 
