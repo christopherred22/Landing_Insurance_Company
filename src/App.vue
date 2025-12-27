@@ -1,20 +1,19 @@
 <template>
   <v-app>
-    <!-- Menú fijo -->
     <Navbar class="menu-fixed" />
 
-    <!-- Contenido centrado -->
-    <v-main class="main-centered">
-  <div class="content-wrapper">
+    <v-main class="main-layout">
       <RouterView />
-  </div>
-</v-main>
+    </v-main>
+
+    <Footer />
+
   </v-app>
 </template>
 
 <script setup>
-import Navbar from './components/Navbar.vue';
-import ContactanosView from './views/ContactanosView.vue'
+import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue' // Ya lo tenías importado, ahora lo usamos
 </script>
 
 <style>
@@ -27,35 +26,23 @@ html, body, #app {
   background-color: white;
 }
 
-/* Menú fijo arriba */
+/* Menú fijo */
 .menu-fixed {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 64px; /* Ajusta según tu diseño */
+  height: 64px;
   z-index: 1000;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* v-main compensado y centrado */
-.main-centered {
-  padding-top: 64px; /* compensación por menú fijo */
-  min-height: calc(100vh - 64px); /* altura total menos menú */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Contenedor del contenido */
-.content-wrapper {
-  width: 100%;
-  max-width: 800px; /* Ajusta según tu diseño */
-  padding: 24px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* v-main limpio */
+.main-layout {
+  padding-top: 64px; /* espacio para navbar */
+  /* Eliminamos el min-height calc para que el footer no se solape
+     y el scroll funcione naturalmente */
+  min-height: 100vh;
 }
 </style>

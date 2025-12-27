@@ -1,0 +1,21 @@
+<template>
+  <svg
+    width="53"
+    height="53"
+    viewBox="0 0 53 53"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="icon-svg"
+  >
+    <path d="M27 22.5C31.9706 22.5 36 18.4706 36 13.5C36 8.52944 31.9706 4.5 27 4.5C22.0294 4.5 18 8.52944 18 13.5C18 18.4706 22.0294 22.5 27 22.5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47.25 49.5C47.25 38.3164 38.1836 29.25 27 29.25C15.8164 29.25 6.75 38.3164 6.75 49.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27 49.5L31.5 43.875L27 29.25L22.5 43.875L27 49.5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+ </svg>
+</template>
+
+<style scoped>
+.icon-svg {
+  width: 48px;
+  height: 48px;
+}
+</style>

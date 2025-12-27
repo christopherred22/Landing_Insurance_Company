@@ -1,42 +1,62 @@
 <template>
   <main class="about-page">
+
+    <!-- HERO FULL WIDTH -->
     <section class="hero-section">
+      <div class="hero-container">
+        <h1 class="animate-on-scroll" >Sobre nosotros</h1>
+        <p class="subtitle animate-on-scroll">
+          Descubre soluciones confiables en Seguros, Impuestos y Notariado para tu tranquilidad.
+        </p>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section">
       <div class="container">
-        <h1>Sobre nosotros</h1>
-        <p class="subtitle">Descubre soluciones confiables en Seguros, Impuestos y Notariado para tu tranquilidad.</p>
-      </div>
-    </section>
+        <h2 class="animate-on-scroll">
+          Protegemos lo que más importa para ti.
+        </h2>
 
-    <section class="intro-section container">
-     
-      <h2 class="animate-on-scroll" >Protegemos lo que más importa para ti.</h2>
-      <div class="grid-two-cols animate-on-scroll value-card">
-        <p class="animate-on-scroll">En Providence Insurance Agency te ayudamos con tus seguros, impuestos y servicios notariales de forma clara, rápida y en tu idioma, desde Smyrna, Tennessee.</p>
-        <p class="animate-on-scroll">Más de 15 años de experiencia acompañando a familias y negocios en Tennessee. Aquí encuentras un equipo cercano, confiable y listo para ayudarte a tomar buenas decisiones.</p>
-      </div>
-    </section>
-
-    <section class="experience-section container">
-      <div class="experience-grid">
-        <div class="video-placeholder">
-          <div class="play-button">▶</div>
-        </div>
-        <div class="experience-content">
-          <h3>Con más de 15 años de experiencia</h3>
-          <p>En Providence Insurance Agency creemos que los seguros y los trámites no tienen por qué ser complicados.</p>
-          <blockquote class="quote">
-            “Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo”
-          </blockquote>
+        <div class="grid-two-cols">
+          <p class="animate-on-scroll">
+            En Providence Insurance Agency te ayudamos con tus seguros, impuestos y servicios notariales de forma clara, rápida y en tu idioma, desde Smyrna, Tennessee.
+          </p>
+          <p class="animate-on-scroll">
+            Más de 15 años de experiencia acompañando a familias y negocios en Tennessee. Aquí encuentras un equipo cercano, confiable y listo para ayudarte a tomar buenas decisiones.
+          </p>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
+    <section class="experience-section">
+      <div class="container">
+        <div class="experience-grid">
+          <div class="video-placeholder animate-on-scroll">
+            <div class="play-button">▶</div>
+          </div>
+
+          <div class="experience-content animate-on-scroll">
+            <h3>Con más de 15 años de experiencia</h3>
+            <p>
+              En Providence Insurance Agency creemos que los seguros y los trámites no tienen por qué ser complicados.
+            </p>
+            <blockquote class="quote">
+              “Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
     <section class="values-section container">
       <div class="values-header">
         <h2>Somos tu mejor opción</h2>
         <p>Te esperamos para ayudarte en persona o de forma remota. Podemos trabajar contigo por teléfono, mensaje o videollamada según te sea más cómodo.</p>
       </div>
-      
+
       <div class="values-grid">
         <div class="value-card">
           <div class="icon-circle">
@@ -76,16 +96,12 @@
         </div>
       </div>
     </section>
+
   </main>
 </template>
 
+
 <script setup>
-
-  /** * IMPORTANTE: Al importar el CSS aquí, Vue lo cargará automáticamente 
- * cuando el usuario entre en esta vista.
- */
-import '@/assets/css/about-view.css';
-
 import { onMounted } from 'vue'
 
 onMounted(() => {
@@ -96,15 +112,294 @@ onMounted(() => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target) // anima solo una vez
+          observer.unobserve(entry.target)
         }
       })
     },
-    {
-      threshold: 0.2, // 20% visible
-    }
+    { threshold: 0.1 }
   )
 
   elements.forEach(el => observer.observe(el))
 })
 </script>
+
+<style scoped>
+/* =====================================================
+   VARIABLES (SCOPED TO THIS VIEW)
+   ===================================================== */
+:root {
+  --dark: #333333;
+  --blue: #012148;
+  --yellow: #FCDC67;
+  --bg-light: #F6F9FD;
+  --max-width: 1440px;
+  --h1-size: 96px;
+  --h2-size: 55px;
+  --h3-size: 48px;
+  --h4-size: 32px;
+  --body-lg: 32px;
+  --body-md: 30px;
+  --body-sm: 20px;
+}
+
+/* =====================================================
+   BASE & LAYOUT
+   ===================================================== */
+.about-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+/* HERO */
+.hero-section {
+  width: 100%;
+  min-height: 600px;
+  background-color: #F6F9FD;
+  background-image: url('@/assets/B_AboutUs.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 80px;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 96px;
+  font-weight: 900;
+  color: #012148;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-size: 32px;
+  font-weight: 300;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   SECCIONES GENERALES
+   ===================================================== */
+.intro-section, .experience-section, .values-section {
+  padding: 120px 0;
+}
+
+.intro-section h2 {
+  font-size: 55px;
+  font-weight: 800;
+  color: #012148;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+.grid-two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.grid-two-cols p {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   EXPERIENCIA
+   ===================================================== */
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.video-placeholder {
+  border-radius: 24px;
+  aspect-ratio: 16 / 9;
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.video-placeholder:hover {
+  transform: scale(1.02);
+}
+
+.play-button {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.experience-content h3 {
+  font-size: 48px;
+  font-weight: 800;
+  color: #012148;
+  margin-bottom: 24px;
+}
+
+.experience-content p {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.quote {
+  margin-top: 40px;
+  padding-left: 30px;
+  border-left: 6px solid #FCDC67;
+  font-size: 20px;
+  font-weight: 600;
+  color: #012148;
+  font-style: italic;
+}
+
+/* =====================================================
+   VALUES
+   ===================================================== */
+.values-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 100px;
+}
+
+.values-header h2 {
+  font-size: 55px;
+  color: #012148;
+  margin-bottom: 24px;
+}
+
+.values-header p {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.value-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.icon-circle {
+  width: 96px;
+  height: 96px;
+  background: #FCDC67;
+  border-radius: 50%;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover .icon-circle {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(252, 220, 103, 0.4);
+}
+
+.value-card h4 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.value-card p {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay gradual para las cards de valores */
+.values-grid .value-card:nth-child(2) { transition-delay: 0.2s; }
+.values-grid .value-card:nth-child(3) { transition-delay: 0.4s; }
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .container,
+  .hero-container {
+    padding: 0 40px;
+  }
+
+  .hero-section h1 {
+    font-size: 72px;
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-two-cols,
+  .experience-grid,
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section h1 {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .container,
+  .hero-container {
+    padding: 0 20px;
+  }
+}
+</style>
