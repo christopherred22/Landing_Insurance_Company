@@ -67,12 +67,18 @@ const handleSubmit = () => alert('Mensaje enviado')
 <style scoped>
 .page-wrapper {
   width: 100%;
-  height: 100%;
+  min-height: 100vh; /* asegura que cubra toda la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
   box-sizing: border-box;
+
+  background-image: url('../assets/background_contactanos.png');
+  background-repeat: no-repeat;       /* evita que se repita */
+  background-position: center center; /* centra la imagen */
+  background-size: cover;             /* ajusta para cubrir todo el contenedor */
+  background-attachment: fixed;       /* opcional: efecto parallax */
 }
 
 .content-container {
@@ -170,37 +176,47 @@ const handleSubmit = () => alert('Mensaje enviado')
   cursor: pointer;
 }
 
+
 .info-grid {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-  align-items: flex-start;
-  padding-left: 20px;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  padding: 0 20px;
+  flex-wrap: nowrap;
 }
 
 .info-item {
+  flex: 1 1 0;
+  max-width: 33%;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .icon-box {
   background: #0d124a;
-  min-width: 50px;
-  height: 50px;
-  border-radius: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: white;
+  flex-shrink: 0;
 }
 
 .info-text {
   display: flex;
   flex-direction: column;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .label {
@@ -212,6 +228,9 @@ const handleSubmit = () => alert('Mensaje enviado')
 .value {
   color: #1b264f;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 </style>
