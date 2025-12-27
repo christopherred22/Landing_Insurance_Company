@@ -16,7 +16,7 @@
 
       <!-- LINKS -->
       <ul class="nav-links" :class="{ open: isOpen }">
-  <li><RouterLink to="/">Inicio</RouterLink></li>
+  <li><RouterLink to="/inicio">Inicio</RouterLink></li>
   <li><RouterLink to="/servicios">Servicios</RouterLink></li>
   <li><RouterLink to="/sobre-nosotros">Sobre nosotros</RouterLink></li>
   <li><RouterLink to="/contactanos">Contáctanos</RouterLink></li>
