@@ -1,0 +1,205 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Sobre nosotros",
+    "contact": "Contáctanos"
+  },
+
+  "services": {
+    "hero": {
+      "title": "Nuestros Servicios",
+      "subtitle": "Protección, impuestos y soluciones legales en un solo lugar",
+      "cta": "Habla con un experto"
+    },
+
+    "categories": {
+      "insurance": "Seguros",
+      "taxes": "Impuestos",
+      "notary": "Notariado"
+    },
+
+    "subcategories": {
+      "personal": "Personales",
+      "commercial": "Comerciales"
+    },
+
+    "faq": {
+      "cover": "¿Qué cubre?",
+      "why": "¿Por qué importa?",
+      "who": "¿Quién lo necesita?"
+    },
+
+    "cta": {
+      "quote": "¡Cotiza ya!"
+    },
+
+    "items": {
+      "auto": {
+        "title": "Seguro de Auto",
+        "cover": "Responsabilidad civil, daños al vehículo, robo y gastos médicos.",
+        "why": "Es obligatorio por ley y protege tu patrimonio ante accidentes.",
+        "who": "Conductores que desean circular legalmente y con tranquilidad."
+      },
+      "life": {
+        "title": "Seguro de Vida",
+        "cover": "Apoyo económico a tus beneficiarios en caso de fallecimiento.",
+        "why": "Protege el futuro financiero de tu familia.",
+        "who": "Personas con dependientes o responsabilidades financieras."
+      },
+      "health": {
+        "title": "Seguro de Salud",
+        "cover": "Consultas médicas, hospitalización y medicamentos.",
+        "why": "Reduce costos médicos inesperados.",
+        "who": "Individuos y familias."
+      },
+      "renters": {
+        "title": "Seguro de Inquilino",
+        "cover": "Protección de pertenencias personales en propiedades rentadas.",
+        "why": "La póliza del propietario no cubre tus bienes.",
+        "who": "Personas que rentan vivienda."
+      },
+      "home": {
+        "title": "Seguro de Casa",
+        "cover": "Estructura, bienes y responsabilidad civil.",
+        "why": "Protege la inversión más importante de tu vida.",
+        "who": "Propietarios de viviendas."
+      },
+      "umbrella": {
+        "title": "Seguro Umbrella",
+        "cover": "Cobertura adicional de responsabilidad civil.",
+        "why": "Protege contra demandas de alto valor.",
+        "who": "Personas con activos significativos."
+      },
+      "travel": {
+        "title": "Cartas para salir del País",
+        "cover": "Documento notariado que autoriza el viaje de menores de edad solos o con terceros.",
+        "why": "Es una exigencia de seguridad en aeropuertos y aduanas para prevenir el tráfico de menores.",
+        "who": "Padres que necesitan enviar a sus hijos de viaje por vacaciones o motivos familiares."
+      },
+
+      "general-liability": {
+        "title": "Responsabilidad General",
+        "cover": "Daños a terceros y lesiones corporales.",
+        "why": "Protege tu negocio de demandas.",
+        "who": "Empresas y contratistas."
+      },
+      "workers-comp": {
+        "title": "Workers Compensation",
+        "cover": "Gastos médicos y salarios perdidos de empleados.",
+        "why": "Es obligatorio por ley.",
+        "who": "Negocios con empleados."
+      },
+      "commercial-auto": {
+        "title": "Auto Comercial",
+        "cover": "Vehículos usados para actividades comerciales.",
+        "why": "Las pólizas personales no cubren uso comercial.",
+        "who": "Negocios con vehículos."
+      },
+      "employer-umbrella": {
+        "title": "Umbrella Comercial",
+        "cover": "Cobertura extendida para negocios.",
+        "why": "Evita pérdidas financieras graves.",
+        "who": "Empresas con alto riesgo."
+      },
+      "business-owners": {
+        "title": "Business Owners Policy (BOP)",
+        "cover": "Responsabilidad y propiedad en una sola póliza.",
+        "why": "Más económico y completo.",
+        "who": "Pequeñas y medianas empresas."
+      },
+      "non-owned": {
+        "title": "Contratistas Independientes bajo la forma 1099-NEC",
+        "cover": "Cálculo de ingresos, gastos deducibles y preparación del Schedule C para contratistas.",
+        "why": "Optimiza tus deducciones para pagar el mínimo impuesto legalmente permitido por el IRS.",
+        "who": "Trabajadores independientes, freelancers y conductores de plataformas digitales."
+      },
+       "society": {
+        "title": "Sociedades",
+        "cover": "Cálculo, reporte y envío de los impuestos sobre las ventas recaudados a nivel estatal.",
+        "why": "Es una responsabilidad fiduciaria; no reportarlo puede conllevar graves multas penales.",
+        "who": "Negocios que venden productos físicos o servicios sujetos a impuestos estatales."
+      },
+       "corp": {
+        "title": "Corporaciones (S/C)",
+        "cover": "Declaraciones complejas para estructuras corporativas con distribución de dividendos.",
+        "why": "Permite una planeación fiscal avanzada para reducir la carga impositiva de los socios.",
+        "who": "Empresas con múltiples socios o que buscan una estructura fiscal más robusta."
+      },
+      "local-liability": {
+        "title": "Impuestos LLC",
+        "cover": "Preparación de impuestos para Sociedades de Responsabilidad Limitada y reporte de ganancias",
+        "why": "Mantiene a tu empresa en 'Good Standing' y evita auditorías o cierres administrativos.",
+        "who": "Dueños de pequeñas empresas registradas como LLC en cualquier estado."
+      },
+      "church": {
+        "title": "Iglesias o Sin fines de Lucro",
+        "cover": "Gestión de retenciones federales, estatales y pagos de desempleo para tus empleados.",
+        "why": "Garantiza que el pago a tus trabajadores sea exacto y cumpla con todas las leyes laborales.",
+        "who": "Cualquier dueño de negocio con empleados en nómina."
+      },
+
+      "w2": {
+        "title": "Declaración W-2",
+        "cover": "Preparación de impuestos personales.",
+        "why": "Evita errores y maximiza reembolsos.",
+        "who": "Empleados."
+      },
+      "accounting": {
+        "title": "Contabilidad",
+        "cover": "Gestión financiera y reportes.",
+        "why": "Mantén tus finanzas en orden.",
+        "who": "Empresas."
+      },
+      "companies": {
+        "title": "Creación de Compañías",
+        "cover": "Registro legal y documentación.",
+        "why": "Formaliza tu negocio.",
+        "who": "Emprendedores."
+      },
+      "rep-companies": {
+        "title": "Representación de Compañías",
+        "cover": "Gestión legal y administrativa.",
+        "why": "Cumple con regulaciones.",
+        "who": "Empresas."
+      },
+
+      "legal-procedures": {
+        "title": "Poderes Legales",
+        "cover": "Autorización amplia para que un tercero administre bienes y realice actos legales en tu nombre.",
+        "why": "Permite que tus asuntos sigan funcionando si te encuentras fuera del país o incapacitado.",
+        "who": "Personas que viajan por largo tiempo o necesitan representación legal absoluta."
+      },
+      "Tlegal": {
+        "title": "Tutela Legal",
+        "cover": "Documentación para la designación de guardianes legales para menores de edad o dependientes",
+        "why": "Asegura que tus seres queridos queden bajo el cuidado de personas de tu total confianza.",
+        "who": "Padres y tutores que desean dejar protegida la custodia de sus hijos ante cualquier eventualidad."
+      },
+      "legal-translation": {
+        "title": "Traducción Legal",
+        "cover": "Traducción profesional y certificada de documentos de todo tipo (Inglés/Español).",
+        "why": "Garantiza que la traducción sea fiel al original y aceptada por USCIS o cortes legales.",
+        "who": "Cualquier persona con documentos extranjeros que necesite presentarlos ante autoridades en EE.UU."
+      },
+      "certifications": {
+        "title": "Certificaciones",
+        "cover": "Validación de copias de documentos originales como títulos, actas o identificaciones.",
+        "why": "Permite entregar una copia fiel del original con respaldo notarial para trámites oficiales.",
+        "who": "Estudiantes o profesionales que aplican a trabajos o instituciones educativas."
+      },
+      "apostille": {
+        "title": "Apostillados",
+        "cover": "Validación internacional de documentos.",
+        "why": "Requisito legal internacional.",
+        "who": "Personas con trámites internacionales."
+      },
+      "weddings": {
+        "title": "Bodas",
+        "cover": "Oficiación de ceremonias civiles y procesamiento legal de la licencia de matrimonio.",
+        "why": "Formaliza el vínculo matrimonial de manera legal, rápida y con validez estatal.",
+        "who": "Parejas que desean contraer matrimonio civil sin las largas esperas de una corte."
+      }
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Insurance, taxes and legal solutions in one place",
+      "cta": "Talk to an expert"
+    },
+
+    "categories": {
+      "insurance": "Insurance",
+      "taxes": "Taxes",
+      "notary": "Notary"
+    },
+
+    "subcategories": {
+      "personal": "Personal",
+      "commercial": "Commercial"
+    },
+
+    "faq": {
+      "cover": "What does it cover?",
+      "why": "Why does it matter?",
+      "who": "Who needs it?"
+    },
+
+    "cta": {
+      "quote": "Get a quote"
+    },
+
+    "items": {
+      "auto": {
+        "title": "Auto Insurance",
+        "cover": "Liability, vehicle damage, theft and medical expenses.",
+        "why": "Required by law and protects your assets.",
+        "who": "Drivers."
+      },
+      "life": {
+        "title": "Life Insurance",
+        "cover": "Financial support for beneficiaries.",
+        "why": "Protects your family's future.",
+        "who": "People with dependents."
+      },
+      "health": {
+        "title": "Health Insurance",
+        "cover": "Medical care and hospitalization.",
+        "why": "Reduces unexpected medical costs.",
+        "who": "Individuals and families."
+      },
+      "renters": {
+        "title": "Renters Insurance",
+        "cover": "Protection for personal belongings.",
+        "why": "Landlord insurance does not cover tenants.",
+        "who": "Renters."
+      },
+      "home": {
+        "title": "Home Insurance",
+        "cover": "Structure, belongings and liability.",
+        "why": "Protects your most valuable investment.",
+        "who": "Homeowners."
+      },
+      "umbrella": {
+        "title": "Umbrella Insurance",
+        "cover": "Additional liability coverage.",
+        "why": "Protects against large lawsuits.",
+        "who": "High-asset individuals."
+      },
+      "travel": {
+        "title": "Travel Insurance",
+        "cover": "Medical emergencies and cancellations.",
+        "why": "Travel safely worldwide.",
+        "who": "Travelers."
+      },
+
+      "general-liability": {
+        "title": "General Liability",
+        "cover": "Third-party damages and injuries.",
+        "why": "Protects your business.",
+        "who": "Businesses."
+      },
+      "workers-comp": {
+        "title": "Workers Compensation",
+        "cover": "Employee medical expenses.",
+        "why": "Legally required.",
+        "who": "Employers."
+      },
+      "commercial-auto": {
+        "title": "Commercial Auto",
+        "cover": "Business vehicle coverage.",
+        "why": "Personal insurance does not apply.",
+        "who": "Companies."
+      },
+      "employer-umbrella": {
+        "title": "Commercial Umbrella",
+        "cover": "Extended liability coverage.",
+        "why": "Prevents major losses.",
+        "who": "High-risk businesses."
+      },
+      "business-owners": {
+        "title": "Business Owners Policy",
+        "cover": "Property and liability combined.",
+        "why": "Cost-effective coverage.",
+        "who": "Small businesses."
+      },
+      "non-owned": {
+        "title": "Independent Contractors - Form 1099-NEC",
+        "cover": "Calculation of income, deductible expenses, and Schedule C preparation for contractors.",
+        "why": "Optimizes your deductions to pay the minimum tax legally allowed by the IRS.",
+        "who": "Independent contractors, freelancers, and gig economy drivers."
+      },
+       "society": {
+        "title": "Sociedades",
+        "cover": "Cálculo, reporte y envío de los impuestos sobre las ventas recaudados a nivel estatal.",
+        "why": "Es una responsabilidad fiduciaria; no reportarlo puede conllevar graves multas penales.",
+        "who": "Negocios que venden productos físicos o servicios sujetos a impuestos estatales."
+      },
+       "corp": {
+        "title": "Corporations (S/C Corp)",
+        "cover": "Complex tax returns for corporate structures with dividend distribution.",
+        "why": "Allows for advanced tax planning to reduce the tax burden on shareholders.",
+        "who": "Businesses with multiple partners or those seeking a more robust tax structure."
+      },
+      "local-liability": {
+        "title": "LLC Taxes",
+        "cover": "Tax preparation for Limited Liability Companies and profit reporting.",
+        "why": "Keeps your company in 'Good Standing' and avoids audits or administrative closures.",
+        "who": "Small business owners registered as an LLC in any state."
+      },
+      "church": {
+       "title": "Churches or Non-Profits",
+       "cover": "Management of federal and state withholdings and unemployment payments for your employees.",
+       "why": "Ensures that payments to your workers are accurate and comply with all labor laws.",
+       "who": "Any business owner with employees on payroll."
+      },
+
+      "w2": {
+        "title": "W-2 Tax Filing",
+        "cover": "Personal tax preparation.",
+        "why": "Avoid mistakes.",
+        "who": "Employees."
+      },
+      "accounting": {
+        "title": "Accounting",
+        "cover": "Financial management.",
+        "why": "Stay organized.",
+        "who": "Businesses."
+      },
+      "companies": {
+        "title": "Company Formation",
+        "cover": "Legal registration.",
+        "why": "Formalize your business.",
+        "who": "Entrepreneurs."
+      },
+      "rep-companies": {
+        "title": "Company Representation",
+        "cover": "Legal compliance.",
+        "why": "Stay compliant.",
+        "who": "Companies."
+      },
+
+      "legal-procedures": {
+        "title": "Legal Procedures",
+        "cover": "Legal authorizations.",
+        "why": "Simplifies legal matters.",
+        "who": "Individuals and businesses."
+      },
+      "legal-translation": {
+        "cover": "Broad authorization for a third party to manage assets and perform legal acts on your behalf.",
+        "title": "Power of Attorney",
+        "why": "Ensures your affairs continue to operate if you are out of the country or incapacitated.",
+      "who": "Individuals traveling for long periods or those in need of absolute legal representation."
+      },
+      "Tlegal": {
+        "cover": "Documentation for the appointment of legal guardians for minors or dependents.",
+        "title": "Legal Guardianship",
+        "why": "Ensures your loved ones are placed under the care of individuals you fully trust.",
+        "who": "Parents and guardians who wish to protect the custody of their children in the event of any contingency."
+      },
+      "certifications": {
+        "cover": "Validation of copies of original documents such as degrees, certificates, or IDs.",
+        "title": "Certified Copies",
+        "why": "Allows you to provide a true copy of the original with notarized support for official procedures.",
+        "who": "Students or professionals applying to jobs or educational institutions."
+      },
+      "apostille": {
+        "title": "Apostille Services",
+        "cover": "International validation.",
+        "why": "Required abroad.",
+        "who": "International applicants."
+      },
+      "weddings": {
+        "title": "Civil Weddings",
+        "cover": "Marriage officiation.",
+        "why": "Legal recognition.",
+        "who": "Couples."
+      }
+    }
+  }
+}
