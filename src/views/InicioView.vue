@@ -19,8 +19,19 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="@/assets/family.png" alt="Familia protegida por Providence" class="rounded-img" />
-        </div>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <img src="@/assets/family.png" alt="Familia" class="rounded-img" />
+      <img src="@/assets/workers.png" alt="Seguros" class="rounded-img" />
+      <img src="@/assets/bakers.png" alt="Notario" class="rounded-img" />
+    </div>
+    <div class="carousel-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</div>
       </div>
     </section>
 
@@ -205,6 +216,56 @@
   width: 80%;
   border-radius: 40px;
 }
+
+/* Contenedor principal */
+.carousel-container {
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+}
+
+/* El riel que contiene las imágenes */
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* Fuerza el anclaje */
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+.carousel-track img {
+  flex: 0 0 100%; /* Cada imagen ocupa el 100% del ancho */
+  scroll-snap-align: start;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Estilo de los puntitos (Opcional) */
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #fff;
+}
+
 
 /* --- ABOUT SECTION (IGUAL A TU IMAGEN) --- */
 /* --- SECCIÓN SOBRE NOSOTROS (IDÉNTICA AL DISEÑO) --- */
