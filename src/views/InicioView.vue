@@ -25,28 +25,26 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="about-section">
-      <div class="container about-grid">
-        <div class="about-content">
-          <h2 class="title-bg">
-            Sobre <span class="blue-text">nosotros</span>
-          </h2>
+ <section class="about-section">
+  <div class="container about-grid">
+    <div class="about-content">
+      <h2 class="about-title"><span class="red-text">Sobre </span><div class="nosotros-wrapper"><span class="blue-outline-text">nosotros</span><div class="blue-underline"></div></div></h2>
 
-          <h3 class="about-subtitle">Más de 15 años de experiencia</h3>
+      <h3 class="about-subtitle">Más de 15 años de experiencia</h3>
 
-          <p class="about-paragraph">
-            Somos una compañía dedicada a proteger tu bienestar. Ofrecemos servicios
-            integrales para la comunidad; nuestros agentes están capacitados en
-            seguros, impuestos y notariado para que tengas la confianza de estar en
-            buenas manos.
-          </p>
-        </div>
+      <p class="about-paragraph">
+        Somos una compañía dedicada a proteger tu bienestar. Ofreciendo servicios
+        integrales para la comunidad; nuestros agentes están capacitados en
+        servicios de seguros, de impuestos y de notariado para que puedas
+        tener la confianza de estar en buenas manos.
+      </p>
+    </div>
 
-        <div class="about-logo">
-          <img src="@/assets/estrella_PI.png" alt="Logo Providence Estrella" class="floating-logo" />
-        </div>
-      </div>
-    </section>
+    <div class="about-logo">
+      <img src="@/assets/estrella_PI.png" alt="Providence Logo" class="main-logo-img" />
+    </div>
+  </div>
+</section>
     <!-- SERVICES -->
     <section class="services-section">
       <div class="container">
@@ -209,8 +207,9 @@
 }
 
 /* --- ABOUT SECTION (IGUAL A TU IMAGEN) --- */
+/* --- SECCIÓN SOBRE NOSOTROS (IDÉNTICA AL DISEÑO) --- */
 .about-section {
-  padding: 100px 0;
+  padding: 80px ;
 }
 
 .about-grid {
@@ -220,50 +219,58 @@
   align-items: center;
 }
 
+/* CORRECCIÓN PRINCIPAL EN EL TÍTULO */
 .about-title {
-  font-size: 80px;
-  font-weight: 900;
-  line-height: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 85px; /* Tamaño masivo como la imagen */
+  font-weight: 900; /* Extra bold */
+  line-height: 0.85; /* Interlineado muy compacto para unir las líneas */
+  letter-spacing: -2px; /* Las letras más juntas */
   margin-bottom: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  /* Eliminamos display: flex y gap para que se junten */
+  white-space: nowrap; /* Evita que se separe en dos líneas si la pantalla es estrecha */
 }
 
 .red-text {
   color: #C62828;
 }
 
+/* El contenedor de "nosotros" debe ser inline-block para pegarse a "Sobre" */
 .nosotros-wrapper {
   position: relative;
-  display: inline-block;
+  display: inline-block; 
 }
 
 .blue-outline-text {
   color: transparent;
-  -webkit-text-stroke: 2px #012148;
+  /* Borde azul grueso, relleno transparente */
+  -webkit-text-stroke: 2.5px #012148; 
   text-transform: lowercase;
+  /* Un pequeño margen negativo a la izquierda para pegarlo aún más a "Sobre" si hace falta */
+  margin-left: -5px; 
 }
 
 .blue-underline {
   position: absolute;
-  bottom: 8px;
+  bottom: 5px; /* Ajuste fino de la posición de la línea */
   left: 0;
   width: 100%;
   height: 5px;
-  background-color: #0081FF;
+  background-color: #0081FF; /* Azul brillante */
   border-radius: 10px;
+  z-index: -1; /* Para asegurar que la línea quede detrás del texto hueco */
 }
 
+/* Subtítulo y párrafo */
 .about-subtitle {
-  font-size: 38px;
+  font-size: 32px;
   color: #707070;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 25px;
 }
 
 .about-paragraph {
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.6;
   color: #333;
   text-align: justify;
@@ -276,9 +283,30 @@
   max-width: 500px;
 }
 
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  /* En tablets, permitimos que se rompa la línea si es necesario */
+  .about-title {
+    font-size: 65px;
+    white-space: normal; 
+  }
+  .about-paragraph {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+    .about-title {
+    font-size: 50px;
+  }
+}
 /* --- SERVICES SECTION (IGUAL A TU IMAGEN) --- */
 .services-section {
-  padding: 80px 0;
+   padding: 80px ;
   text-align: center;
 }
 
@@ -297,7 +325,7 @@
 
 .service-card {
   background: white;
-  padding: 50px 40px;
+  padding: 20px 40px;
   border-radius: 45px;
   border: 2px solid #c6c6c6;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -341,6 +369,8 @@
 /* --- WHY US SECTION --- */
 /* --- SECCIÓN ¿POR QUÉ ELEGIRNOS? --- */
 
+/* --- SECCIÓN ¿POR QUÉ ELEGIRNOS? --- */
+
 .why-us-section {
   padding: 100px 0;
   background-color: #fff;
@@ -352,34 +382,42 @@
   font-size: 60px;
   font-weight: 900;
   color: #012148;
-  margin-bottom: 80px; /* Más espacio para dejar que los iconos respiren */
+  margin-bottom: 80px;
 }
 
 .why-us-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2x2 como en la imagen */
-  gap: 60px 40px; /* Gap mayor arriba para el icono flotante */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px 40px;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 10%;
+  /* Eliminamos el hover y la transición de aquí, ya que el grid no debe moverse */
 }
 
 .why-us-card {
   background: white;
-  padding: 100px 50px 40px; /* Padding superior extra por el icono */
-  margin-bottom: 100px;
+  padding: 100px 50px 40px;
+  margin-bottom: 20px; /* Ajustado para que no choque con la de abajo */
   border-radius: 40px;
-  border: 1px solid #e0e0e0;
+  border: 2px solid #e0e0e0; /* Subimos a 2px para igualar a servicios */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  position: relative; /* Necesario para el icono flotante */
+  position: relative;
   text-align: center;
+  
+  /* EFECTO IDENTICO A SERVICIOS */
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* El círculo azul flotante */
+/* HOVER APLICADO A LA CARD */
+.why-us-card:hover {
+  transform: translateY(-10px);
+  border-color: #C62828; /* El mismo rojo de servicios */
+}
+
 .why-icon-floating {
   width: 70px;
   height: 70px;
-  background-color: #3F51B5; /* El azul de los iconos en la imagen */
+  background-color: #3F51B5;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -387,10 +425,9 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, -50%); /* Lo centra horizontalmente y lo sube a la mitad */
+  transform: translate(-50%, -50%);
   box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
 }
-
 .why-card-title {
   font-family: 'Poppins', sans-serif;
   font-size: 26px;
