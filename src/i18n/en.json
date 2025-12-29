@@ -6,6 +6,66 @@
     "contact": "Contact"
   },
 
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Discover reliable solutions in Insurance, Taxes, and Notary Services for your peace of mind."
+    },
+
+    "intro": {
+      "title": "We protect what matters most to you.",
+      "paragraph1": "At Providence Insurance Agency, we help you with insurance, taxes, and notary services in a clear, fast, and bilingual way from Smyrna, Tennessee.",
+      "paragraph2": "With over 15 years of experience supporting families and businesses in Tennessee, we provide trustworthy and personalized guidance."
+    },
+
+    "experience": {
+      "title": "Over 15 years of experience",
+      "text": "We believe insurance and paperwork don’t have to be complicated. Our mission is to make everything simple and transparent for you.",
+      "quote": "Better to have it and not need it, than to need it and not have it."
+    },
+
+    "values": {
+      "title": "Why choose us",
+      "subtitle": "We assist you in person or remotely through calls, messages, or video meetings—whatever works best for you.",
+      "items": {
+        "team": {
+          "title": "Professional team",
+          "text": "Our trained professionals guide you through every step with confidence and clarity."
+        },
+        "goal": {
+          "title": "Goal-oriented",
+          "text": "We avoid complex terminology and focus on practical, effective solutions."
+        },
+        "security": {
+          "title": "Guaranteed security",
+          "text": "We provide real protection with no fine print—just results you can trust."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "CONTACT US",
+    "subtitle": "We protect what matters most to you",
+    "helpTitle": "NEED HELP?",
+
+    "form": {
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "message": "Message",
+      "submit": "Send Message",
+      "whatsapp": "Contact us via WhatsApp"
+    },
+
+    "info": {
+      "phoneLabel": "PHONE",
+      "emailLabel": "EMAIL",
+      "locationLabel": "LOCATION",
+      "locationValue": "2101 Lassy Street, Ennis, Texas 75119"
+    }
+  },
+
+
   "services": {
     "hero": {
       "title": "Our Services",

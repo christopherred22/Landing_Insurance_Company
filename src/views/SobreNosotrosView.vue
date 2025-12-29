@@ -4,9 +4,9 @@
     <!-- HERO FULL WIDTH -->
     <section class="hero-section">
       <div class="hero-container">
-        <h1 class="animate-on-scroll" >Sobre nosotros</h1>
+        <h1 class="animate-on-scroll" >{{ $t('about.hero.title') }}</h1>
         <p class="subtitle animate-on-scroll">
-          Descubre soluciones confiables en Seguros, Impuestos y Notariado para tu tranquilidad.
+          {{ $t('about.hero.subtitle') }}
         </p>
       </div>
     </section>
@@ -15,15 +15,15 @@
     <section class="intro-section">
       <div class="container">
         <h2 class="animate-on-scroll">
-          Protegemos lo que más importa para ti.
+          {{ $t('about.intro.title') }}
         </h2>
 
         <div class="grid-two-cols">
           <p class="animate-on-scroll">
-            En Providence Insurance Agency te ayudamos con tus seguros, impuestos y servicios notariales de forma clara, rápida y en tu idioma, desde Smyrna, Tennessee.
+            {{ $t('about.intro.paragraph1') }}
           </p>
           <p class="animate-on-scroll">
-            Más de 15 años de experiencia acompañando a familias y negocios en Tennessee. Aquí encuentras un equipo cercano, confiable y listo para ayudarte a tomar buenas decisiones.
+           {{ $t('about.intro.paragraph2') }}
           </p>
         </div>
       </div>
@@ -38,12 +38,12 @@
           </div>
 
           <div class="experience-content animate-on-scroll">
-            <h3>Con más de 15 años de experiencia</h3>
+            <h3>{{ $t('about.experience.title') }}</h3>
             <p>
-              En Providence Insurance Agency creemos que los seguros y los trámites no tienen por qué ser complicados.
+              {{ $t('about.experience.text') }}
             </p>
             <blockquote class="quote">
-              “Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo”
+              {{ $t('about.experience.quote') }}
             </blockquote>
           </div>
         </div>
@@ -53,8 +53,8 @@
     <!-- VALUES -->
     <section class="values-section container">
       <div class="values-header">
-        <h2>Somos tu mejor opción</h2>
-        <p>Te esperamos para ayudarte en persona o de forma remota. Podemos trabajar contigo por teléfono, mensaje o videollamada según te sea más cómodo.</p>
+        <h2>{{ $t('about.values.title') }}</h2>
+        <p>{{ $t('about.values.subtitle') }}</p>
       </div>
 
       <div class="values-grid">
@@ -65,8 +65,8 @@
 </svg>
 </div>
 
-          <h4>Equipo profesional</h4>
-          <p>Tenemos profesionales altamente capacitados para orientarte en todo proceso.</p>
+          <h4>{{ $t('about.values.items.team.title') }}</h4>
+          <p>{{ $t('about.values.items.team.text') }}</p>
         </div>
         <div class="value-card">
           <div class="icon-circle">
@@ -74,8 +74,8 @@
 <path d="M19.3081 0.000257671L18.0471 4.2057C19.7219 3.86384 21.4532 3.68595 23.2279 3.68595C24.5782 3.68595 25.9047 3.79165 27.1995 3.99223L25.9871 0H19.3081V0.000257671ZM23.2276 6.29643C10.3851 6.29643 0 16.6772 0 29.5197C0 42.3618 10.3851 52.7428 23.2276 52.7428C36.0698 52.7428 46.4507 42.3619 46.4507 29.5195C46.4507 16.6771 36.0699 6.29617 23.2275 6.29617L23.2276 6.29643ZM23.2276 11.6701C33.0866 11.6701 41.0769 19.6604 41.0769 29.5198C41.0769 39.3788 33.0866 47.3733 23.2275 47.3733C13.3681 47.3733 5.37397 39.3788 5.37397 29.5198C5.37397 19.6604 13.3681 11.6701 23.2275 11.6701H23.2276ZM23.2234 16.6895C16.1387 16.6895 10.3933 22.431 10.3933 29.5157C10.3933 36.6004 16.1387 42.3418 23.2234 42.3418C30.3081 42.3418 36.0495 36.6004 36.0495 29.5157C36.0495 22.431 30.3081 16.6895 23.2234 16.6895ZM23.2275 21.8054C27.4881 21.8054 30.9415 25.2588 30.9415 29.5197C30.9415 33.7803 27.4881 37.2338 23.2274 37.2338C18.9664 37.2338 15.513 33.7804 15.513 29.5195C15.513 25.2587 18.9664 21.8051 23.2272 21.8051L23.2275 21.8054ZM23.2275 25.7894C21.1659 25.7894 19.4931 27.4583 19.4931 29.5199C19.4931 31.5811 21.1659 33.2541 23.2275 33.2541C25.2887 33.2541 26.9575 31.5813 26.9575 29.5197C26.9575 27.4584 25.2888 25.7895 23.2274 25.7895L23.2275 25.7894ZM4.97913 47.7961L1.38987 59.7683H7.43248L10.0467 51.7358C8.20135 50.6368 6.4992 49.3135 4.97913 47.7961ZM40.7104 48.5293C39.159 49.956 37.4397 51.1883 35.5902 52.199L38.0717 59.7684H44.1183L40.7104 48.5293ZM19.437 55.0752V59.7683H26.152V55.1882C25.181 55.2981 24.2046 55.3532 23.2275 55.3532C21.9397 55.3532 20.6739 55.2579 19.4366 55.0753L19.437 55.0752Z" fill="#333333"/>
 </svg>
           </div>
-          <h4>Orientado al objetivo</h4>
-          <p>No utilizamos términos complicados, nos enfocamos en soluciones y términos simples pero efectivos.</p>
+          <h4>{{ $t('about.values.items.goal.title') }}</h4>
+          <p>{{ $t('about.values.items.goal.text') }}</p>
         </div>
         <div class="value-card">
           <div class="icon-circle">
@@ -91,8 +91,8 @@
 </defs>
 </svg>
           </div>
-          <h4>Seguro garantizado</h4>
-          <p>Garantizas un seguro que cuida de ti y los tuyos, sin letras pequeñas, solo resultados.</p>
+          <h4>{{ $t('about.values.items.security.title') }}</h4>
+          <p>{{ $t('about.values.items.security.text') }}</p>
         </div>
       </div>
     </section>

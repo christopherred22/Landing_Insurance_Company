@@ -2,29 +2,48 @@
   <div class="page-wrapper">
     <div class="content-container">
       <header class="header-section">
-        <h1 class="main-title">CONTÁCTANOS</h1>
-        <p class="subtitle">Protegemos lo que más importa para ti</p>
+        <h1 class="main-title">{{ $t('contact.title') }}</h1>
+        <p class="subtitle">{{ $t('contact.subtitle') }}</p>
       </header>
 
       <section class="card-section">
         <div class="contact-card">
-          <h2 class="card-title">¿NECESITAS AYUDA?</h2>
+          <h2 class="card-title">{{ $t('contact.helpTitle') }}</h2>
 
           <form @submit.prevent="handleSubmit" class="contact-form">
             <div class="input-group">
-              <input type="text" v-model="form.name" placeholder="Nombre Completo" required>
+              <input
+                type="tel"
+                v-model="form.phone"
+                :placeholder="$t('contact.form.phone')"
+                required
+              >
             </div>
             <div class="input-group">
-              <input type="tel" v-model="form.phone" placeholder="Teléfono" required>
+              <input
+                type="tel"
+                v-model="form.phone"
+                :placeholder="$t('contact.form.phone')"
+                required
+              >
             </div>
             <div class="input-group">
-              <input type="email" v-model="form.email" placeholder="Correo electrónico" required>
+              <input
+                type="email"
+                v-model="form.email"
+                :placeholder="$t('contact.form.email')"
+                required
+              >
             </div>
 
-            <textarea v-model="form.message" placeholder="Mensaje" class="custom-textarea"></textarea>
+            <textarea
+              v-model="form.message"
+              :placeholder="$t('contact.form.message')"
+              class="custom-textarea"
+            ></textarea>
 
-            <button type="submit" class="btn-primary">Enviar Mensaje</button>
-            <button type="button" class="btn-outline">Whatsapp Us</button>
+            <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
+            <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
           </form>
         </div>
       </section>
@@ -33,7 +52,7 @@
         <div class="info-item">
           <div class="icon-box">📞</div>
           <div class="info-text">
-            <span class="label">TELÉFONO</span>
+            <span class="label">{{ $t('contact.info.phoneLabel') }}</span>
             <span class="value">615-625-0165</span>
           </div>
         </div>
@@ -41,7 +60,7 @@
         <div class="info-item">
           <div class="icon-box">✉️</div>
           <div class="info-text">
-            <span class="label">CORREO ELECTRÓNICO</span>
+            <span class="label">{{ $t('contact.info.emailLabel') }}</span>
             <span class="value">providetexasinsurance@hotmail.com</span>
           </div>
         </div>
@@ -49,8 +68,8 @@
         <div class="info-item">
           <div class="icon-box">📍</div>
           <div class="info-text">
-            <span class="label">UBICACIÓN</span>
-            <span class="value">Calle Lassy 2101, Ennis, Texas 75119</span>
+            <span class="label">{{ $t('contact.info.locationLabel') }}</span>
+            <span class="value">{{ $t('contact.info.locationValue') }}</span>
           </div>
         </div>
       </footer>

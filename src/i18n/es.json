@@ -5,6 +5,65 @@
     "about": "Sobre nosotros",
     "contact": "Contáctanos"
   },
+    "about": {
+    "hero": {
+      "title": "Sobre nosotros",
+      "subtitle": "Descubre soluciones confiables en Seguros, Impuestos y Notariado para tu tranquilidad."
+    },
+
+    "intro": {
+      "title": "Protegemos lo que más importa para ti.",
+      "paragraph1": "En Providence Insurance Agency te ayudamos con tus seguros, impuestos y servicios notariales de forma clara, rápida y en tu idioma, desde Smyrna, Tennessee.",
+      "paragraph2": "Con más de 15 años de experiencia acompañando a familias y negocios en Tennessee, ofrecemos un servicio cercano, confiable y enfocado en ayudarte a tomar decisiones seguras."
+    },
+
+    "experience": {
+      "title": "Con más de 15 años de experiencia",
+      "text": "Creemos firmemente que los seguros y los trámites no tienen por qué ser complicados. Nuestro objetivo es explicarte todo de manera sencilla y transparente.",
+      "quote": "Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo."
+    },
+
+    "values": {
+      "title": "Somos tu mejor opción",
+      "subtitle": "Te atendemos de forma presencial o remota. Nos adaptamos a ti mediante llamadas, mensajes o videollamadas.",
+      "items": {
+        "team": {
+          "title": "Equipo profesional",
+          "text": "Contamos con profesionales capacitados que te acompañan paso a paso en cada proceso."
+        },
+        "goal": {
+          "title": "Orientados al objetivo",
+          "text": "Evitamos términos complicados y nos enfocamos en soluciones claras, prácticas y efectivas."
+        },
+        "security": {
+          "title": "Seguridad garantizada",
+          "text": "Te ofrecemos protección real, sin letras pequeñas, con resultados que respaldan tu tranquilidad."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "CONTÁCTANOS",
+    "subtitle": "Protegemos lo que más importa para ti",
+    "helpTitle": "¿NECESITAS AYUDA?",
+
+    "form": {
+      "name": "Nombre Completo",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje",
+      "whatsapp": "Escríbenos por WhatsApp"
+    },
+
+    "info": {
+      "phoneLabel": "TELÉFONO",
+      "emailLabel": "CORREO ELECTRÓNICO",
+      "locationLabel": "UBICACIÓN",
+      "locationValue": "Calle Lassy 2101, Ennis, Texas 75119"
+    }
+  },
+
 
   "services": {
     "hero": {
