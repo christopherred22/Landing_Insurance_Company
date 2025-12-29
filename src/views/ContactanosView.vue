@@ -1,12 +1,13 @@
 <template>
-  <div class="page-wrapper">
-    <div class="content-container">
+  <div class="contact-wrapper">
+    <!-- Contenedor del formulario -->
+    <div class="content-container animate-on-scroll">
       <header class="header-section">
         <h1 class="main-title">{{ $t('contact.title') }}</h1>
         <p class="subtitle">{{ $t('contact.subtitle') }}</p>
       </header>
 
-      <section class="card-section">
+      <section class="card-section animate-on-scroll">
         <div class="contact-card">
           <h2 class="card-title">{{ $t('contact.helpTitle') }}</h2>
 
@@ -47,51 +48,73 @@
           </form>
         </div>
       </section>
+    </div>
 
-      <footer class="info-grid">
-        <div class="info-item">
-          <div class="icon-box">📞</div>
-          <div class="info-text">
-            <span class="label">{{ $t('contact.info.phoneLabel') }}</span>
-            <span class="value">615-625-0165</span>
-          </div>
+    <!-- Íconos fuera del formulario -->
+    <div class="icon-wrapper animate-on-scroll">
+      <div class="info-item">
+        <div class="icon-box"><img src="@/assets/telefono.png"></div>
+        <div class="info-text">
+          <span class="label">{{ $t('contact.info.phoneLabel') }}</span>
+          <span class="value">615-625-0165</span>
         </div>
+      </div>
 
-        <div class="info-item">
-          <div class="icon-box">✉️</div>
-          <div class="info-text">
-            <span class="label">{{ $t('contact.info.emailLabel') }}</span>
-            <span class="value">providetexasinsurance@hotmail.com</span>
-          </div>
+      <div class="info-item">
+        <div class="icon-box"><img src="@/assets/correo.png"></div>
+        <div class="info-text">
+          <span class="label">{{ $t('contact.info.emailLabel') }}</span>
+          <span class="value">providetexasinsurance@hotmail.com</span>
         </div>
+      </div>
 
-        <div class="info-item">
-          <div class="icon-box">📍</div>
-          <div class="info-text">
-            <span class="label">{{ $t('contact.info.locationLabel') }}</span>
-            <span class="value">{{ $t('contact.info.locationValue') }}</span>
-          </div>
+      <div class="info-item">
+        <div class="icon-box"><img src="@/assets/ubicacion.png"></div>
+        <div class="info-text">
+          <span class="label">{{ $t('contact.info.locationLabel') }}</span>
+          <span class="value">{{ $t('contact.info.locationValue') }}</span>
         </div>
-      </footer>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
 const form = ref({ name: '', phone: '', email: '', message: '' })
 const handleSubmit = () => alert('Mensaje enviado')
+
+// Animaciones con IntersectionObserver
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+      }
+    })
+  }, { threshold: 0.1 })
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el)
+  })
+})
 </script>
 
-<style scoped>
-.page-wrapper {
+<style>
+.contact-wrapper {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   padding: 40px 20px;
   box-sizing: border-box;
+  background-image: url('../assets/background_contactanos.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content-container {
@@ -131,10 +154,12 @@ const handleSubmit = () => alert('Mensaje enviado')
   background: white;
   width: 100%;
   padding: 40px 30px;
-  border-radius: 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 30px; /* ← esquinas más rectas, estilo Power BI */
+  border: 1px solid #696969; /* ← borde gris claro, muy sutil */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* ← sombra suave y profesional */
   box-sizing: border-box;
 }
+
 
 .card-title {
   color: #2a3b8f;
@@ -189,37 +214,52 @@ const handleSubmit = () => alert('Mensaje enviado')
   cursor: pointer;
 }
 
-.info-grid {
+.icon-wrapper {
   width: 100%;
+  max-width: 900px;
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-  align-items: flex-start;
-  padding-left: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .info-item {
+  flex: 1 1 250px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0);
+  padding: 15px;
+  border-radius: 15px;
+  box-sizing: border-box;
 }
 
 .icon-box {
   background: #0d124a;
-  min-width: 50px;
-  height: 50px;
-  border-radius: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  color: white;
+  flex-shrink: 0;
+}
+
+.icon-box img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .info-text {
   display: flex;
   flex-direction: column;
   text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: visible;
 }
 
 .label {
@@ -231,6 +271,38 @@ const handleSubmit = () => alert('Mensaje enviado')
 .value {
   color: #1b264f;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expand-enter-active { transition: all 0.3s ease-out; }
+.expand-enter-from { opacity: 0; transform: translateY(-10px); }
+.arrow { transition: 0.3s; }
+.arrow.rotated { transform: rotate(180deg); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .icon-wrapper {
+    padding: 0 10px;
+  }
+
+  .info-item {
+    flex-direction: row;
+    max-width: 100%;
+  }
 }
 </style>
