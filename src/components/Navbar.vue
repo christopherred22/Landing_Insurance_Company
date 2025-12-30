@@ -3,8 +3,11 @@
     <div class="navbar-container">
 
       <div class="logo">
-        <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
-      </div>
+  <RouterLink :to="{ name: 'home', params: { locale } }">
+    <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
+  </RouterLink>
+</div>
+
 
       <div class="hamburger" @click="isOpen = !isOpen">
         <span></span>
@@ -12,28 +15,35 @@
         <span></span>
       </div>
 
-      <ul class="nav-links">
-        <li>
-          <RouterLink :to="`/${locale}`">
+      <ul class="nav-links" :class="{ open: isOpen }">
+  <li>
+          <RouterLink :to="`/${locale}/home`">
             {{ t('nav.home') }}
           </RouterLink>
-        </li>
-        <li>
+
+  </li>
+
+  <li>
           <RouterLink :to="`/${locale}/services`">
             {{ t('nav.services') }}
           </RouterLink>
-        </li>
-        <li>
-          <RouterLink :to="`/${locale}/about`">
+
+  </li>
+
+  <li>
+    <RouterLink :to="`/${locale}/about`">
             {{ t('nav.about') }}
           </RouterLink>
-        </li>
-        <li>
+
+  </li>
+
+  <li>
           <RouterLink :to="`/${locale}/contact`">
             {{ t('nav.contact') }}
           </RouterLink>
         </li>
-      </ul>
+
+</ul>
 
       <div class="language-section">
         <div class="language-switcher" @click="toggleLanguage">

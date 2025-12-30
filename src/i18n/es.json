@@ -64,6 +64,126 @@
     }
   },
 
+  "home": {
+    "hero": {
+      "title": {
+        "line1": "Protegemos lo",
+        "line2": "más importante",
+        "highlight": "para ti."
+      },
+      "subtitle": {
+        "line1": "Soluciones confiables en seguros,",
+        "line2": "impuestos y servicios de notariado."
+      },
+      "actions": {
+        "contact": "Contáctanos",
+        "whatsapp": "WhatsApp"
+      }
+    },
+
+    "about": {
+      "titleRed": "Sobre",
+      "titleBlue": "nosotros",
+      "subtitle": "Más de 15 años de experiencia",
+      "description": "Somos una compañía dedicada a proteger tu bienestar. Ofrecemos servicios integrales para la comunidad. Nuestros agentes están capacitados en seguros, impuestos y notariado para que tengas la confianza de estar en buenas manos."
+    },
+
+    "services": {
+      "title": "Nuestros servicios",
+      "more": "Saber más",
+
+      "insurance": {
+        "title": "Seguros",
+        "desc": "Protección integral"
+      },
+      "taxes": {
+        "title": "Impuestos",
+        "desc": "Protección profesional integral"
+      },
+      "notary": {
+        "title": "Notariado",
+        "desc": "Servicios legales completos"
+      }
+    },
+
+    "why": {
+      "title": "¿Por qué elegirnos?",
+      "items": {
+        "experience": {
+          "title": "Experiencia Comprobada",
+          "text": "Más de 15 años en seguros, impuestos y notariado en Tennessee."
+        },
+        "clarity": {
+          "title": "Claridad Garantizada",
+          "text": "Explicamos todo con lenguaje claro, sin términos confusos ni letras pequeñas."
+        },
+        "bilingual": {
+          "title": "Bilingüe y Personalizada",
+          "text": "Atención en español e inglés, cercana y centrada en tus necesidades."
+        },
+        "office": {
+          "title": "Agencia Física",
+          "text": "Contamos con una sucursal física en Smyrna, Tennessee para atenderte con rapidez."
+        }
+      }
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "line1": "Seguros, Impuestos y",
+      "line2": "Notariado."
+    },
+
+    "links": {
+      "title": "Enlaces",
+      "home": "Inicio",
+      "services": "Servicios",
+      "about": "Sobre Nosotros",
+      "contact": "Contacto"
+    },
+
+    "compliance": {
+      "title": "Compliance",
+      "privacy": "Privacidad"
+    },
+
+    "social": {
+      "title": "Redes sociales"
+    },
+
+    "location": {
+      "title": "Ubicación",
+      "addressLine1": "Calle Lowry 214 N,",
+      "addressLine2": "Smyrna TN 37167"
+    },
+
+    "bottom": "© 2025 Providence Insurance Agency. Todos los derechos reservados.",
+
+    "privacy": {
+      "title": "Política de privacidad",
+      "intro": "Providence Insurance Agency, LLC se compromete a proteger la privacidad de nuestros usuarios. No compartimos su información personal con terceros.",
+      "collect": {
+        "title": "Recopilación de información:",
+        "text": "Recopilamos únicamente la información necesaria para proporcionar y mejorar nuestros servicios. <strong>No compartimos, vendemos ni transmitimos ninguna información personal a terceros con fines de marketing o promoción.</strong>"
+      },
+      "use": {
+        "title": "Cómo utilizamos su información:",
+        "text": "La información recopilada se utiliza únicamente para comunicarnos con usted y brindar nuestros servicios."
+      },
+      "sms": "<strong>Divulgación por SMS:</strong><br>Al suscribirse a los mensajes de texto de Providence Insurance Agency, LLC, usted acepta recibir mensajes recurrentes. Pueden aplicarse tarifas por mensajes y datos. Responda STOP para cancelar o HELP para más información.",
+      "rights": {
+        "title": "Tus opciones:",
+        "text": "Puede acceder, corregir o eliminar su información. Escríbanos a <a href='mailto:office@providenceinsuranceagency.com'>office@providenceinsuranceagency.com</a> o llámenos al (615) 625-0165."
+      },
+      "changes": {
+        "title": "Cambios de política:",
+        "text": "Esta política puede actualizarse ocasionalmente. El uso continuo de nuestros servicios implica su aceptación."
+      },
+      "updated": "Última actualización: 5 de agosto de 2024"
+    }
+  },
+
 
   "services": {
     "hero": {
@@ -206,21 +326,21 @@
       },
       "accounting": {
         "title": "Contabilidad",
-        "cover": "Gestión financiera y reportes.",
-        "why": "Mantén tus finanzas en orden.",
-        "who": "Empresas."
+        "cover": "Registro mensual de ingresos y egresos, conciliación bancaria y preparación de estados financieros.",
+        "why": "Te permite conocer la salud real de tu negocio y estar preparado para la temporada de impuestos.",
+        "who": "Empresarios que desean mantener sus finanzas organizadas y tomar decisiones basadas en datos."
       },
       "companies": {
-        "title": "Creación de Compañías",
-        "cover": "Registro legal y documentación.",
-        "why": "Formaliza tu negocio.",
-        "who": "Emprendedores."
+        "title": "Registración de Compañías",
+        "cover": "Registro oficial ante el Estado, obtención del número EIN y preparación de documentos operativos.",
+        "why": "Formaliza tu emprendimiento, protege tu patrimonio personal y te permite abrir cuentas bancarias comerciales.",
+        "who": "Emprendedores que desean iniciar una LLC, Corporación o cualquier entidad legal en EE.UU."
       },
       "rep-companies": {
-        "title": "Representación de Compañías",
-        "cover": "Gestión legal y administrativa.",
-        "why": "Cumple con regulaciones.",
-        "who": "Empresas."
+        "title": "Planillas de compañía",
+        "cover": "Procesamiento de nómina, cálculo de retenciones federales/estatales y emisión de talones de pago.",
+        "why": "Asegura que tus empleados reciban su pago a tiempo y que tu negocio cumpla con las leyes laborales.",
+        "who": "Dueños de negocios con empleados que buscan automatizar y legalizar sus pagos de nómina."
       },
 
       "legal-procedures": {

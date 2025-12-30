@@ -5,82 +5,128 @@
       <div class="container hero-grid">
         <div class="hero-text">
           <h1>
-            Protegemos lo <br />
-            más importante <br />
-            <span class="highlight">para ti.</span>
+            {{ $t('home.hero.title.line1') }} <br />
+            {{ $t('home.hero.title.line2') }} <br />
+            <span class="highlight">{{ $t('home.hero.title.highlight') }}</span>
           </h1>
+
           <p>
-            Soluciones confiables en seguros,<br />
-            impuestos y servicios de notariado.
+            {{ $t('home.hero.subtitle.line1') }}<br />
+            {{ $t('home.hero.subtitle.line2') }}
           </p>
+
           <div class="hero-actions">
-            <button class="btn-primary">Contáctanos</button>
-            <button class="btn-secondary">WhatsApp</button>
+            <button class="btn-primary">
+              {{ $t('home.hero.actions.contact') }}
+            </button>
+            <button class="btn-secondary">
+              {{ $t('home.hero.actions.whatsapp') }}
+            </button>
           </div>
         </div>
+
         <div class="hero-image">
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <img src="@/assets/family.png" alt="Familia" class="rounded-img" />
-      <img src="@/assets/workers.png" alt="Seguros" class="rounded-img" />
-      <img src="@/assets/bakers.png" alt="Notario" class="rounded-img" />
-    </div>
-    <div class="carousel-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </div>
-</div>
+          <div class="carousel-container">
+            <div class="carousel-track">
+              <img src="@/assets/family.png" alt="Family" class="rounded-img" />
+              <img src="@/assets/workers.png" alt="Insurance" class="rounded-img" />
+              <img src="@/assets/bakers.png" alt="Notary" class="rounded-img" />
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ABOUT -->
- <section class="about-section">
-  <div class="container about-grid">
-    <div class="about-content">
-      <h2 class="about-title"><span class="red-text">Sobre </span><div class="nosotros-wrapper"><span class="blue-outline-text">nosotros</span><div class="blue-underline"></div></div></h2>
+    <section class="about-section">
+      <div class="container about-grid">
+        <div class="about-content">
+          <h2 class="about-title">
+            <span class="red-text">{{ $t('home.about.titleRed') }}</span>
+            <div class="nosotros-wrapper">
+              <span class="blue-outline-text">{{ $t('home.about.titleBlue') }}</span>
+              <div class="blue-underline"></div>
+            </div>
+          </h2>
 
-      <h3 class="about-subtitle">Más de 15 años de experiencia</h3>
+          <h3 class="about-subtitle">
+            {{ $t('home.about.subtitle') }}
+          </h3>
 
-      <p class="about-paragraph">
-        Somos una compañía dedicada a proteger tu bienestar. Ofreciendo servicios
-        integrales para la comunidad; nuestros agentes están capacitados en
-        servicios de seguros, de impuestos y de notariado para que puedas
-        tener la confianza de estar en buenas manos.
-      </p>
-    </div>
+          <p class="about-paragraph">
+            {{ $t('home.about.description') }}
+          </p>
+        </div>
 
-    <div class="about-logo">
-      <img src="@/assets/estrella_PI.png" alt="Providence Logo" class="main-logo-img" />
-    </div>
-  </div>
-</section>
+        <div class="about-logo">
+          <img
+            src="@/assets/estrella_PI.png"
+            alt="Providence Logo"
+            class="main-logo-img"
+          />
+        </div>
+      </div>
+    </section>
+
     <!-- SERVICES -->
     <section class="services-section">
       <div class="container">
-        <h2 class="services-main-title">Nuestros servicios</h2>
+        <h2 class="services-main-title">
+          {{ $t('home.services.title') }}
+        </h2>
 
         <div class="services-grid">
           <div class="service-card">
             <img src="@/assets/escudo.png" alt="">
-            <h3 class="service-card-title">Seguros</h3>
-            <p class="service-card-desc">Protección integral</p>
-            <a href="#" class="service-card-link">Saber más</a>
+            <h3 class="service-card-title">
+              {{ $t('home.services.insurance.title') }}
+            </h3>
+            <p class="service-card-desc">
+              {{ $t('home.services.insurance.desc') }}
+            </p>
+              <RouterLink
+                :to="`/${locale}/contact`"
+                class="service-card-link"
+                >
+                {{ $t('home.services.more') }}
+              </RouterLink>
           </div>
 
           <div class="service-card">
             <img src="@/assets/calculadora.png" alt="">
-            <h3 class="service-card-title">Impuestos</h3>
-            <p class="service-card-desc">Protección profesional<br /> integral</p>
-            <a href="#" class="service-card-link">Saber más</a>
+            <h3 class="service-card-title">
+              {{ $t('home.services.taxes.title') }}
+            </h3>
+            <p class="service-card-desc">
+              {{ $t('home.services.taxes.desc') }}
+            </p>
+              <RouterLink
+                :to="`/${locale}/contact`"
+                class="service-card-link"
+                >
+                {{ $t('home.services.more') }}
+              </RouterLink>
           </div>
 
           <div class="service-card">
             <img src="@/assets/notariado.png" alt="">
-            <h3 class="service-card-title">Notariado</h3>
-            <p class="service-card-desc">Servicios legales <br />completos</p>
-            <a href="#" class="service-card-link">Saber más</a>
+            <h3 class="service-card-title">
+              {{ $t('home.services.notary.title') }}
+            </h3>
+            <p class="service-card-desc">
+              {{ $t('home.services.notary.desc') }}
+            </p>
+              <RouterLink
+                :to="`/${locale}/contact`"
+                class="service-card-link"
+                >
+                {{ $t('home.services.more') }}
+              </RouterLink>
           </div>
         </div>
       </div>
@@ -88,54 +134,76 @@
 
     <!-- WHY US -->
     <section class="why-us-section">
-  <div class="container">
-    <h2 class="why-us-main-title">¿Por qué elegirnos?</h2>
-    
-    <div class="why-us-grid">
-      <div class="why-us-card">
-        <div class="why-icon-floating">
-          <img src="@/assets/g1.png" alt="">
-        </div>
-        <h4 class="why-card-title">Experiencia Comprobada</h4>
-        <p class="why-card-text">
-          Más de 15 años en seguros, <br />impuestos y notariado en <br />Tennessee.
-        </p>
-      </div>
+      <div class="container">
+        <h2 class="why-us-main-title">
+          {{ $t('home.why.title') }}
+        </h2>
 
-      <div class="why-us-card">
-        <div class="why-icon-floating">
-          <img src="@/assets/g2.png" alt="">
-        </div>
-        <h4 class="why-card-title">Claridad Garantizada</h4>
-        <p class="why-card-text">
-          Explicamos todo con lenguaje claro, <br />sin términos confusos ni letras<br /> pequeñas.
-        </p>
-      </div>
+        <div class="why-us-grid">
+          <div class="why-us-card">
+            <div class="why-icon-floating">
+              <img src="@/assets/g1.png" alt="">
+            </div>
+            <h4 class="why-card-title">
+              {{ $t('home.why.items.experience.title') }}
+            </h4>
+            <p class="why-card-text">
+              {{ $t('home.why.items.experience.text') }}
+            </p>
+          </div>
 
-      <div class="why-us-card">
-        <div class="why-icon-floating">
-          <img src="@/assets/g3.png" alt="">
-        </div>
-        <h4 class="why-card-title">Bilingüe y Personalizada</h4>
-        <p class="why-card-text">
-          Atención en español e inglés,<br /> cercana y centrada en tus<br /> necesidades.
-        </p>
-      </div>
+          <div class="why-us-card">
+            <div class="why-icon-floating">
+              <img src="@/assets/g2.png" alt="">
+            </div>
+            <h4 class="why-card-title">
+              {{ $t('home.why.items.clarity.title') }}
+            </h4>
+            <p class="why-card-text">
+              {{ $t('home.why.items.clarity.text') }}
+            </p>
+          </div>
 
-      <div class="why-us-card">
-        <div class="why-icon-floating">
-         <img src="@/assets/g4.png" alt="">
+          <div class="why-us-card">
+            <div class="why-icon-floating">
+              <img src="@/assets/g3.png" alt="">
+            </div>
+            <h4 class="why-card-title">
+              {{ $t('home.why.items.bilingual.title') }}
+            </h4>
+            <p class="why-card-text">
+              {{ $t('home.why.items.bilingual.text') }}
+            </p>
+          </div>
+
+          <div class="why-us-card">
+            <div class="why-icon-floating">
+              <img src="@/assets/g4.png" alt="">
+            </div>
+            <h4 class="why-card-title">
+              {{ $t('home.why.items.office.title') }}
+            </h4>
+            <p class="why-card-text">
+              {{ $t('home.why.items.office.text') }}
+            </p>
+          </div>
         </div>
-        <h4 class="why-card-title">Agencia Física</h4>
-        <p class="why-card-text">
-          Contamos con una sucursal física<br /> ubicada en Smyrna, Tennessee para <br />cumplir con rapidez cualquier<br /> necesidad.
-        </p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const locale = computed(() => {
+  return route.params.locale === 'en' ? 'en' : 'es'
+})
+</script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
@@ -299,16 +367,16 @@
 /* El contenedor de "nosotros" debe ser inline-block para pegarse a "Sobre" */
 .nosotros-wrapper {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
 }
 
 .blue-outline-text {
   color: transparent;
   /* Borde azul grueso, relleno transparente */
-  -webkit-text-stroke: 2.5px #012148; 
+  -webkit-text-stroke: 2.5px #012148;
   text-transform: lowercase;
   /* Un pequeño margen negativo a la izquierda para pegarlo aún más a "Sobre" si hace falta */
-  margin-left: -5px; 
+  margin-left: -5px;
 }
 
 .blue-underline {
@@ -353,7 +421,7 @@
   /* En tablets, permitimos que se rompa la línea si es necesario */
   .about-title {
     font-size: 65px;
-    white-space: normal; 
+    white-space: normal;
   }
   .about-paragraph {
     margin: 0 auto;
@@ -464,7 +532,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   position: relative;
   text-align: center;
-  
+
   /* EFECTO IDENTICO A SERVICIOS */
   transition: transform 0.3s ease, border-color 0.3s ease;
 }

@@ -64,6 +64,125 @@
       "locationValue": "2101 Lassy Street, Ennis, Texas 75119"
     }
   },
+  "home": {
+    "hero": {
+      "title": {
+        "line1": "We protect",
+        "line2": "what matters most",
+        "highlight": "to you."
+      },
+      "subtitle": {
+        "line1": "Reliable solutions in insurance,",
+        "line2": "taxes and notary services."
+      },
+      "actions": {
+        "contact": "Contact Us",
+        "whatsapp": "WhatsApp"
+      }
+    },
+
+    "about": {
+      "titleRed": "About",
+      "titleBlue": "us",
+      "subtitle": "More than 15 years of experience",
+      "description": "We are a company dedicated to protecting your well-being. We offer comprehensive services for the community, with agents trained in insurance, taxes, and notary services so you can feel confident you are in good hands."
+    },
+
+    "services": {
+      "title": "Our services",
+      "more": "Learn more",
+
+      "insurance": {
+        "title": "Insurance",
+        "desc": "Comprehensive protection"
+      },
+      "taxes": {
+        "title": "Taxes",
+        "desc": "Professional comprehensive protection"
+      },
+      "notary": {
+        "title": "Notary",
+        "desc": "Complete legal services"
+      }
+    },
+
+    "why": {
+      "title": "Why choose us?",
+      "items": {
+        "experience": {
+          "title": "Proven Experience",
+          "text": "Over 15 years of experience in insurance, taxes, and notary services in Tennessee."
+        },
+        "clarity": {
+          "title": "Guaranteed Clarity",
+          "text": "We explain everything clearly, without confusing terms or fine print."
+        },
+        "bilingual": {
+          "title": "Bilingual & Personalized",
+          "text": "Service in English and Spanish, focused on your needs."
+        },
+        "office": {
+          "title": "Physical Office",
+          "text": "We have a physical office in Smyrna, Tennessee to assist you quickly."
+        }
+      }
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "line1": "Insurance, Taxes and",
+      "line2": "Notary Services."
+    },
+
+    "links": {
+      "title": "Links",
+      "home": "Home",
+      "services": "Services",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+
+    "compliance": {
+      "title": "Compliance",
+      "privacy": "Privacy Policy"
+    },
+
+    "social": {
+      "title": "Social media"
+    },
+
+    "location": {
+      "title": "Location",
+      "addressLine1": "Lowry St 214 N,",
+      "addressLine2": "Smyrna TN 37167"
+    },
+
+    "bottom": "© 2025 Providence Insurance Agency. All rights reserved.",
+
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "Providence Insurance Agency, LLC is committed to protecting your privacy. We do not share your personal information with third parties.",
+      "collect": {
+        "title": "Information collection:",
+        "text": "We collect only the information necessary to provide and improve our services. <strong>We do not sell, share, or transmit personal information for marketing purposes.</strong>"
+      },
+      "use": {
+        "title": "How we use your information:",
+        "text": "Collected information is used solely to communicate with you and deliver our services."
+      },
+      "sms": "<strong>SMS Disclosure:</strong><br>By subscribing to Providence Insurance Agency, LLC text messages, you agree to receive recurring messages. Message and data rates may apply. Reply STOP to cancel or HELP for more info.",
+      "rights": {
+        "title": "Your rights:",
+        "text": "You may access, correct, or delete your information. Contact us at <a href='mailto:office@providenceinsuranceagency.com'>office@providenceinsuranceagency.com</a> or call (615) 625-0165."
+      },
+      "changes": {
+        "title": "Policy changes:",
+        "text": "This policy may be updated periodically. Continued use of our services implies acceptance."
+      },
+      "updated": "Last updated: August 5, 2024"
+    }
+  },
 
 
   "services": {
@@ -206,22 +325,22 @@
         "who": "Employees."
       },
       "accounting": {
-        "title": "Accounting",
-        "cover": "Financial management.",
-        "why": "Stay organized.",
-        "who": "Businesses."
+        "title": "Bookkeeping & Accounting",
+        "cover": "Monthly recording of income and expenses, bank reconciliation, and preparation of financial statements.",
+        "why": "Allows you to know the real health of your business and be prepared for tax season.",
+        "who": "Business owners who want to keep their finances organized and make data-driven decisions."
       },
       "companies": {
-        "title": "Company Formation",
-        "cover": "Legal registration.",
-        "why": "Formalize your business.",
-        "who": "Entrepreneurs."
+        "title": "Business Registration",
+        "cover": "Official registration with the State, obtaining an EIN, and preparation of operating documents.",
+        "why": "Formalizes your venture, protects your personal assets, and allows you to open business bank accounts.",
+        "who": "Entrepreneurs looking to start an LLC, Corporation, or any legal entity in the USA."
       },
       "rep-companies": {
-        "title": "Company Representation",
-        "cover": "Legal compliance.",
-        "why": "Stay compliant.",
-        "who": "Companies."
+        "title": "Payroll Services",
+        "cover": "Payroll processing, calculation of federal/state withholdings, and issuance of pay stubs.",
+        "why": "Ensures your employees are paid on time and your business remains compliant with labor laws.",
+        "who": "Business owners with employees looking to automate and legalize their payroll payments."
       },
 
       "legal-procedures": {

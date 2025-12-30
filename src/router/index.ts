@@ -8,12 +8,21 @@ import ContactanosView from '@/views/ContactanosView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+
+    return {
+      top: 0,
+      behavior: 'smooth'
+    }
+  },routes: [
     {
       path: '/:locale(es|en)',
       component: LocaleLayout,
       children: [
-        { path: '', name: 'home', component: InicioView },
+        { path: 'home', name: 'home', component: InicioView },
         { path: 'services', name: 'services', component: ServiciosView },
         { path: 'about', name: 'about', component: SobreNosotrosView },
         { path: 'contact', name: 'contact', component: ContactanosView },

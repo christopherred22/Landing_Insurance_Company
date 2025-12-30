@@ -6,8 +6,18 @@
         <h1>{{ t('services.hero.title') }}</h1>
         <p class="hero-sub">{{ t('services.hero.subtitle') }}</p>
         <button class="btn-expert">
-          {{ t('services.hero.cta') }}
+                   <RouterLink
+    :to="`/${locale}/contact`"
+    class="btn-expert"
+  >
+    {{ $t('services.hero.cta') }}
+              </RouterLink>
         </button>
+
+
+
+
+
       </div>
 
       <!-- MAIN CATEGORY -->
@@ -80,9 +90,14 @@
             </div>
           </div>
 
-          <button class="btn-cotiza">
-            {{ t('services.cta.quote') }}
-          </button>
+
+            <RouterLink
+    :to="`/${locale}/contact`"
+    class="btn-cotiza"
+  >
+    {{ $t('services.cta.quote') }}
+              </RouterLink>
+
         </div>
       </div>
     </main>
@@ -92,6 +107,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const locale = computed(() => {
+  return route.params.locale === 'en' ? 'en' : 'es'
+})
 
 /* ---------------- i18n ---------------- */
 const { t } = useI18n()
@@ -203,13 +225,6 @@ const services = ref<Service[]>([
   { titleKey: 'services.items.church.title', category: 'taxes', subCategory: 'commercial', icon: IconChurch, coverKey: 'services.items.church.cover', whyKey: 'services.items.church.why', whoKey: 'services.items.church.who' },
 
 
-
-
-
-  //{ titleKey: 'services.items.accounting.title', category: 'taxes', subCategory: 'commercial', icon: IconContabilidad, coverKey: 'services.items.accounting.cover', whyKey: 'services.items.accounting.why', whoKey: 'services.items.accounting.who' },
-  //{ titleKey: 'services.items.companies.title', category: 'taxes', subCategory: 'commercial', icon: IconCompania, coverKey: 'services.items.companies.cover', whyKey: 'services.items.companies.why', whoKey: 'services.items.companies.who' },
-  //{ titleKey: 'services.items.rep-companies.title', category: 'taxes', subCategory: 'commercial', icon: IconRCompanias, coverKey: 'services.items.rep-companies.cover', whyKey: 'services.items.rep-companies.why', whoKey: 'services.items.rep-companies.who' },
-
   // ===== NOTARY =====
   { titleKey: 'services.items.travel.title', category: 'notary', subCategory: 'personal', icon: IconViaje, coverKey: 'services.items.travel.cover', whyKey: 'services.items.travel.why', whoKey: 'services.items.travel.who' },
   { titleKey: 'services.items.weddings.title', category: 'notary', subCategory: 'personal', icon: IconBodas, coverKey: 'services.items.weddings.cover', whyKey: 'services.items.weddings.why', whoKey: 'services.items.weddings.who' },
@@ -218,6 +233,17 @@ const services = ref<Service[]>([
   { titleKey: 'services.items.legal-procedures.title', category: 'notary', subCategory: 'personal', icon: IconPGen, coverKey: 'services.items.legal-procedures.cover', whyKey: 'services.items.legal-procedures.why', whoKey: 'services.items.legal-procedures.who' },
   { titleKey: 'services.items.Tlegal.title', category: 'notary', subCategory: 'personal', icon: IconTlegal, coverKey: 'services.items.Tlegal.cover', whyKey: 'services.items.Tlegal.why', whoKey: 'services.items.Tlegal.who' },
   { titleKey: 'services.items.legal-translation.title', category: 'notary', subCategory: 'personal', icon: IconTraduccion, coverKey: 'services.items.legal-translation.cover', whyKey: 'services.items.legal-translation.why', whoKey: 'services.items.legal-translation.who' },
+
+  // ==== NOTARY COMERCIAL ====
+
+
+  { titleKey: 'services.items.accounting.title', category: 'notary', subCategory: 'commercial', icon: IconContabilidad, coverKey: 'services.items.accounting.cover', whyKey: 'services.items.accounting.why', whoKey: 'services.items.accounting.who' },
+  { titleKey: 'services.items.companies.title', category: 'notary', subCategory: 'commercial', icon: IconCompania, coverKey: 'services.items.companies.cover', whyKey: 'services.items.companies.why', whoKey: 'services.items.companies.who' },
+  { titleKey: 'services.items.rep-companies.title', category: 'notary', subCategory: 'commercial', icon: IconRCompanias, coverKey: 'services.items.rep-companies.cover', whyKey: 'services.items.rep-companies.why', whoKey: 'services.items.rep-companies.who' },
+
+
+
+
 
 ])
 
@@ -283,6 +309,7 @@ onMounted(() => {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 60px;
+  text-decoration: none;
 }
 
 /* MENÚ DE LÍNEAS (Minimal) */
