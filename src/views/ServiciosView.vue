@@ -1,150 +1,172 @@
 <template>
   <div class="services-page">
-    <section class="hero-services">
-      <div class="hero-inner animate-on-scroll">
-        <h1>Nuestros servicios</h1>
-        <p class="hero-sub animate-on-scroll">
-          Descubre soluciones confiables en Seguros, Impuestos y Notariados para tu tranquilidad.
-        </p>
-        <button class="btn-expert">Habla con un experto</button>
+    <!-- HERO -->
+    <section class="hero-services animate-on-scroll">
+      <div class="hero-inner">
+        <h1>{{ t('services.hero.title') }}</h1>
+        <p class="hero-sub">{{ t('services.hero.subtitle') }}</p>
+        <button class="btn-expert">
+                   <RouterLink
+    :to="`/${locale}/contact`"
+    class="btn-expert"
+  >
+    {{ $t('services.hero.cta') }}
+              </RouterLink>
+        </button>
+
+
+
+
+
       </div>
 
-      <nav class="main-nav-minimal animate-on-scroll">
-        <template v-for="(cat, index) in Object.keys(menuStructure)" :key="cat">
+      <!-- MAIN CATEGORY -->
+      <nav class="main-nav-minimal">
+        <template v-for="(cat, i) in mainCategories" :key="cat.key">
           <button
-            @click="selectMainCategory(cat)"
-            :class="{ active: mainCategory === cat }"
+            @click="selectMainCategory(cat.key)"
+            :class="{ active: mainCategory === cat.key }"
           >
-            {{ cat }}
+            {{ t(cat.label) }}
           </button>
-          <span v-if="index < Object.keys(menuStructure).length - 1" class="separator">|</span>
+          <span v-if="i < mainCategories.length - 1" class="separator">|</span>
         </template>
       </nav>
     </section>
 
+    <!-- CONTENT -->
     <main class="services-container animate-on-scroll">
+      <!-- SUBCATEGORY -->
       <div class="sub-nav">
         <button
-          v-for="sub in availableSubcategories"
-          :key="sub"
-          @click="subCategory = sub"
-          :class="{ active: subCategory === sub }"
+          v-for="sub in subCategories"
+          :key="sub.key"
+          @click="subCategory = sub.key"
+          :class="{ active: subCategory === sub.key }"
         >
-          {{ sub }}
+          {{ t(sub.label) }}
         </button>
       </div>
 
+      <!-- SERVICES -->
       <div class="services-grid">
         <div
-          v-for="service in filteredServices"
-          :key="service.title"
+          v-for="(service, index) in filteredServices"
+          :key="index"
           class="service-card"
         >
           <div class="icon-circle">
-            <component class="icon-emoji" :is="service.icon" />
-
+            <component :is="service.icon" />
           </div>
 
-          <h3>{{ service.title }}</h3>
+          <h3>{{ t(service.titleKey) }}</h3>
 
+          <!-- FAQ -->
           <div class="faq-list">
-            <div class="faq-item">
-              <button class="faq-trigger" @click="toggleFaq(service.title + '1')">
-                <span>¿Qué cubre?</span>
-                <span class="arrow" :class="{ rotated: activeFaq === service.title + '1' }">⌄</span>
+            <div
+              class="faq-item"
+              v-for="faq in faqKeys"
+              :key="faq.key"
+            >
+              <button
+                class="faq-trigger"
+                @click="toggleFaq(service.titleKey + faq.key)"
+              >
+                <span>{{ t(faq.label) }}</span>
+                <span
+                  class="arrow"
+                  :class="{ rotated: activeFaq === service.titleKey + faq.key }"
+                >⌄</span>
               </button>
-              <transition name="expand">
-                <div class="faq-content" v-if="activeFaq === service.title + '1'">
-                  <p>{{ service.queCubre }}</p>
-                </div>
-              </transition>
-            </div>
 
-            <div class="faq-item">
-              <button class="faq-trigger" @click="toggleFaq(service.title + '2')">
-                <span>¿Por qué importa?</span>
-                <span class="arrow" :class="{ rotated: activeFaq === service.title + '2' }">⌄</span>
-              </button>
               <transition name="expand">
-                <div class="faq-content" v-if="activeFaq === service.title + '2'">
-                  <p>{{ service.porqueImporta }}</p>
-                </div>
-              </transition>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-trigger" @click="toggleFaq(service.title + '3')">
-                <span>¿Quién lo necesita?</span>
-                <span class="arrow" :class="{ rotated: activeFaq === service.title + '3' }">⌄</span>
-              </button>
-              <transition name="expand">
-                <div class="faq-content" v-if="activeFaq === service.title + '3'">
-                  <p>{{ service.quienLoNecesita }}</p>
+                <div
+                  v-if="activeFaq === service.titleKey + faq.key"
+                  class="faq-content"
+                >
+                  {{ t(service[faq.key]) }}
                 </div>
               </transition>
             </div>
           </div>
 
-          <button class="btn-cotiza">¡Cotiza ya!</button>
+
+            <RouterLink
+    :to="`/${locale}/contact`"
+    class="btn-cotiza"
+  >
+    {{ $t('services.cta.quote') }}
+              </RouterLink>
+
         </div>
       </div>
     </main>
   </div>
 </template>
 
-
 <script setup lang="ts">
-  import { onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
-onMounted(() => {
-  const elements = document.querySelectorAll('.animate-on-scroll')
+const route = useRoute()
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.1 }
-  )
-
-  elements.forEach(el => observer.observe(el))
+const locale = computed(() => {
+  return route.params.locale === 'en' ? 'en' : 'es'
 })
 
-import { ref, computed } from 'vue';
+/* ---------------- i18n ---------------- */
+const { t } = useI18n()
 
-const menuStructure: Record<string, string[]> = {
-  'Seguros': ['Personales', 'Comerciales'],
-  'Impuestos': ['Personales', 'Comerciales'],
-  'Notariado': ['Personales', 'Comerciales']
-};
+/* ---------------- TYPES ---------------- */
+type MainCategory = 'insurance' | 'taxes' | 'notary'
+type SubCategory = 'personal' | 'commercial'
 
-const mainCategory = ref('Seguros');
-const subCategory = ref('Personales');
-const activeFaq = ref<string | null>(null);
+interface Service {
+  titleKey: string
+  category: MainCategory
+  subCategory: SubCategory
+  icon: any
+  coverKey: string
+  whyKey: string
+  whoKey: string
+}
 
-const selectMainCategory = (cat: string) => {
-  mainCategory.value = cat;
-  const subs = menuStructure[cat];
-  if (subs && subs.length > 0) {
-    subCategory.value = subs[0] as string;
-  } else {
-    subCategory.value = '';
-  }
-};
+/* ---------------- STATE ---------------- */
+const mainCategory = ref<MainCategory>('insurance')
+const subCategory = ref<SubCategory>('personal')
+const activeFaq = ref<string | null>(null)
 
-const availableSubcategories = computed(() => {
-  return menuStructure[mainCategory.value] || [];
-});
+/* ---------------- MENUS ---------------- */
+const mainCategories = [
+  { key: 'insurance', label: 'services.categories.insurance' },
+  { key: 'taxes', label: 'services.categories.taxes' },
+  { key: 'notary', label: 'services.categories.notary' }
+] as const
+
+const subCategories = [
+  { key: 'personal', label: 'services.subcategories.personal' },
+  { key: 'commercial', label: 'services.subcategories.commercial' }
+] as const
+
+const selectMainCategory = (key: MainCategory) => {
+  mainCategory.value = key
+  subCategory.value = 'personal'
+}
+
+/* ---------------- FAQ ---------------- */
+const faqKeys = [
+  { key: 'coverKey', label: 'services.faq.cover' },
+  { key: 'whyKey', label: 'services.faq.why' },
+  { key: 'whoKey', label: 'services.faq.who' }
+] as const
 
 const toggleFaq = (id: string) => {
-  activeFaq.value = activeFaq.value === id ? null : id;
-};
+  activeFaq.value = activeFaq.value === id ? null : id
+}
 
-// DATA CON LAS 3 PREGUNTAS ESTANDARIZADAS
+/* ---------------- ICONS ---------------- */
+/* ================= ICONS (TUS ICONOS) ================= */
 import IconCar from '@/components/icons/IconCar.vue'
 import IconLife from '@/components/icons/IconLife.vue'
 import IconInquilino from '@/components/icons/IconInquilino.vue'
@@ -169,201 +191,88 @@ import IconCertificaciones from '@/components/icons/IconCertificaciones.vue'
 import IconPGen from '@/components/icons/IconPGen.vue'
 import IconTLegal from '@/components/icons/IconTlegal.vue'
 import IconTraduccion from '@/components/icons/IconTraduccion.vue'
-import IconApostillados from '@/components/icons/IconApostillados.vue';
+import IconApostillados from '@/components/icons/IconApostillados.vue'
 import IconCompania from '@/components/icons/IconCompania.vue'
 import IconRCompanias from '@/components/icons/IconRCompanias.vue'
-import IconContabilidad from '@/components/icons/IconContabilidad.vue';
+import IconContabilidad from '@/components/icons/IconContabilidad.vue'
+import IconTlegal from '@/components/icons/IconTlegal.vue'
+
+/* ================= SERVICES (25 SERVICIOS) ================= */
+const services = ref<Service[]>([
+  // ===== INSURANCE / PERSONAL =====
+  { titleKey: 'services.items.auto.title', category: 'insurance', subCategory: 'personal', icon: IconCar, coverKey: 'services.items.auto.cover', whyKey: 'services.items.auto.why', whoKey: 'services.items.auto.who' },
+  { titleKey: 'services.items.life.title', category: 'insurance', subCategory: 'personal', icon: IconLife, coverKey: 'services.items.life.cover', whyKey: 'services.items.life.why', whoKey: 'services.items.life.who' },
+  { titleKey: 'services.items.health.title', category: 'insurance', subCategory: 'personal', icon: IconSalud, coverKey: 'services.items.health.cover', whyKey: 'services.items.health.why', whoKey: 'services.items.health.who' },
+  { titleKey: 'services.items.renters.title', category: 'insurance', subCategory: 'personal', icon: IconInquilino, coverKey: 'services.items.renters.cover', whyKey: 'services.items.renters.why', whoKey: 'services.items.renters.who' },
+  { titleKey: 'services.items.home.title', category: 'insurance', subCategory: 'personal', icon: IconCasa, coverKey: 'services.items.home.cover', whyKey: 'services.items.home.why', whoKey: 'services.items.home.who' },
+  { titleKey: 'services.items.umbrella.title', category: 'insurance', subCategory: 'personal', icon: IconUmbrella, coverKey: 'services.items.umbrella.cover', whyKey: 'services.items.umbrella.why', whoKey: 'services.items.umbrella.who' },
+
+  // ===== INSURANCE / COMMERCIAL =====
+  { titleKey: 'services.items.general-liability.title', category: 'insurance', subCategory: 'commercial', icon: IconLiability, coverKey: 'services.items.general-liability.cover', whyKey: 'services.items.general-liability.why', whoKey: 'services.items.general-liability.who' },
+  { titleKey: 'services.items.workers-comp.title', category: 'insurance', subCategory: 'commercial', icon: IconWComp, coverKey: 'services.items.workers-comp.cover', whyKey: 'services.items.workers-comp.why', whoKey: 'services.items.workers-comp.who' },
+  { titleKey: 'services.items.commercial-auto.title', category: 'insurance', subCategory: 'commercial', icon: IconAComercial, coverKey: 'services.items.commercial-auto.cover', whyKey: 'services.items.commercial-auto.why', whoKey: 'services.items.commercial-auto.who' },
+  { titleKey: 'services.items.employer-umbrella.title', category: 'insurance', subCategory: 'commercial', icon: IconEUmbrella, coverKey: 'services.items.employer-umbrella.cover', whyKey: 'services.items.employer-umbrella.why', whoKey: 'services.items.employer-umbrella.who' },
+  { titleKey: 'services.items.business-owners.title', category: 'insurance', subCategory: 'commercial', icon: IconBOwners, coverKey: 'services.items.business-owners.cover', whyKey: 'services.items.business-owners.why', whoKey: 'services.items.business-owners.who' },
+
+  // ===== TAXES  Personales=====
+  { titleKey: 'services.items.w2.title', category: 'taxes', subCategory: 'personal', icon: IconW2, coverKey: 'services.items.w2.cover', whyKey: 'services.items.w2.why', whoKey: 'services.items.w2.who' },
+  { titleKey: 'services.items.non-owned.title', category: 'taxes', subCategory: 'personal', icon: IconNEC, coverKey: 'services.items.non-owned.cover', whyKey: 'services.items.non-owned.why', whoKey: 'services.items.non-owned.who' },
+
+  // ===== TAXES  Comerciales=====
+  { titleKey: 'services.items.local-liability.title', category: 'taxes', subCategory: 'commercial', icon: IconLLiability, coverKey: 'services.items.local-liability.cover', whyKey: 'services.items.local-liability.why', whoKey: 'services.items.local-liability.who' },
+  { titleKey: 'services.items.society.title', category: 'taxes', subCategory: 'commercial', icon: IconSociedades, coverKey: 'services.items.society.cover', whyKey: 'services.items.society.why', whoKey: 'services.items.society.who' },
+  { titleKey: 'services.items.corp.title', category: 'taxes', subCategory: 'commercial', icon: IconCoprSC, coverKey: 'services.items.corp.cover', whyKey: 'services.items.corp.why', whoKey: 'services.items.corp.who' },
+  { titleKey: 'services.items.church.title', category: 'taxes', subCategory: 'commercial', icon: IconChurch, coverKey: 'services.items.church.cover', whyKey: 'services.items.church.why', whoKey: 'services.items.church.who' },
+
+
+  // ===== NOTARY =====
+  { titleKey: 'services.items.travel.title', category: 'notary', subCategory: 'personal', icon: IconViaje, coverKey: 'services.items.travel.cover', whyKey: 'services.items.travel.why', whoKey: 'services.items.travel.who' },
+  { titleKey: 'services.items.weddings.title', category: 'notary', subCategory: 'personal', icon: IconBodas, coverKey: 'services.items.weddings.cover', whyKey: 'services.items.weddings.why', whoKey: 'services.items.weddings.who' },
+  { titleKey: 'services.items.apostille.title', category: 'notary', subCategory: 'personal', icon: IconApostillados, coverKey: 'services.items.apostille.cover', whyKey: 'services.items.apostille.why', whoKey: 'services.items.apostille.who' },
+  { titleKey: 'services.items.certifications.title', category: 'notary', subCategory: 'personal', icon: IconCertificaciones, coverKey: 'services.items.certifications.cover', whyKey: 'services.items.certifications.why', whoKey: 'services.items.certifications.who' },
+  { titleKey: 'services.items.legal-procedures.title', category: 'notary', subCategory: 'personal', icon: IconPGen, coverKey: 'services.items.legal-procedures.cover', whyKey: 'services.items.legal-procedures.why', whoKey: 'services.items.legal-procedures.who' },
+  { titleKey: 'services.items.Tlegal.title', category: 'notary', subCategory: 'personal', icon: IconTlegal, coverKey: 'services.items.Tlegal.cover', whyKey: 'services.items.Tlegal.why', whoKey: 'services.items.Tlegal.who' },
+  { titleKey: 'services.items.legal-translation.title', category: 'notary', subCategory: 'personal', icon: IconTraduccion, coverKey: 'services.items.legal-translation.cover', whyKey: 'services.items.legal-translation.why', whoKey: 'services.items.legal-translation.who' },
+
+  // ==== NOTARY COMERCIAL ====
+
+
+  { titleKey: 'services.items.accounting.title', category: 'notary', subCategory: 'commercial', icon: IconContabilidad, coverKey: 'services.items.accounting.cover', whyKey: 'services.items.accounting.why', whoKey: 'services.items.accounting.who' },
+  { titleKey: 'services.items.companies.title', category: 'notary', subCategory: 'commercial', icon: IconCompania, coverKey: 'services.items.companies.cover', whyKey: 'services.items.companies.why', whoKey: 'services.items.companies.who' },
+  { titleKey: 'services.items.rep-companies.title', category: 'notary', subCategory: 'commercial', icon: IconRCompanias, coverKey: 'services.items.rep-companies.cover', whyKey: 'services.items.rep-companies.why', whoKey: 'services.items.rep-companies.who' },
 
 
 
 
 
+])
 
-const allServices = [
-  // --- SEGUROS PERSONALES ---
-  {
-    title: 'Seguro de carro',
-    category: 'Seguros',
-    subCategory: 'Personales',
-    icon: IconCar,
-    queCubre: 'Responsabilidad civil, daños físicos al vehículo, robo y gastos médicos de emergencia.',
-    porqueImporta: 'Es un requisito legal en el estado de Tennessee y protege tu patrimonio ante accidentes.',
-    quienLoNecesita: 'Cualquier dueño de vehículo que desee circular con protección legal y financiera.'
-  },
-  {
-    title: 'Seguro de vida', category: 'Seguros', subCategory: 'Personales', icon: IconLife,
-    queCubre: 'Compensación económica para tus beneficiarios en caso de fallecimiento o enfermedades terminales.',
-    porqueImporta: 'Garantiza que tu familia mantenga su estilo de vida y pueda cubrir deudas o gastos finales.',
-    quienLoNecesita: 'Padres de familia, personas con dependientes o ciudadanos con deudas hipotecarias.'
-  },
-  {
-    title: 'Seguro de inquilino', category: 'Seguros', subCategory: 'Personales', icon: IconInquilino,
-    queCubre: 'Protección de tus bienes personales (muebles, ropa, electrónica) dentro de una propiedad rentada.',
-    porqueImporta: 'La póliza del dueño del edificio no cubre tus pertenencias; esta póliza es tu única defensa.',
-    quienLoNecesita: 'Cualquier persona que rente un apartamento, casa o unidad de vivienda.'
-  },
-  {
-    title: 'Seguro de casa', category: 'Seguros', subCategory: 'Personales', icon: IconCasa,
-    queCubre: 'La estructura física de tu hogar, bienes personales y responsabilidad ante accidentes de visitas.',
-    porqueImporta: 'Protege la inversión más grande de tu vida contra incendios, tormentas y vandalismo.',
-    quienLoNecesita: 'Propietarios de viviendas que buscan seguridad total para su patrimonio familiar.'
-  },
-  {
-    title: 'Seguro de umbrella', category: 'Seguros', subCategory: 'Personales', icon: IconUmbrella,
-    queCubre: 'Una capa extra de responsabilidad civil que se activa cuando tus otros seguros alcanzan su límite.',
-    porqueImporta: 'Te protege de demandas millonarias que podrían comprometer tus ahorros y activos futuros.',
-    quienLoNecesita: 'Personas con activos considerables o que desean una protección integral superior.'
-  },
-  {
-    title: 'Seguro de salud', category: 'Seguros', subCategory: 'Personales', icon: IconSalud,
-    queCubre: 'Consultas médicas, hospitalización, cirugías, medicamentos y cuidados preventivos.',
-    porqueImporta: 'Reduce drásticamente los costos de atención médica, evitando deudas por emergencias de salud.',
-    quienLoNecesita: 'Individuos y familias que priorizan su bienestar y acceso a medicina de calidad.'
-  },
 
-  // --- SEGUROS COMERCIALES ---
-  {
-    title: 'General Liability', category: 'Seguros', subCategory: 'Comerciales', icon: IconLiability,
-    queCubre: 'Daños a la propiedad de terceros, lesiones corporales y errores publicitarios durante tu operación.',
-    porqueImporta: 'Es indispensable para obtener contratos, permisos y proteger tu negocio de demandas legales.',
-    quienLoNecesita: 'Contratistas, dueños de negocios y trabajadores independientes en cualquier industria.'
-  },
-  {
-    title: 'Workers Comp', category: 'Seguros', subCategory: 'Comerciales', icon: IconWComp,
-    queCubre: 'Gastos médicos y salarios perdidos de empleados que sufren accidentes o enfermedades laborales.',
-    porqueImporta: 'Es obligatorio por ley en la mayoría de los estados si tienes empleados contratados.',
-    quienLoNecesita: 'Empresas con personal a cargo que desean cumplir con la ley y proteger a su equipo.'
-  },
-  {
-    title: 'Auto Comercial', category: 'Seguros', subCategory: 'Comerciales', icon: IconAComercial,
-    queCubre: 'Vehículos utilizados para fines de negocio, incluyendo carga y responsabilidad especializada.',
-    porqueImporta: 'Las pólizas personales no cubren accidentes si el vehículo estaba siendo usado para trabajar.',
-    quienLoNecesita: 'Dueños de flotas, repartidores, contratistas y cualquier negocio con vehículos operativos.'
-  },
-  {
-    title: 'Excess Umbrella', category: 'Seguros', subCategory: 'Comerciales', icon: IconEUmbrella ,
-    queCubre: 'Edificios comerciales, inventario, maquinaria y mobiliario de oficina contra daños físicos.',
-    porqueImporta: 'Asegura que tu negocio pueda volver a operar rápidamente tras un desastre o robo.',
-    quienLoNecesita: 'Dueños de locales, bodegas, oficinas o negocios con inventario físico valioso.'
-  },
-  {
-    title: 'BOP (Business Owners)', category: 'Seguros', subCategory: 'Comerciales', icon: IconBOwners,
-    queCubre: 'Un paquete que combina Responsabilidad General y Propiedad Comercial en una sola póliza.',
-    porqueImporta: 'Suele ser más económico que comprar las coberturas por separado para pequeñas empresas.',
-    quienLoNecesita: 'Pequeñas y medianas empresas que buscan una cobertura completa y simplificada.'
-  },
+/* ---------------- FILTER ---------------- */
+const filteredServices = computed(() =>
+  services.value.filter(
+    s =>
+      s.category === mainCategory.value &&
+      s.subCategory === subCategory.value
+  )
+)
 
-  // --- IMPUESTOS PERSONALES ---
-  {
-    title: 'Declaración W-2', category: 'Impuestos', subCategory: 'Personales', icon: IconW2,
-    queCubre: 'Procesamiento completo de tu declaración anual de impuestos ante el IRS y el estado.',
-    porqueImporta: 'Asegura que recibas el máximo reembolso posible y cumplas con tus obligaciones legales.',
-    quienLoNecesita: 'Empleados que reciben salarios y desean una declaración sin errores.'
-  },
-  {
-    title: 'Autoempleados 1099', category: 'Impuestos', subCategory: 'Personales', icon: IconNEC,
-    queCubre: 'Cálculo de ingresos, gastos deducibles y preparación del Schedule C para contratistas.',
-    porqueImporta: 'Optimiza tus deducciones para pagar el mínimo impuesto legalmente permitido por el IRS.',
-    quienLoNecesita: 'Trabajadores independientes, freelancers y conductores de plataformas digitales.'
-  },
-
-  // --- IMPUESTOS COMERCIALES ---
-  {
-    title: 'Impuestos LLC', category: 'Impuestos', subCategory: 'Comerciales', icon: IconLLiability,
-    queCubre: 'Preparación de impuestos para Sociedades de Responsabilidad Limitada y reporte de ganancias.',
-    porqueImporta: 'Mantiene a tu empresa en "Good Standing" y evita auditorías o cierres administrativos.',
-    quienLoNecesita: 'Dueños de pequeñas empresas registradas como LLC en cualquier estado.'
-  },
-  {
-    title: 'Sociedades (Partnerships)', category: 'Impuestos', subCategory: 'Comerciales', icon: IconSociedades,
-    queCubre: 'Cálculo, reporte y envío de los impuestos sobre las ventas recaudados a nivel estatal.',
-    porqueImporta: 'Es una responsabilidad fiduciaria; no reportarlo puede conllevar graves multas penales.',
-    quienLoNecesita: 'Negocios que venden productos físicos o servicios sujetos a impuestos estatales.'
-  },
-  {
-    title: 'Iglesias o Sin fines de Lucro', category: 'Impuestos', subCategory: 'Comerciales', icon: IconChurch,
-    queCubre: 'Gestión de retenciones federales, estatales y pagos de desempleo para tus empleados.',
-    porqueImporta: 'Garantiza que el pago a tus trabajadores sea exacto y cumpla con todas las leyes laborales.',
-    quienLoNecesita: 'Cualquier dueño de negocio con empleados en nómina.'
-  },
-  {
-    title: 'Corporaciones (S/C)', category: 'Impuestos', subCategory: 'Comerciales', icon: IconCoprSC,
-    queCubre: 'Declaraciones complejas para estructuras corporativas con distribución de dividendos.',
-    porqueImporta: 'Permite una planeación fiscal avanzada para reducir la carga impositiva de los socios.',
-    quienLoNecesita: 'Empresas con múltiples socios o que buscan una estructura fiscal más robusta.'
-  },
-
-  // --- NOTARIADO PERSONALES ---
-
-  {
-    title: 'Bodas', category: 'Notariado', subCategory: 'Personales', icon: IconBodas,
-    queCubre: 'Oficiación de ceremonias civiles y procesamiento legal de la licencia de matrimonio.',
-    porqueImporta: 'Formaliza el vínculo matrimonial de manera legal, rápida y con validez estatal.',
-    quienLoNecesita: 'Parejas que desean contraer matrimonio civil sin las largas esperas de una corte.'
-  },
-  {
-    title: 'Cartas para salir del País', category: 'Notariado', subCategory: 'Personales', icon: IconViaje,
-    queCubre: 'Documento notariado que autoriza el viaje de menores de edad solos o con terceros.',
-    porqueImporta: 'Es una exigencia de seguridad en aeropuertos y aduanas para prevenir el tráfico de menores.',
-    quienLoNecesita: 'Padres que necesitan enviar a sus hijos de viaje por vacaciones o motivos familiares.'
-  },
-  {
-    title: 'Apostillados', category: 'Notariado', subCategory: 'Personales', icon: IconApostillados,
-    queCubre: 'Certificación internacional que valida un documento para ser utilizado en países del Convenio de la Haya.',
-    porqueImporta: 'Sin el apostille, un documento emitido en EE.UU. no tiene validez legal en el extranjero.',
-    quienLoNecesita: 'Personas que tramitan nacionalidades, herencias o estudios en otros países.'
-  },
-  {
-    title: 'Certificaciones', category: 'Notariado', subCategory: 'Personales', icon: IconCertificaciones,
-    queCubre: 'Validación de copias de documentos originales como títulos, actas o identificaciones.',
-    porqueImporta: 'Permite entregar una copia fiel del original con respaldo notarial para trámites oficiales.',
-    quienLoNecesita: 'Estudiantes o profesionales que aplican a trabajos o instituciones educativas.'
-  },
-  {
-    title: 'Poderes Generales', category: 'Notariado', subCategory: 'Personales', icon: IconPGen,
-    queCubre: 'Autorización amplia para que un tercero administre bienes y realice actos legales en tu nombre.',
-    porqueImporta: 'Permite que tus asuntos sigan funcionando si te encuentras fuera del país o incapacitado.',
-    quienLoNecesita: 'Personas que viajan por largo tiempo o necesitan representación legal absoluta.'
-  },
-  {
-    title: 'Tutela Legal', category: 'Notariado', subCategory: 'Personales', icon: IconTLegal,
-    queCubre: 'Documentación para la designación de guardianes legales para menores de edad o dependientes.',
-    porqueImporta: 'Asegura que tus seres queridos queden bajo el cuidado de personas de tu total confianza.',
-    quienLoNecesita: 'Padres y tutores que desean dejar protegida la custodia de sus hijos ante cualquier eventualidad.'
-  },
-  {
-    title: 'Traducción de documentos', category: 'Notariado', subCategory: 'Personales', icon: IconTraduccion,
-    queCubre: 'Traducción profesional y certificada de documentos de todo tipo (Inglés/Español).',
-    porqueImporta: 'Garantiza que la traducción sea fiel al original y aceptada por USCIS o cortes legales.',
-    quienLoNecesita: 'Cualquier persona con documentos extranjeros que necesite presentarlos ante autoridades en EE.UU.'
-  },
-
-  // --- NOTARIADO COMERCIALES ---
-
-  {
-    title: 'Planillas de compañía', category: 'Notariado', subCategory: 'Comerciales', icon: IconCompania,
-    queCubre: 'Procesamiento de nómina, cálculo de retenciones federales/estatales y emisión de talones de pago.',
-    porqueImporta: 'Asegura que tus empleados reciban su pago a tiempo y que tu negocio cumpla con las leyes laborales.',
-    quienLoNecesita: 'Dueños de negocios con empleados que buscan automatizar y legalizar sus pagos de nómina.'
-  },
-  {
-    title: 'Registración de compañías', category: 'Notariado', subCategory: 'Comerciales', icon: IconRCompanias,
-    queCubre: 'Registro oficial ante el Estado, obtención del número EIN y preparación de documentos operativos.',
-    porqueImporta: 'Formaliza tu emprendimiento, protege tu patrimonio personal y te permite abrir cuentas bancarias comerciales.',
-    quienLoNecesita: 'Emprendedores que desean iniciar una LLC, Corporación o cualquier entidad legal en EE.UU.'
-  },
-  {
-    title: 'Contabilidad', category: 'Notariado', subCategory: 'Comerciales', icon: IconContabilidad,
-    queCubre: 'Registro mensual de ingresos y egresos, conciliación bancaria y preparación de estados financieros.',
-    porqueImporta: 'Te permite conocer la salud real de tu negocio y estar preparado para la temporada de impuestos.',
-    quienLoNecesita: 'Empresarios que desean mantener sus finanzas organizadas y tomar decisiones basadas en datos.'
-  }
-];
-
-const filteredServices = computed(() => {
-  return allServices.filter(s => s.category === mainCategory.value && s.subCategory === subCategory.value);
-});
+/* ---------------- ANIMATION ---------------- */
+onMounted(() => {
+  const els = document.querySelectorAll('.animate-on-scroll')
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible')
+        obs.unobserve(e.target)
+      }
+    })
+  })
+  els.forEach(el => obs.observe(el))
+})
 </script>
+
+
 
 <style scoped>
 .services-page { width: 100%; overflow-x: hidden; font-family: 'Poppins', sans-serif; }
@@ -400,6 +309,7 @@ const filteredServices = computed(() => {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 60px;
+  text-decoration: none;
 }
 
 /* MENÚ DE LÍNEAS (Minimal) */
