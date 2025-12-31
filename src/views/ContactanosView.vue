@@ -11,41 +11,49 @@
         <div class="contact-card">
           <h2 class="card-title">{{ $t('contact.helpTitle') }}</h2>
 
-          <form @submit.prevent="handleSubmit" class="contact-form">
-            <div class="input-group">
-              <input
-                type="tel"
-                v-model="form.phone"
-                :placeholder="$t('contact.form.phone')"
-                required
-              >
-            </div>
-            <div class="input-group">
-              <input
-                type="tel"
-                v-model="form.phone"
-                :placeholder="$t('contact.form.phone')"
-                required
-              >
-            </div>
-            <div class="input-group">
-              <input
-                type="email"
-                v-model="form.email"
-                :placeholder="$t('contact.form.email')"
-                required
-              >
-            </div>
+         <form @submit.prevent="handleSubmit" class="contact-form">
+          <div class="input-group">
+            <input 
+              type="text" 
+              v-model="form.name" 
+              :placeholder="$t('contact.form.name')" 
+              required
+            >
+          </div>
 
-            <textarea
-              v-model="form.message"
-              :placeholder="$t('contact.form.message')"
+          <div class="input-group">
+            <input 
+              type="tel" 
+              v-model="form.phone" 
+              :placeholder="$t('contact.form.phone')" 
+              required
+              pattern="[0-9]+"        
+              inputmode="numeric"   
+            >
+          </div>
+
+          <div class="input-group">
+            <input 
+              type="email" 
+              v-model="form.email" 
+              :placeholder="$t('contact.form.email')" 
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <textarea 
+              v-model="form.message" 
+              :placeholder="$t('contact.form.message')" 
               class="custom-textarea"
+              required
             ></textarea>
+          </div>
 
-            <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
-            <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
-          </form>
+          <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
+          <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
+        </form>
+
         </div>
       </section>
     </div>
@@ -78,14 +86,32 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
+import emailjs from 'emailjs-com'
 
 const form = ref({ name: '', phone: '', email: '', message: '' })
-const handleSubmit = () => alert('Mensaje enviado')
 
-// Animaciones con IntersectionObserver
+const handleSubmit = () => {
+  emailjs.send(
+    'service_pdterzh',   // ← aquí va tu Service ID
+    'template_85tffn5',  // ← aquí va tu Template ID
+    {
+      name: form.value.name,
+      phone: form.value.phone,
+      email: form.value.email,
+      message: form.value.message
+    },
+    'bcrazEQ1fOMK-81po'       // ← aquí va tu Public Key (User ID)
+  ).then(() => {
+    alert('Correo enviado con éxito ✅')
+  }).catch(err => {
+    console.error(err)
+    alert('Error al enviar el correo ❌')
+  })
+}
+
+// Animaciones con IntersectionObserver (sin cambios)
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -100,6 +126,7 @@ onMounted(() => {
   })
 })
 </script>
+
 
 <style>
 .contact-wrapper {
@@ -154,9 +181,12 @@ onMounted(() => {
   background: white;
   width: 100%;
   padding: 40px 30px;
-  border-radius: 30px; /* ← esquinas más rectas, estilo Power BI */
-  border: 1px solid #696969; /* ← borde gris claro, muy sutil */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* ← sombra suave y profesional */
+  border-radius: 30px;
+  /* ← esquinas más rectas, estilo Power BI */
+  border: 1px solid #696969;
+  /* ← borde gris claro, muy sutil */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* ← sombra suave y profesional */
   box-sizing: border-box;
 }
 
@@ -193,6 +223,18 @@ onMounted(() => {
   background: #fdfdfd;
 }
 
+.input-group textarea {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 15px;
+  outline: none;
+  box-sizing: border-box;
+  background: #fdfdfd;
+  resize: none;
+}
+
 .btn-primary {
   background: #ff4d4d;
   color: white;
@@ -215,14 +257,11 @@ onMounted(() => {
 }
 
 .icon-wrapper {
-  width: 100%;
-  max-width: 900px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   gap: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  /* ← evita que se rompa la línea */
 }
 
 .info-item {
@@ -289,19 +328,31 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-.expand-enter-active { transition: all 0.3s ease-out; }
-.expand-enter-from { opacity: 0; transform: translateY(-10px); }
-.arrow { transition: 0.3s; }
-.arrow.rotated { transform: rotate(180deg); }
+.expand-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.expand-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.arrow {
+  transition: 0.3s;
+}
+
+.arrow.rotated {
+  transform: rotate(180deg);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
   .icon-wrapper {
-    padding: 0 10px;
+    flex-wrap: wrap;
   }
 
   .info-item {
-    flex-direction: row;
+    flex: 1 1 100%;
     max-width: 100%;
   }
 }
