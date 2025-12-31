@@ -1,5 +1,5 @@
 <template>
-  <div class="landing-page">
+  <div class="landing-page animate-on-scroll">
     <!-- HERO -->
     <section class="hero-section">
       <div class="container hero-grid">
@@ -194,8 +194,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+  
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+
+// --- PEGA ESTO AQUÍ ABAJO ---
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+      }
+    })
+  }, { threshold: 0.1 })
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el)
+  })
+})
 
 const route = useRoute()
 
@@ -344,10 +360,12 @@ const locale = computed(() => {
   margin-bottom: 30px;
   /* Eliminamos display: flex y gap para que se junten */
   white-space: nowrap; /* Evita que se separe en dos líneas si la pantalla es estrecha */
+  
 }
 
 .red-text {
   color: #C62828;
+  padding-right: 10px;
 }
 
 /* El contenedor de "nosotros" debe ser inline-block para pegarse a "Sobre" */
@@ -397,28 +415,34 @@ const locale = computed(() => {
   width: 100%;
   max-width: 500px;
 }
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  /* En tablets, permitimos que se rompa la línea si es necesario */
+@media (max-width: 480px) {
   .about-title {
-    font-size: 65px;
-    white-space: normal;
+    font-size: clamp(28px, 6vw, 36px);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 20px;
   }
-  .about-paragraph {
-    margin: 0 auto;
+
+  .red-text,
+  .blue-outline-text {
+    display: inline-block;
+    padding-left: 3px;
+    font-size: 40px;
+  }
+
+  .blue-outline-text {
+    -webkit-text-stroke: 1.5px #012148;
+    font-size: inherit;
+    margin-left: 0;
+    font-size: 40px;
+  }
+
+  .blue-underline {
+    bottom: 0;
+    height: 4px;
   }
 }
 
-@media (max-width: 768px) {
-    .about-title {
-    font-size: 50px;
-  }
-}
 /* --- SERVICES SECTION (IGUAL A TU IMAGEN) --- */
 .services-section {
    padding: 80px ;
@@ -544,6 +568,7 @@ const locale = computed(() => {
   box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
 }
 .why-card-title {
+  margin: 10px;
   font-family: 'Poppins', sans-serif;
   font-size: 26px;
   font-weight: 800;
@@ -567,6 +592,14 @@ const locale = computed(() => {
   .why-us-main-title {
     font-size: 40px;
   }
+  .why-card-title {
+  margin: 70px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #012148;
+  margin-bottom: 15px;
+}
 }
 
 /* --- RESPONSIVE --- */
@@ -592,17 +625,73 @@ const locale = computed(() => {
   }
 }
 
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
+.agency-icon { margin-bottom: 48px; /* ajusta según lo que necesites */ }
+
+/* --- MOBILE CLEAN FLOW (<480px) --- */
+@media (max-width: 480px) {
+  .hero-grid,
+  .about-grid,
+  .services-grid,
+  .why-us-grid {
+    display: flex;
+    flex-direction: column;   /* apilar verticalmente */
+    gap: 40px;                /* espacio entre elementos */
+    align-items: center;      /* centrar contenido */
   }
 
-  .services-main-title {
-    font-size: 40px;
+  .hero-section,
+  .about-section,
+  .services-section,
+  .why-us-section {
+    padding: 32px 16px;       /* menos padding, más aire */
   }
 
-  .hero-text h1 {
-    font-size: 45px;
+  .hero-text h1,
+  .about-title,
+  .services-main-title,
+  .why-us-main-title {
+    font-size: clamp(24px, 6vw, 32px); /* tipografía fluida */
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .hero-text p,
+  .about-paragraph,
+  .service-card-desc,
+  .why-card-text {
+    font-size: clamp(14px, 4vw, 16px);
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .rounded-img,
+  .main-logo-img,
+  .carousel-track img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .service-card,
+  .why-us-card {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
   }
 }
+
 </style>
