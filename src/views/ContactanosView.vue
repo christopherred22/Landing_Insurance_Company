@@ -11,23 +11,49 @@
         <div class="contact-card">
           <h2 class="card-title">{{ $t('contact.helpTitle') }}</h2>
 
-          <form @submit.prevent="handleSubmit" class="contact-form">
-            <div class="input-group">
-              <input type="tel" v-model="form.phone" :placeholder="$t('contact.form.phone')" required>
-            </div>
-            <div class="input-group">
-              <input type="tel" v-model="form.phone" :placeholder="$t('contact.form.phone')" required>
-            </div>
-            <div class="input-group">
-              <input type="email" v-model="form.email" :placeholder="$t('contact.form.email')" required>
-            </div>
-            <div class="input-group">
-              <textarea v-model="form.message" :placeholder="$t('contact.form.message')"
-                class="custom-textarea"></textarea>
-            </div>
-            <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
-            <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
-          </form>
+         <form @submit.prevent="handleSubmit" class="contact-form">
+          <div class="input-group">
+            <input 
+              type="text" 
+              v-model="form.name" 
+              :placeholder="$t('contact.form.name')" 
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <input 
+              type="tel" 
+              v-model="form.phone" 
+              :placeholder="$t('contact.form.phone')" 
+              required
+              pattern="[0-9]+"        
+              inputmode="numeric"   
+            >
+          </div>
+
+          <div class="input-group">
+            <input 
+              type="email" 
+              v-model="form.email" 
+              :placeholder="$t('contact.form.email')" 
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <textarea 
+              v-model="form.message" 
+              :placeholder="$t('contact.form.message')" 
+              class="custom-textarea"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
+          <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
+        </form>
+
         </div>
       </section>
     </div>
@@ -60,14 +86,32 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
+import emailjs from 'emailjs-com'
 
 const form = ref({ name: '', phone: '', email: '', message: '' })
-const handleSubmit = () => alert('Mensaje enviado')
 
-// Animaciones con IntersectionObserver
+const handleSubmit = () => {
+  emailjs.send(
+    'service_pdterzh',   // ← aquí va tu Service ID
+    'template_85tffn5',  // ← aquí va tu Template ID
+    {
+      name: form.value.name,
+      phone: form.value.phone,
+      email: form.value.email,
+      message: form.value.message
+    },
+    'bcrazEQ1fOMK-81po'       // ← aquí va tu Public Key (User ID)
+  ).then(() => {
+    alert('Correo enviado con éxito ✅')
+  }).catch(err => {
+    console.error(err)
+    alert('Error al enviar el correo ❌')
+  })
+}
+
+// Animaciones con IntersectionObserver (sin cambios)
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -82,6 +126,7 @@ onMounted(() => {
   })
 })
 </script>
+
 
 <style>
 .contact-wrapper {
