@@ -291,49 +291,35 @@ const locale = computed(() => {
   width: 80%;
   overflow: hidden;
 }
+/* --- LÓGICA DE ANIMACIÓN DEL CARRUSEL --- */
 
-/* El riel que contiene las imágenes */
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory; /* Fuerza el anclaje */
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Oculta scrollbar en Firefox */
+/* 1. Definimos la animación para el movimiento (3 imágenes = 3 pasos) */
+@keyframes slide-animation {
+  0%, 25% { transform: translateX(0%); }      /* Imagen 1 */
+  33%, 58% { transform: translateX(-100%); }  /* Imagen 2 */
+  66%, 91% { transform: translateX(-200%); }  /* Imagen 3 */
+  100% { transform: translateX(0%); }         /* Regreso al inicio */
 }
 
-.carousel-track::-webkit-scrollbar {
-  display: none; /* Oculta scrollbar en Chrome/Safari */
+/* 2. Definimos la animación para los puntitos (sincronizada) */
+@keyframes dot-active {
+  0%, 25% { opacity: 1; transform: scale(1.2); background: #fff; }
+  33%, 100% { opacity: 0.5; transform: scale(1); background: rgba(255, 255, 255, 0.5); }
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  animation: slide-animation 12s infinite ease-in-out;
+  overflow: cover;
 }
 
 .carousel-track img {
-  flex: 0 0 100%; /* Cada imagen ocupa el 100% del ancho */
-  scroll-snap-align: start;
+  width: 100%; /* Cada imagen ocupa exactamente el 100% del contenedor */
+  flex-shrink: 0;
   object-fit: cover;
-  width: 100%;
+  border-radius: 40px;
 }
-
-/* Estilo de los puntitos (Opcional) */
-.carousel-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #fff;
-}
-
 
 /* --- ABOUT SECTION (IGUAL A TU IMAGEN) --- */
 /* --- SECCIÓN SOBRE NOSOTROS (IDÉNTICA AL DISEÑO) --- */
