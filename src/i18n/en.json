@@ -1,0 +1,384 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Discover reliable solutions in Insurance, Taxes, and Notary Services for your peace of mind."
+    },
+
+    "intro": {
+      "title": "We protect what matters most to you.",
+      "paragraph1": "At Providence Insurance Agency, we help you with insurance, taxes, and notary services in a clear, fast, and bilingual way from Smyrna, Tennessee.",
+      "paragraph2": "With over 15 years of experience supporting families and businesses in Tennessee, we provide trustworthy and personalized guidance."
+    },
+
+    "experience": {
+      "title": "Over 15 years of experience",
+      "text": "We believe insurance and paperwork don’t have to be complicated. Our mission is to make everything simple and transparent for you.",
+      "quote": "Better to have it and not need it, than to need it and not have it."
+    },
+
+    "values": {
+      "title": "Why choose us",
+      "subtitle": "We assist you in person or remotely through calls, messages, or video meetings—whatever works best for you.",
+      "items": {
+        "team": {
+          "title": "Professional team",
+          "text": "Our trained professionals guide you through every step with confidence and clarity."
+        },
+        "goal": {
+          "title": "Goal-oriented",
+          "text": "We avoid complex terminology and focus on practical, effective solutions."
+        },
+        "security": {
+          "title": "Guaranteed security",
+          "text": "We provide real protection with no fine print—just results you can trust."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "CONTACT US",
+    "subtitle": "We protect what matters most to you",
+    "helpTitle": "NEED HELP?",
+
+    "form": {
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "message": "Message",
+      "submit": "Send Message",
+      "whatsapp": "Contact us via WhatsApp"
+    },
+
+    "info": {
+      "phoneLabel": "PHONE",
+      "emailLabel": "EMAIL",
+      "locationLabel": "LOCATION",
+      "locationValue": "2101 Lassy Street, Ennis, Texas 75119"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": {
+        "line1": "We protect",
+        "line2": "what matters most",
+        "highlight": "to you."
+      },
+      "subtitle": {
+        "line1": "Reliable solutions in insurance,",
+        "line2": "taxes and notary services."
+      },
+      "actions": {
+        "contact": "Contact Us",
+        "whatsapp": "WhatsApp"
+      }
+    },
+
+    "about": {
+      "titleRed": "About",
+      "titleBlue": "us",
+      "subtitle": "More than 15 years of experience",
+      "description": "We are a company dedicated to protecting your well-being. We offer comprehensive services for the community, with agents trained in insurance, taxes, and notary services so you can feel confident you are in good hands."
+    },
+
+    "services": {
+      "title": "Our services",
+      "more": "Learn more",
+
+      "insurance": {
+        "title": "Insurance",
+        "desc": "Comprehensive protection"
+      },
+      "taxes": {
+        "title": "Taxes",
+        "desc": "Professional comprehensive protection"
+      },
+      "notary": {
+        "title": "Notary",
+        "desc": "Complete legal services"
+      }
+    },
+
+    "why": {
+      "title": "Why choose us?",
+      "items": {
+        "experience": {
+          "title": "Proven Experience",
+          "text": "Over 15 years of experience in insurance, taxes, and notary services in Tennessee."
+        },
+        "clarity": {
+          "title": "Guaranteed Clarity",
+          "text": "We explain everything clearly, without confusing terms or fine print."
+        },
+        "bilingual": {
+          "title": "Bilingual & Personalized",
+          "text": "Service in English and Spanish, focused on your needs."
+        },
+        "office": {
+          "title": "Physical Office",
+          "text": "We have a physical office in Smyrna, Tennessee to assist you quickly."
+        }
+      }
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "line1": "Insurance, Taxes and",
+      "line2": "Notary Services."
+    },
+
+    "links": {
+      "title": "Links",
+      "home": "Home",
+      "services": "Services",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+
+    "compliance": {
+      "title": "Compliance",
+      "privacy": "Privacy Policy"
+    },
+
+    "social": {
+      "title": "Social media"
+    },
+
+    "location": {
+      "title": "Location",
+      "addressLine1": "Lowry St 214 N,",
+      "addressLine2": "Smyrna TN 37167"
+    },
+
+    "bottom": "© 2025 Providence Insurance Agency. All rights reserved.",
+
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "Providence Insurance Agency, LLC is committed to protecting your privacy. We do not share your personal information with third parties.",
+      "collect": {
+        "title": "Information collection:",
+        "text": "We collect only the information necessary to provide and improve our services. <strong>We do not sell, share, or transmit personal information for marketing purposes.</strong>"
+      },
+      "use": {
+        "title": "How we use your information:",
+        "text": "Collected information is used solely to communicate with you and deliver our services."
+      },
+      "sms": "<strong>SMS Disclosure:</strong><br>By subscribing to Providence Insurance Agency, LLC text messages, you agree to receive recurring messages. Message and data rates may apply. Reply STOP to cancel or HELP for more info.",
+      "rights": {
+        "title": "Your rights:",
+        "text": "You may access, correct, or delete your information. Contact us at <a href='mailto:office@providenceinsuranceagency.com'>office@providenceinsuranceagency.com</a> or call (615) 625-0165."
+      },
+      "changes": {
+        "title": "Policy changes:",
+        "text": "This policy may be updated periodically. Continued use of our services implies acceptance."
+      },
+      "updated": "Last updated: August 5, 2024"
+    }
+  },
+
+
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Insurance, taxes and legal solutions in one place",
+      "cta": "Talk to an expert"
+    },
+
+    "categories": {
+      "insurance": "Insurance",
+      "taxes": "Taxes",
+      "notary": "Notary"
+    },
+
+    "subcategories": {
+      "personal": "Personal",
+      "commercial": "Commercial"
+    },
+
+    "faq": {
+      "cover": "What does it cover?",
+      "why": "Why does it matter?",
+      "who": "Who needs it?"
+    },
+
+    "cta": {
+      "quote": "Get a quote"
+    },
+
+    "items": {
+      "auto": {
+        "title": "Auto Insurance",
+        "cover": "Liability, vehicle damage, theft and medical expenses.",
+        "why": "Required by law and protects your assets.",
+        "who": "Drivers."
+      },
+      "life": {
+        "title": "Life Insurance",
+        "cover": "Financial support for beneficiaries.",
+        "why": "Protects your family's future.",
+        "who": "People with dependents."
+      },
+      "health": {
+        "title": "Health Insurance",
+        "cover": "Medical care and hospitalization.",
+        "why": "Reduces unexpected medical costs.",
+        "who": "Individuals and families."
+      },
+      "renters": {
+        "title": "Renters Insurance",
+        "cover": "Protection for personal belongings.",
+        "why": "Landlord insurance does not cover tenants.",
+        "who": "Renters."
+      },
+      "home": {
+        "title": "Home Insurance",
+        "cover": "Structure, belongings and liability.",
+        "why": "Protects your most valuable investment.",
+        "who": "Homeowners."
+      },
+      "umbrella": {
+        "title": "Umbrella Insurance",
+        "cover": "Additional liability coverage.",
+        "why": "Protects against large lawsuits.",
+        "who": "High-asset individuals."
+      },
+      "travel": {
+        "title": "Travel Insurance",
+        "cover": "Medical emergencies and cancellations.",
+        "why": "Travel safely worldwide.",
+        "who": "Travelers."
+      },
+
+      "general-liability": {
+        "title": "General Liability",
+        "cover": "Third-party damages and injuries.",
+        "why": "Protects your business.",
+        "who": "Businesses."
+      },
+      "workers-comp": {
+        "title": "Workers Compensation",
+        "cover": "Employee medical expenses.",
+        "why": "Legally required.",
+        "who": "Employers."
+      },
+      "commercial-auto": {
+        "title": "Commercial Auto",
+        "cover": "Business vehicle coverage.",
+        "why": "Personal insurance does not apply.",
+        "who": "Companies."
+      },
+      "employer-umbrella": {
+        "title": "Commercial Umbrella",
+        "cover": "Extended liability coverage.",
+        "why": "Prevents major losses.",
+        "who": "High-risk businesses."
+      },
+      "business-owners": {
+        "title": "Business Owners Policy",
+        "cover": "Property and liability combined.",
+        "why": "Cost-effective coverage.",
+        "who": "Small businesses."
+      },
+      "non-owned": {
+        "title": "Independent Contractors - Form 1099-NEC",
+        "cover": "Calculation of income, deductible expenses, and Schedule C preparation for contractors.",
+        "why": "Optimizes your deductions to pay the minimum tax legally allowed by the IRS.",
+        "who": "Independent contractors, freelancers, and gig economy drivers."
+      },
+       "society": {
+        "title": "Sociedades",
+        "cover": "Cálculo, reporte y envío de los impuestos sobre las ventas recaudados a nivel estatal.",
+        "why": "Es una responsabilidad fiduciaria; no reportarlo puede conllevar graves multas penales.",
+        "who": "Negocios que venden productos físicos o servicios sujetos a impuestos estatales."
+      },
+       "corp": {
+        "title": "Corporations (S/C Corp)",
+        "cover": "Complex tax returns for corporate structures with dividend distribution.",
+        "why": "Allows for advanced tax planning to reduce the tax burden on shareholders.",
+        "who": "Businesses with multiple partners or those seeking a more robust tax structure."
+      },
+      "local-liability": {
+        "title": "LLC Taxes",
+        "cover": "Tax preparation for Limited Liability Companies and profit reporting.",
+        "why": "Keeps your company in 'Good Standing' and avoids audits or administrative closures.",
+        "who": "Small business owners registered as an LLC in any state."
+      },
+      "church": {
+       "title": "Churches or Non-Profits",
+       "cover": "Management of federal and state withholdings and unemployment payments for your employees.",
+       "why": "Ensures that payments to your workers are accurate and comply with all labor laws.",
+       "who": "Any business owner with employees on payroll."
+      },
+
+      "w2": {
+        "title": "W-2 Tax Filing",
+        "cover": "Personal tax preparation.",
+        "why": "Avoid mistakes.",
+        "who": "Employees."
+      },
+      "accounting": {
+        "title": "Bookkeeping & Accounting",
+        "cover": "Monthly recording of income and expenses, bank reconciliation, and preparation of financial statements.",
+        "why": "Allows you to know the real health of your business and be prepared for tax season.",
+        "who": "Business owners who want to keep their finances organized and make data-driven decisions."
+      },
+      "companies": {
+        "title": "Business Registration",
+        "cover": "Official registration with the State, obtaining an EIN, and preparation of operating documents.",
+        "why": "Formalizes your venture, protects your personal assets, and allows you to open business bank accounts.",
+        "who": "Entrepreneurs looking to start an LLC, Corporation, or any legal entity in the USA."
+      },
+      "rep-companies": {
+        "title": "Payroll Services",
+        "cover": "Payroll processing, calculation of federal/state withholdings, and issuance of pay stubs.",
+        "why": "Ensures your employees are paid on time and your business remains compliant with labor laws.",
+        "who": "Business owners with employees looking to automate and legalize their payroll payments."
+      },
+
+      "legal-procedures": {
+        "title": "Legal Procedures",
+        "cover": "Legal authorizations.",
+        "why": "Simplifies legal matters.",
+        "who": "Individuals and businesses."
+      },
+      "legal-translation": {
+        "cover": "Broad authorization for a third party to manage assets and perform legal acts on your behalf.",
+        "title": "Power of Attorney",
+        "why": "Ensures your affairs continue to operate if you are out of the country or incapacitated.",
+      "who": "Individuals traveling for long periods or those in need of absolute legal representation."
+      },
+      "Tlegal": {
+        "cover": "Documentation for the appointment of legal guardians for minors or dependents.",
+        "title": "Legal Guardianship",
+        "why": "Ensures your loved ones are placed under the care of individuals you fully trust.",
+        "who": "Parents and guardians who wish to protect the custody of their children in the event of any contingency."
+      },
+      "certifications": {
+        "cover": "Validation of copies of original documents such as degrees, certificates, or IDs.",
+        "title": "Certified Copies",
+        "why": "Allows you to provide a true copy of the original with notarized support for official procedures.",
+        "who": "Students or professionals applying to jobs or educational institutions."
+      },
+      "apostille": {
+        "title": "Apostille Services",
+        "cover": "International validation.",
+        "why": "Required abroad.",
+        "who": "International applicants."
+      },
+      "weddings": {
+        "title": "Civil Weddings",
+        "cover": "Marriage officiation.",
+        "why": "Legal recognition.",
+        "who": "Couples."
+      }
+    }
+  }
+}

@@ -2,41 +2,102 @@
   <nav class="navbar">
     <div class="navbar-container">
 
-      <!-- LOGO -->
       <div class="logo">
-        <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
-      </div>
+  <RouterLink :to="{ name: 'home', params: { locale } }">
+    <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
+  </RouterLink>
+</div>
 
-      <!-- HAMBURGER -->
+
       <div class="hamburger" @click="isOpen = !isOpen">
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      <!-- LINKS -->
       <ul class="nav-links" :class="{ open: isOpen }">
-  <li><RouterLink to="/inicio">Inicio</RouterLink></li>
-  <li><RouterLink to="/servicios">Servicios</RouterLink></li>
-  <li><RouterLink to="/sobre-nosotros">Sobre nosotros</RouterLink></li>
-  <li><RouterLink to="/contactanos">Contáctanos</RouterLink></li>
+  <li>
+          <RouterLink :to="`/${locale}/home`">
+            {{ t('nav.home') }}
+          </RouterLink>
+
+  </li>
+
+  <li>
+          <RouterLink :to="`/${locale}/services`">
+            {{ t('nav.services') }}
+          </RouterLink>
+
+  </li>
+
+  <li>
+    <RouterLink :to="`/${locale}/about`">
+            {{ t('nav.about') }}
+          </RouterLink>
+
+  </li>
+
+  <li>
+          <RouterLink :to="`/${locale}/contact`">
+            {{ t('nav.contact') }}
+          </RouterLink>
+        </li>
+
 </ul>
 
-      <!-- LANG -->
-      <div class="language-switcher">
-        <span class="globe-icon">🌐</span>
-        <span class="lang-text">ES | EN</span>
+      <div class="language-section">
+        <div class="language-switcher" @click="toggleLanguage">
+          <span class="globe-icon">
+            <!-- TU SVG -->
+            <svg width="22" height="22" viewBox="0 -1 22 22" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0)">
+                <path d="M11 1.22217C6.58172 1.22217 3 4.80389 3 9.22217C3 13.6405 6.58172 17.2222 11 17.2222C15.4183 17.2222 19 13.6405 19 9.22217C19 4.80389 15.4183 1.22217 11 1.22217Z"
+                  fill="white"/>
+              </g>
+            </svg>
+          </span>
+          <span class="lang-text">
+            {{ locale === 'es' ? 'ES | EN' : 'EN | ES' }}
+          </span>
+        </div>
       </div>
 
     </div>
   </nav>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const route = useRoute()
+const router = useRouter()
+const { locale: i18nLocale, t } = useI18n()
 
 const isOpen = ref(false)
+
+/**
+ * Idioma tomado SIEMPRE de la URL
+ */
+const locale = computed<'es' | 'en'>(() => {
+  return route.params.locale === 'en' ? 'en' : 'es'
+})
+
+/**
+ * Cambia idioma manteniendo la vista actual
+ */
+const toggleLanguage = () => {
+  const newLocale = locale.value === 'es' ? 'en' : 'es'
+
+  i18nLocale.value = newLocale
+
+  const newPath = route.fullPath.replace(/^\/(es|en)/, `/${newLocale}`)
+  router.push(newPath)
+}
 </script>
+
 
 
 <style scoped>
@@ -147,6 +208,8 @@ const isOpen = ref(false)
 .globe-icon {
   font-size: 1rem;
   color: white;
+  display: flex;
+  align-items: center;
 }
 
 /* RESPONSIVE */
@@ -176,5 +239,4 @@ const isOpen = ref(false)
     display: none;
   }
 }
-
 </style>
