@@ -17,8 +17,19 @@
 
           <div class="hero-actions">
             <button class="btn-primary">
+
+            <RouterLink :to="`/${locale}/contact`" class="btn-primary">
               {{ $t('home.hero.actions.contact') }}
+            </RouterLink>
+
             </button>
+
+
+
+
+
+
+
             <button class="btn-secondary">
               {{ $t('home.hero.actions.whatsapp') }}
             </button>
@@ -64,11 +75,7 @@
         </div>
 
         <div class="about-logo">
-          <img
-            src="@/assets/estrella_PI.png"
-            alt="Providence Logo"
-            class="main-logo-img"
-          />
+          <img src="@/assets/estrella_PI.png" alt="Providence Logo" class="main-logo-img" />
         </div>
       </div>
     </section>
@@ -89,12 +96,9 @@
             <p class="service-card-desc">
               {{ $t('home.services.insurance.desc') }}
             </p>
-              <RouterLink
-                :to="`/${locale}/contact`"
-                class="service-card-link"
-                >
-                {{ $t('home.services.more') }}
-              </RouterLink>
+            <RouterLink :to="`/${locale}/contact`" class="service-card-link">
+              {{ $t('home.services.more') }}
+            </RouterLink>
           </div>
 
           <div class="service-card">
@@ -105,12 +109,9 @@
             <p class="service-card-desc">
               {{ $t('home.services.taxes.desc') }}
             </p>
-              <RouterLink
-                :to="`/${locale}/contact`"
-                class="service-card-link"
-                >
-                {{ $t('home.services.more') }}
-              </RouterLink>
+            <RouterLink :to="`/${locale}/contact`" class="service-card-link">
+              {{ $t('home.services.more') }}
+            </RouterLink>
           </div>
 
           <div class="service-card">
@@ -121,12 +122,9 @@
             <p class="service-card-desc">
               {{ $t('home.services.notary.desc') }}
             </p>
-              <RouterLink
-                :to="`/${locale}/contact`"
-                class="service-card-link"
-                >
-                {{ $t('home.services.more') }}
-              </RouterLink>
+            <RouterLink :to="`/${locale}/contact`" class="service-card-link">
+              {{ $t('home.services.more') }}
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -194,7 +192,7 @@
 </template>
 
 <script setup lang="ts">
-  
+
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -241,7 +239,7 @@ const locale = computed(() => {
 
 /* --- HERO SECTION --- */
 .hero-section {
-  padding: 80px ;
+  padding: 80px;
 }
 
 .hero-grid {
@@ -282,6 +280,7 @@ const locale = computed(() => {
   font-size: 20px;
   cursor: pointer;
   border: none;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -307,20 +306,53 @@ const locale = computed(() => {
   width: 80%;
   overflow: hidden;
 }
+
 /* --- LÓGICA DE ANIMACIÓN DEL CARRUSEL --- */
 
 /* 1. Definimos la animación para el movimiento (3 imágenes = 3 pasos) */
 @keyframes slide-animation {
-  0%, 25% { transform: translateX(0%); }      /* Imagen 1 */
-  33%, 58% { transform: translateX(-100%); }  /* Imagen 2 */
-  66%, 91% { transform: translateX(-200%); }  /* Imagen 3 */
-  100% { transform: translateX(0%); }         /* Regreso al inicio */
+
+  0%,
+  25% {
+    transform: translateX(0%);
+  }
+
+  /* Imagen 1 */
+  33%,
+  58% {
+    transform: translateX(-100%);
+  }
+
+  /* Imagen 2 */
+  66%,
+  91% {
+    transform: translateX(-200%);
+  }
+
+  /* Imagen 3 */
+  100% {
+    transform: translateX(0%);
+  }
+
+  /* Regreso al inicio */
 }
 
 /* 2. Definimos la animación para los puntitos (sincronizada) */
 @keyframes dot-active {
-  0%, 25% { opacity: 1; transform: scale(1.2); background: #fff; }
-  33%, 100% { opacity: 0.5; transform: scale(1); background: rgba(255, 255, 255, 0.5); }
+
+  0%,
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+    background: #fff;
+  }
+
+  33%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+    background: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .carousel-track {
@@ -331,7 +363,8 @@ const locale = computed(() => {
 }
 
 .carousel-track img {
-  width: 100%; /* Cada imagen ocupa exactamente el 100% del contenedor */
+  width: 100%;
+  /* Cada imagen ocupa exactamente el 100% del contenedor */
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 40px;
@@ -340,7 +373,7 @@ const locale = computed(() => {
 /* --- ABOUT SECTION (IGUAL A TU IMAGEN) --- */
 /* --- SECCIÓN SOBRE NOSOTROS (IDÉNTICA AL DISEÑO) --- */
 .about-section {
-  padding: 80px ;
+  padding: 80px;
 }
 
 .about-grid {
@@ -353,14 +386,19 @@ const locale = computed(() => {
 /* CORRECCIÓN PRINCIPAL EN EL TÍTULO */
 .about-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 85px; /* Tamaño masivo como la imagen */
-  font-weight: 900; /* Extra bold */
-  line-height: 0.85; /* Interlineado muy compacto para unir las líneas */
-  letter-spacing: -2px; /* Las letras más juntas */
+  font-size: 85px;
+  /* Tamaño masivo como la imagen */
+  font-weight: 900;
+  /* Extra bold */
+  line-height: 0.85;
+  /* Interlineado muy compacto para unir las líneas */
+  letter-spacing: -2px;
+  /* Las letras más juntas */
   margin-bottom: 30px;
   /* Eliminamos display: flex y gap para que se junten */
-  white-space: nowrap; /* Evita que se separe en dos líneas si la pantalla es estrecha */
-  
+  white-space: nowrap;
+  /* Evita que se separe en dos líneas si la pantalla es estrecha */
+
 }
 
 .red-text {
@@ -385,13 +423,16 @@ const locale = computed(() => {
 
 .blue-underline {
   position: absolute;
-  bottom: 5px; /* Ajuste fino de la posición de la línea */
+  bottom: 5px;
+  /* Ajuste fino de la posición de la línea */
   left: 0;
   width: 100%;
   height: 5px;
-  background-color: #0081FF; /* Azul brillante */
+  background-color: #0081FF;
+  /* Azul brillante */
   border-radius: 10px;
-  z-index: -1; /* Para asegurar que la línea quede detrás del texto hueco */
+  z-index: -1;
+  /* Para asegurar que la línea quede detrás del texto hueco */
 }
 
 /* Subtítulo y párrafo */
@@ -415,6 +456,7 @@ const locale = computed(() => {
   width: 100%;
   max-width: 500px;
 }
+
 @media (max-width: 480px) {
   .about-title {
     font-size: clamp(28px, 6vw, 36px);
@@ -445,7 +487,7 @@ const locale = computed(() => {
 
 /* --- SERVICES SECTION (IGUAL A TU IMAGEN) --- */
 .services-section {
-   padding: 80px ;
+  padding: 80px;
   text-align: center;
 }
 
@@ -536,9 +578,11 @@ const locale = computed(() => {
 .why-us-card {
   background: white;
   padding: 100px 50px 40px;
-  margin-bottom: 20px; /* Ajustado para que no choque con la de abajo */
+  margin-bottom: 20px;
+  /* Ajustado para que no choque con la de abajo */
   border-radius: 40px;
-  border: 2px solid #e0e0e0; /* Subimos a 2px para igualar a servicios */
+  border: 2px solid #e0e0e0;
+  /* Subimos a 2px para igualar a servicios */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   position: relative;
   text-align: center;
@@ -550,7 +594,8 @@ const locale = computed(() => {
 /* HOVER APLICADO A LA CARD */
 .why-us-card:hover {
   transform: translateY(-10px);
-  border-color: #C62828; /* El mismo rojo de servicios */
+  border-color: #C62828;
+  /* El mismo rojo de servicios */
 }
 
 .why-icon-floating {
@@ -567,6 +612,7 @@ const locale = computed(() => {
   transform: translate(-50%, -50%);
   box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
 }
+
 .why-card-title {
   margin: 10px;
   font-family: 'Poppins', sans-serif;
@@ -586,20 +632,23 @@ const locale = computed(() => {
 /* Responsive */
 @media (max-width: 768px) {
   .why-us-grid {
-    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    grid-template-columns: 1fr;
+    /* Una sola columna en móvil */
     gap: 80px 20px;
   }
+
   .why-us-main-title {
     font-size: 40px;
   }
+
   .why-card-title {
-  margin: 70px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: #012148;
-  margin-bottom: 15px;
-}
+    margin: 70px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #012148;
+    margin-bottom: 15px;
+  }
 }
 
 /* --- RESPONSIVE --- */
@@ -625,32 +674,41 @@ const locale = computed(() => {
   }
 }
 
-.agency-icon { margin-bottom: 48px; /* ajusta según lo que necesites */ }
+.agency-icon {
+  margin-bottom: 48px;
+  /* ajusta según lo que necesites */
+}
 
 /* --- MOBILE CLEAN FLOW (<480px) --- */
 @media (max-width: 480px) {
+
   .hero-grid,
   .about-grid,
   .services-grid,
   .why-us-grid {
     display: flex;
-    flex-direction: column;   /* apilar verticalmente */
-    gap: 40px;                /* espacio entre elementos */
-    align-items: center;      /* centrar contenido */
+    flex-direction: column;
+    /* apilar verticalmente */
+    gap: 40px;
+    /* espacio entre elementos */
+    align-items: center;
+    /* centrar contenido */
   }
 
   .hero-section,
   .about-section,
   .services-section,
   .why-us-section {
-    padding: 32px 16px;       /* menos padding, más aire */
+    padding: 32px 16px;
+    /* menos padding, más aire */
   }
 
   .hero-text h1,
   .about-title,
   .services-main-title,
   .why-us-main-title {
-    font-size: clamp(24px, 6vw, 32px); /* tipografía fluida */
+    font-size: clamp(24px, 6vw, 32px);
+    /* tipografía fluida */
     line-height: 1.2;
     text-align: center;
   }
@@ -693,5 +751,4 @@ const locale = computed(() => {
     padding: 20px;
   }
 }
-
 </style>
