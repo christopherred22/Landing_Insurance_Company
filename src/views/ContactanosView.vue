@@ -104,8 +104,10 @@ const handleSubmit = () => {
     },
     '2amQ98NgEdwESH--w'       // ← aquí va tu Public Key (User ID)
   ).then(() => {
-    alert('Correo enviado con éxito ✅')
-  }).catch(err => {
+  alert('Correo enviado con éxito ✅')
+  // ← ESTA LÍNEA ES LA ÚNICA MODIFICACIÓN
+  form.value = { name: '', phone: '', email: '', message: '' }
+}).catch(err => {
     console.error(err)
     alert('Error al enviar el correo ❌')
   })
