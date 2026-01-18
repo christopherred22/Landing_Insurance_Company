@@ -50,6 +50,45 @@
       </div>
     </section>
 
+    <!-- GALLERY -->
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="gallery-title animate-on-scroll">Gallery</h2>
+
+        <div class="gallery-grid">
+          <div class="video-wrapper animate-on-scroll">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video 1"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="video-wrapper animate-on-scroll">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video 2"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="video-wrapper animate-on-scroll">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video 3"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- VALUES -->
     <section class="values-section container">
       <div class="values-header">
@@ -285,6 +324,52 @@ onMounted(() => {
 }
 
 /* =====================================================
+   GALLERY SECTION
+   ===================================================== */
+.gallery-section {
+  padding: 120px 0;
+  background-color: #F6F9FD;
+}
+
+.gallery-title {
+  font-size: 55px;
+  font-weight: 800;
+  color: #012148;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+/* =====================================================
    VALUES
    ===================================================== */
 .values-header {
@@ -361,6 +446,10 @@ onMounted(() => {
 .values-grid .value-card:nth-child(2) { transition-delay: 0.2s; }
 .values-grid .value-card:nth-child(3) { transition-delay: 0.4s; }
 
+/* Delay gradual para los videos de galería */
+.gallery-grid .video-wrapper:nth-child(2) { transition-delay: 0.2s; }
+.gallery-grid .video-wrapper:nth-child(3) { transition-delay: 0.4s; }
+
 /* =====================================================
    RESPONSIVE
    ===================================================== */
@@ -374,6 +463,10 @@ onMounted(() => {
   .hero-section h1 {
     font-size: 72px;
   }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 992px) {
@@ -385,6 +478,11 @@ onMounted(() => {
 
   .hero-section {
     min-height: 420px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
@@ -400,6 +498,15 @@ onMounted(() => {
   .container,
   .hero-container {
     padding: 0 20px;
+  }
+
+  .gallery-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+  }
+
+  .gallery-section {
+    padding: 80px 0;
   }
 }
 </style>

@@ -94,15 +94,15 @@ const form = ref({ name: '', phone: '', email: '', message: '' })
 
 const handleSubmit = () => {
   emailjs.send(
-    'service_y53pg8d',   // ← aquí va tu Service ID
-    'template_prpoqzu',  // ← aquí va tu Template ID
+    'service_zkx12ry',   // ← aquí va tu Service ID
+    'template_m3822dv',  // ← aquí va tu Template ID
     {
       name: form.value.name,
       phone: form.value.phone,
       email: form.value.email,
       message: form.value.message
     },
-    'y8Dgq32EfJtawbYoJ'       // ← aquí va tu Public Key (User ID)
+    '2amQ98NgEdwESH--w'       // ← aquí va tu Public Key (User ID)
   ).then(() => {
     alert('Correo enviado con éxito ✅')
   }).catch(err => {

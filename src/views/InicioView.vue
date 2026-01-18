@@ -16,19 +16,9 @@
           </p>
 
           <div class="hero-actions">
-            <button class="btn-primary">
-
             <RouterLink :to="`/${locale}/contact`" class="btn-primary">
               {{ $t('home.hero.actions.contact') }}
             </RouterLink>
-
-            </button>
-
-
-
-
-
-
 
             <button class="btn-secondary">
               {{ $t('home.hero.actions.whatsapp') }}
@@ -61,7 +51,6 @@
             <span class="red-text">{{ $t('home.about.titleRed') }}</span>
             <div class="nosotros-wrapper">
               <span class="blue-outline-text">{{ $t('home.about.titleBlue') }}</span>
-              <div class="blue-underline"></div>
             </div>
           </h2>
 
@@ -89,7 +78,7 @@
 
         <div class="services-grid">
           <div class="service-card">
-            <img src="@/assets/escudo.png" alt="">
+            <img src="@/assets/escudo.png" alt="" class="service-icon-img">
             <h3 class="service-card-title">
               {{ $t('home.services.insurance.title') }}
             </h3>
@@ -102,7 +91,7 @@
           </div>
 
           <div class="service-card">
-            <img src="@/assets/calculadora.png" alt="">
+            <img src="@/assets/calculadora.png" alt="" class="service-icon-img">
             <h3 class="service-card-title">
               {{ $t('home.services.taxes.title') }}
             </h3>
@@ -115,7 +104,7 @@
           </div>
 
           <div class="service-card">
-            <img src="@/assets/notariado.png" alt="">
+            <img src="@/assets/notariado.png" alt="" class="service-icon-img">
             <h3 class="service-card-title">
               {{ $t('home.services.notary.title') }}
             </h3>
@@ -192,11 +181,9 @@
 </template>
 
 <script setup lang="ts">
-
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-// --- PEGA ESTO AQUÍ ABAJO ---
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -218,7 +205,6 @@ const locale = computed(() => {
 })
 </script>
 
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
 
@@ -239,7 +225,7 @@ const locale = computed(() => {
 
 /* --- HERO SECTION --- */
 .hero-section {
-  padding: 80px;
+  padding: 80px 24px;
 }
 
 .hero-grid {
@@ -281,11 +267,19 @@ const locale = computed(() => {
   cursor: pointer;
   border: none;
   text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
   background: #C62828;
   color: white;
+}
+
+.btn-primary:hover {
+  background: #a01f1f;
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -294,86 +288,71 @@ const locale = computed(() => {
   color: #012148;
 }
 
+.btn-secondary:hover {
+  background: #012148;
+  color: white;
+}
+
 .rounded-img {
   height: 100%;
-  width: 80%;
+  width: 100%;
   border-radius: 40px;
+  object-fit: cover;
 }
 
 /* Contenedor principal */
 .carousel-container {
   position: relative;
-  width: 80%;
+  width: 100%;
   overflow: hidden;
+  border-radius: 40px;
 }
 
-/* --- LÓGICA DE ANIMACIÓN DEL CARRUSEL --- */
-
-/* 1. Definimos la animación para el movimiento (3 imágenes = 3 pasos) */
 @keyframes slide-animation {
-
-  0%,
-  25% {
-    transform: translateX(0%);
-  }
-
-  /* Imagen 1 */
-  33%,
-  58% {
-    transform: translateX(-100%);
-  }
-
-  /* Imagen 2 */
-  66%,
-  91% {
-    transform: translateX(-200%);
-  }
-
-  /* Imagen 3 */
-  100% {
-    transform: translateX(0%);
-  }
-
-  /* Regreso al inicio */
-}
-
-/* 2. Definimos la animación para los puntitos (sincronizada) */
-@keyframes dot-active {
-
-  0%,
-  25% {
-    opacity: 1;
-    transform: scale(1.2);
-    background: #fff;
-  }
-
-  33%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-    background: rgba(255, 255, 255, 0.5);
-  }
+  0%, 25% { transform: translateX(0%); }
+  33%, 58% { transform: translateX(-100%); }
+  66%, 91% { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
 }
 
 .carousel-track {
   display: flex;
   width: 100%;
   animation: slide-animation 12s infinite ease-in-out;
-  overflow: cover;
 }
 
 .carousel-track img {
   width: 100%;
-  /* Cada imagen ocupa exactamente el 100% del contenedor */
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 40px;
 }
 
-/* --- ABOUT SECTION (IGUAL A TU IMAGEN) --- */
-/* --- SECCIÓN SOBRE NOSOTROS (IDÉNTICA AL DISEÑO) --- */
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* --- ABOUT SECTION --- */
 .about-section {
-  padding: 80px;
+  padding: 80px 24px;
 }
 
 .about-grid {
@@ -383,22 +362,14 @@ const locale = computed(() => {
   align-items: center;
 }
 
-/* CORRECCIÓN PRINCIPAL EN EL TÍTULO */
 .about-title {
   font-family: 'Poppins', sans-serif;
   font-size: 85px;
-  /* Tamaño masivo como la imagen */
   font-weight: 900;
-  /* Extra bold */
   line-height: 0.85;
-  /* Interlineado muy compacto para unir las líneas */
   letter-spacing: -2px;
-  /* Las letras más juntas */
   margin-bottom: 30px;
-  /* Eliminamos display: flex y gap para que se junten */
   white-space: nowrap;
-  /* Evita que se separe en dos líneas si la pantalla es estrecha */
-
 }
 
 .red-text {
@@ -406,7 +377,6 @@ const locale = computed(() => {
   padding-right: 10px;
 }
 
-/* El contenedor de "nosotros" debe ser inline-block para pegarse a "Sobre" */
 .nosotros-wrapper {
   position: relative;
   display: inline-block;
@@ -414,28 +384,11 @@ const locale = computed(() => {
 
 .blue-outline-text {
   color: transparent;
-  /* Borde azul grueso, relleno transparente */
   -webkit-text-stroke: 2.5px #012148;
   text-transform: lowercase;
-  /* Un pequeño margen negativo a la izquierda para pegarlo aún más a "Sobre" si hace falta */
   margin-left: -5px;
 }
 
-.blue-underline {
-  position: absolute;
-  bottom: 5px;
-  /* Ajuste fino de la posición de la línea */
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #0081FF;
-  /* Azul brillante */
-  border-radius: 10px;
-  z-index: -1;
-  /* Para asegurar que la línea quede detrás del texto hueco */
-}
-
-/* Subtítulo y párrafo */
 .about-subtitle {
   font-size: 32px;
   color: #707070;
@@ -457,37 +410,9 @@ const locale = computed(() => {
   max-width: 500px;
 }
 
-@media (max-width: 480px) {
-  .about-title {
-    font-size: clamp(28px, 6vw, 36px);
-    line-height: 1.1;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .red-text,
-  .blue-outline-text {
-    display: inline-block;
-    padding-left: 3px;
-    font-size: 40px;
-  }
-
-  .blue-outline-text {
-    -webkit-text-stroke: 1.5px #012148;
-    font-size: inherit;
-    margin-left: 0;
-    font-size: 40px;
-  }
-
-  .blue-underline {
-    bottom: 0;
-    height: 4px;
-  }
-}
-
-/* --- SERVICES SECTION (IGUAL A TU IMAGEN) --- */
+/* --- SERVICES SECTION --- */
 .services-section {
-  padding: 80px;
+  padding: 80px 24px;
   text-align: center;
 }
 
@@ -506,36 +431,38 @@ const locale = computed(() => {
 
 .service-card {
   background: white;
-  padding: 20px 40px;
-  border-radius: 45px;
+  padding: 40px 30px;
+  border-radius: 30px;
   border: 2px solid #c6c6c6;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   text-align: left;
-  transition: transform 0.3s ease;
-  border-radius: 30px;
+  transition: all 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
+  border-color: #C62828;
 }
 
-.service-icon {
-  font-size: 50px !important;
-  color: #012148;
+.service-icon-img {
+  width: 60px;
+  height: 60px;
   margin-bottom: 20px;
+  object-fit: contain;
 }
 
 .service-card-title {
   font-size: 34px;
   font-weight: 900;
   color: #012148;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .service-card-desc {
   font-size: 19px;
   color: #444;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  line-height: 1.5;
 }
 
 .service-card-link {
@@ -545,15 +472,17 @@ const locale = computed(() => {
   text-decoration: none;
   border-bottom: 2px solid #333;
   padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.service-card-link:hover {
+  color: #C62828;
+  border-color: #C62828;
 }
 
 /* --- WHY US SECTION --- */
-/* --- SECCIÓN ¿POR QUÉ ELEGIRNOS? --- */
-
-/* --- SECCIÓN ¿POR QUÉ ELEGIRNOS? --- */
-
 .why-us-section {
-  padding: 100px 0;
+  padding: 100px 24px;
   background-color: #fff;
   text-align: center;
 }
@@ -572,49 +501,46 @@ const locale = computed(() => {
   gap: 60px 40px;
   max-width: 1000px;
   margin: 0 auto;
-  /* Eliminamos el hover y la transición de aquí, ya que el grid no debe moverse */
 }
 
 .why-us-card {
   background: white;
-  padding: 100px 50px 40px;
-  margin-bottom: 20px;
-  /* Ajustado para que no choque con la de abajo */
-  border-radius: 40px;
+  padding: 80px 40px 40px;
+  border-radius: 30px;
   border: 2px solid #e0e0e0;
-  /* Subimos a 2px para igualar a servicios */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   position: relative;
   text-align: center;
-
-  /* EFECTO IDENTICO A SERVICIOS */
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* HOVER APLICADO A LA CARD */
 .why-us-card:hover {
   transform: translateY(-10px);
   border-color: #C62828;
-  /* El mismo rojo de servicios */
 }
 
 .why-icon-floating {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   background-color: #3F51B5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0;
+  top: -40px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
 }
 
+.why-icon-floating img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .why-card-title {
-  margin: 10px;
   font-family: 'Poppins', sans-serif;
   font-size: 26px;
   font-weight: 800;
@@ -625,130 +551,282 @@ const locale = computed(() => {
 .why-card-text {
   font-size: 17px;
   color: #555;
-  line-height: 1.4;
+  line-height: 1.6;
   font-weight: 400;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .why-us-grid {
-    grid-template-columns: 1fr;
-    /* Una sola columna en móvil */
-    gap: 80px 20px;
-  }
-
-  .why-us-main-title {
-    font-size: 40px;
-  }
-
-  .why-card-title {
-    margin: 70px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 26px;
-    font-weight: 800;
-    color: #012148;
-    margin-bottom: 15px;
-  }
-}
-
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE TABLET (768px - 1024px) --- */
 @media (max-width: 1024px) {
-
-  .about-grid,
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero-text {
     text-align: center;
   }
 
-  .about-title {
-    font-size: 60px;
+  .hero-text h1 {
+    font-size: 52px;
+  }
+
+  .hero-text p {
+    font-size: 24px;
+  }
+
+  .hero-actions {
     justify-content: center;
   }
 
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .carousel-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-title {
+    font-size: 65px;
+    white-space: normal;
   }
 
   .about-paragraph {
     margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .main-logo-img {
+    margin: 0 auto;
+    max-width: 350px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .services-main-title {
+    font-size: 50px;
+  }
+
+  .why-us-main-title {
+    font-size: 50px;
   }
 }
 
-.agency-icon {
-  margin-bottom: 48px;
-  /* ajusta según lo que necesites */
-}
-
-/* --- MOBILE CLEAN FLOW (<480px) --- */
-@media (max-width: 480px) {
-
-  .hero-grid,
-  .about-grid,
-  .services-grid,
-  .why-us-grid {
-    display: flex;
-    flex-direction: column;
-    /* apilar verticalmente */
-    gap: 40px;
-    /* espacio entre elementos */
-    align-items: center;
-    /* centrar contenido */
-  }
-
+/* --- RESPONSIVE MOBILE (max-width: 768px) --- */
+@media (max-width: 768px) {
   .hero-section,
   .about-section,
-  .services-section,
+  .services-section {
+    padding: 50px 20px;
+  }
+
   .why-us-section {
-    padding: 32px 16px;
-    /* menos padding, más aire */
+    padding: 60px 20px;
   }
 
-  .hero-text h1,
-  .about-title,
-  .services-main-title,
-  .why-us-main-title {
-    font-size: clamp(24px, 6vw, 32px);
-    /* tipografía fluida */
-    line-height: 1.2;
-    text-align: center;
+  .hero-text h1 {
+    font-size: 42px;
   }
 
-  .hero-text p,
-  .about-paragraph,
-  .service-card-desc,
-  .why-card-text {
-    font-size: clamp(14px, 4vw, 16px);
-    text-align: center;
-    max-width: 90%;
-  }
-
-  .rounded-img,
-  .main-logo-img,
-  .carousel-track img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
+  .hero-text p {
+    font-size: 20px;
+    margin: 15px 0 30px;
   }
 
   .hero-actions {
     flex-direction: column;
-    gap: 16px;
     width: 100%;
   }
 
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    font-size: 16px;
-    padding: 12px;
+    font-size: 18px;
+    padding: 14px 20px;
   }
 
-  .service-card,
+  .about-title {
+    font-size: 50px;
+    line-height: 1;
+  }
+
+  .about-subtitle {
+    font-size: 26px;
+  }
+
+  .about-paragraph {
+    font-size: 18px;
+  }
+
+  .services-main-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .service-card {
+    padding: 30px 25px;
+  }
+
+  .service-card-title {
+    font-size: 28px;
+  }
+
+  .service-card-desc {
+    font-size: 17px;
+  }
+
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .why-us-main-title {
+    font-size: 42px;
+    margin-bottom: 50px;
+  }
+
+  .why-card-title {
+    font-size: 24px;
+  }
+}
+
+/* --- RESPONSIVE SMALL MOBILE (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .hero-section,
+  .about-section,
+  .services-section {
+    padding: 40px 16px;
+  }
+
+  .why-us-section {
+    padding: 50px 16px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    margin: 15px 0 25px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .about-title {
+    font-size: 36px;
+    line-height: 1.1;
+    white-space: normal;
+  }
+
+  .red-text {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .nosotros-wrapper {
+    display: block;
+  }
+
+  .blue-outline-text {
+    -webkit-text-stroke: 2px #012148;
+    margin-left: 0;
+  }
+
+  .about-subtitle {
+    font-size: 22px;
+  }
+
+  .about-paragraph {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .main-logo-img {
+    max-width: 280px;
+  }
+
+  .services-main-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .service-card {
+    padding: 25px 20px;
+  }
+
+  .service-icon-img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+
+  .service-card-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .service-card-desc {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .service-card-link {
+    font-size: 16px;
+  }
+
+  .why-us-main-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
   .why-us-card {
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
+    padding: 70px 25px 30px;
+  }
+
+  .why-icon-floating {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+  }
+
+  .why-icon-floating img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .why-card-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .why-card-text {
+    font-size: 15px;
+  }
+
+  .carousel-container {
+    border-radius: 25px;
+  }
+
+  .rounded-img,
+  .carousel-track img {
+    border-radius: 25px;
   }
 }
 </style>
