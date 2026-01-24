@@ -651,7 +651,7 @@ const locale = computed(() => {
 
   .btn-primary,
   .btn-secondary {
-    width: 100%;
+
     font-size: 18px;
     padding: 14px 20px;
   }

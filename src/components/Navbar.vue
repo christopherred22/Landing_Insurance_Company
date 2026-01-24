@@ -8,7 +8,7 @@
         </RouterLink>
       </div>
 
-      <div class="hamburger" @click="isOpen = !isOpen">
+      <div class="hamburger" @click="toggleMenu" :class="{ active: isOpen }">
         <span></span>
         <span></span>
         <span></span>
@@ -16,41 +16,42 @@
 
       <ul class="nav-links" :class="{ open: isOpen }">
         <li>
-          <RouterLink :to="`/${locale}/home`">
+          <RouterLink :to="`/`" @click="closeMenu">
             {{ t('nav.home') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/services`">
+          <RouterLink :to="`/${locale}/services`" @click="closeMenu">
             {{ t('nav.services') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/about`">
+          <RouterLink :to="`/${locale}/about`" @click="closeMenu">
             {{ t('nav.about') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/contact`">
+          <RouterLink :to="`/${locale}/contact`" @click="closeMenu">
             {{ t('nav.contact') }}
           </RouterLink>
         </li>
+
+        <li class="mobile-language">
+          <div class="language-switcher" @click="toggleLanguage">
+            <span class="globe-icon">🌐</span>
+            <span class="lang-text">
+              {{ locale === 'es' ? 'ES | EN' : 'EN | ES' }}
+            </span>
+          </div>
+        </li>
       </ul>
 
-      <div class="language-section">
+      <div class="language-section desktop-language">
         <div class="language-switcher" @click="toggleLanguage">
-          <span class="globe-icon">
-            <svg width="24" height="24" viewBox="0 -1 22 22" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0)">
-                <path d="M11 1.22217C6.58172 1.22217 3 4.80389 3 9.22217C3 13.6405 6.58172 17.2222 11 17.2222C15.4183 17.2222 19 13.6405 19 9.22217C19 4.80389 15.4183 1.22217 11 1.22217Z"
-                  fill="currentColor"/>
-              </g>
-            </svg>
-          </span>
+          <span class="globe-icon">🌐</span>
           <span class="lang-text">
             {{ locale === 'es' ? 'ES | EN' : 'EN | ES' }}
           </span>
@@ -72,27 +73,30 @@ const { locale: i18nLocale, t } = useI18n()
 
 const isOpen = ref(false)
 
-/**
- * Idioma tomado SIEMPRE de la URL
- */
 const locale = computed<'es' | 'en'>(() => {
   return route.params.locale === 'en' ? 'en' : 'es'
 })
 
-/**
- * Cambia idioma manteniendo la vista actual
- */
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+  console.log('Menu toggled:', isOpen.value) // Debug
+}
+
+const closeMenu = () => {
+  isOpen.value = false
+}
+
 const toggleLanguage = () => {
   const newLocale = locale.value === 'es' ? 'en' : 'es'
-
   i18nLocale.value = newLocale
-
   const newPath = route.fullPath.replace(/^\/(es|en)/, `/${newLocale}`)
   router.push(newPath)
+  closeMenu()
 }
 </script>
 
 <style scoped>
+/* BASE STYLES */
 .navbar {
   background-color: #012148;
   height: 110px;
@@ -104,6 +108,7 @@ const toggleLanguage = () => {
   box-shadow: 0 6px 20px rgba(1, 33, 72, 0.3);
   border-radius: 0 0 35px 35px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .navbar-container {
@@ -114,12 +119,19 @@ const toggleLanguage = () => {
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
+  position: relative;
+}
+
+.logo {
+  flex-shrink: 0;
+  z-index: 1001;
 }
 
 .logo img {
   height: 70px;
   width: auto;
   transition: transform 0.3s ease;
+  display: block;
 }
 
 .logo img:hover {
@@ -179,6 +191,8 @@ const toggleLanguage = () => {
   gap: 6px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  z-index: 1001;
+  position: relative;
 }
 
 .hamburger:hover {
@@ -191,6 +205,19 @@ const toggleLanguage = () => {
   background: #ffffff;
   border-radius: 3px;
   transition: all 0.3s ease;
+  display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
 }
 
 .language-section {
@@ -199,11 +226,12 @@ const toggleLanguage = () => {
 
 .language-switcher {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 50px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
@@ -221,21 +249,42 @@ const toggleLanguage = () => {
   font-weight: 700;
   color: #012148;
   font-size: 1rem;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
 }
 
 .globe-icon {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #012148;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
-/* RESPONSIVE */
+.mobile-language {
+  display: none;
+}
+
+/* TABLETS */
+@media (max-width: 1024px) {
+  .navbar-container {
+    padding: 0 30px;
+  }
+
+  .nav-links {
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+}
+
+/* MÓVILES Y TABLETS - MENÚ HAMBURGUESA */
 @media (max-width: 768px) {
   .navbar {
-    height: 85px;
-    border-radius: 0 0 25px 25px;
+    height: 70px;
+    border-radius: 0 0 20px 20px;
   }
 
   .navbar-container {
@@ -243,77 +292,222 @@ const toggleLanguage = () => {
   }
 
   .logo img {
-    height: 55px;
+    height: 50px;
   }
 
   .hamburger {
     display: flex;
-    z-index: 1001;
+  }
+
+  .desktop-language {
+    display: none;
+  }
+
+  .mobile-language {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .mobile-language .language-switcher {
+    margin: 0 auto;
+    width: 200px;
+    padding: 14px 24px;
   }
 
   .nav-links {
-    position: absolute;
-    top: 85px;
+    position: fixed;
+    top: 70px;
     left: 0;
+    right: 0;
     width: 100%;
     background: #012148;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
-    padding: 35px 0;
-    display: none;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease;
     box-shadow: 0 6px 20px rgba(1, 33, 72, 0.4);
-    border-radius: 0 0 30px 30px;
+    border-radius: 0 0 25px 25px;
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    max-height: 600px;
+    padding: 30px 20px;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
   }
 
   .nav-links a {
     font-size: 1.3rem;
+    display: block;
+    padding: 10px 20px;
   }
 
-  .nav-links.open {
-    display: flex;
-  }
-
-  .language-section {
-    position: absolute;
-    top: 22px;
-    right: 75px;
-    margin-left: 0;
-  }
-
-  .language-switcher {
-    padding: 10px 16px;
-  }
-
-  .lang-text {
-    font-size: 0.9rem;
-  }
-
-  .globe-icon {
-    font-size: 1rem;
+  .nav-links a::after {
+    display: none;
   }
 }
 
-@media (max-width: 480px) {
+/* iPHONE 12 PRO ESPECÍFICO */
+@media (min-width: 390px) and (max-width: 430px) and (max-height: 844px) {
+  .navbar {
+    height: 70px;
+  }
+
+  .navbar-container {
+    padding: 0 18px;
+  }
+
+  .logo img {
+    height: 48px;
+  }
+
+  .nav-links {
+    top: 70px;
+  }
+
+  .nav-links.open {
+    max-height: 550px;
+  }
+
+  .nav-links a {
+    font-size: 1.25rem;
+  }
+}
+
+/* iPAD Y TABLETS */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbar {
+    height: 80px;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .desktop-language {
+    display: none;
+  }
+
+  .mobile-language {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 80px;
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+  }
+}
+
+/* iPHONE PEQUEÑOS */
+@media (max-width: 375px) {
+  .navbar {
+    height: 65px;
+  }
+
   .navbar-container {
     padding: 0 15px;
   }
 
   .logo img {
-    height: 50px;
+    height: 45px;
   }
 
-  .language-section {
-    right: 65px;
-    top: 20px;
+  .hamburger span {
+    width: 26px;
+    height: 2.5px;
   }
 
-  .language-switcher {
-    padding: 8px 12px;
+  .nav-links {
+    top: 65px;
+  }
+
+  .nav-links.open {
+    max-height: 520px;
+    padding: 25px 15px;
+  }
+
+  .nav-links a {
+    font-size: 1.15rem;
+  }
+
+  .mobile-language .language-switcher {
+    width: 180px;
+    padding: 12px 20px;
   }
 
   .lang-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* LANDSCAPE MÓVIL */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navbar {
+    height: 60px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .nav-links {
+    top: 60px;
+  }
+
+  .nav-links.open {
+    max-height: calc(100vh - 60px);
+    padding: 20px 15px;
+  }
+
+  .nav-links li {
+    padding: 8px 0;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+    padding: 6px 15px;
+  }
+}
+
+/* PANTALLAS MUY GRANDES */
+@media (min-width: 1440px) {
+  .navbar-container {
+    max-width: 1400px;
+    padding: 0 60px;
+  }
+
+  .logo img {
+    height: 80px;
+  }
+
+  .nav-links {
+    gap: 55px;
+  }
+
+  .nav-links a {
+    font-size: 1.35rem;
   }
 }
 </style>

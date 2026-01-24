@@ -295,10 +295,10 @@
         "who": "Independent contractors, freelancers, and gig economy drivers."
       },
        "society": {
-        "title": "Sociedades",
-        "cover": "Cálculo, reporte y envío de los impuestos sobre las ventas recaudados a nivel estatal.",
-        "why": "Es una responsabilidad fiduciaria; no reportarlo puede conllevar graves multas penales.",
-        "who": "Negocios que venden productos físicos o servicios sujetos a impuestos estatales."
+        "title": "Business Entities (or Corporations)",
+        "cover": "Calculation, reporting, and filing of sales taxes collected at the state level.",
+        "why": "This is a fiduciary responsibility; failure to report can lead to severe criminal penalties and fines.",
+        "who": "Businesses that sell physical products or services subject to state taxes."
       },
        "corp": {
         "title": "Corporations (S/C Corp)",

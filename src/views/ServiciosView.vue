@@ -4,15 +4,15 @@
     <section class="hero-services animate-on-scroll">
       <div class="hero-inner">
         <h1>{{ t('services.hero.title') }}</h1>
-        <p class="hero-sub">{{ t('services.hero.subtitle') }}</p>
-        <button class="btn-expert">
-                             <RouterLink
-                                 :to="`/${locale}/contact`"
-                                     class="btn-expert"
-                                       >
-                                           {{ $t('services.hero.cta') }}
-                                                         </RouterLink>
-                                                                 </button>
+<p class="hero-sub">{{ t('services.hero.subtitle') }}</p>
+
+<RouterLink
+  :to="`/${locale}/contact`"
+  class="btn-expert"
+>
+  {{ $t('services.hero.cta') }}
+</RouterLink>
+
 
 
 
@@ -318,7 +318,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .main-nav-minimal button {
@@ -353,6 +353,7 @@ onMounted(() => {
   justify-content: center;
   gap: 30px;
   margin-bottom: 60px;
+  margin-top: 20px;
 }
 
 .sub-nav button {
