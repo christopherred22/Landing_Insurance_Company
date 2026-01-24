@@ -22,7 +22,7 @@ const router = createRouter({
       path: '/:locale(es|en)',
       component: LocaleLayout,
       children: [
-        { path: 'home', name: 'home', component: InicioView },
+        { path: '/', name: 'home', component: InicioView },
         { path: 'services', name: 'services', component: ServiciosView },
         { path: 'about', name: 'about', component: SobreNosotrosView },
         { path: 'contact', name: 'contact', component: ContactanosView },
