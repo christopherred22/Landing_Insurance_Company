@@ -13,38 +13,38 @@
 
          <form @submit.prevent="handleSubmit" class="contact-form">
           <div class="input-group">
-            <input 
-              type="text" 
-              v-model="form.name" 
-              :placeholder="$t('contact.form.name')" 
+            <input
+              type="text"
+              v-model="form.name"
+              :placeholder="$t('contact.form.name')"
               required
             >
           </div>
 
           <div class="input-group">
-            <input 
-              type="tel" 
-              v-model="form.phone" 
-              :placeholder="$t('contact.form.phone')" 
+            <input
+              type="tel"
+              v-model="form.phone"
+              :placeholder="$t('contact.form.phone')"
               required
-              pattern="[0-9]+"        
-              inputmode="numeric"   
+              pattern="[0-9]+"
+              inputmode="numeric"
             >
           </div>
 
           <div class="input-group">
-            <input 
-              type="email" 
-              v-model="form.email" 
-              :placeholder="$t('contact.form.email')" 
+            <input
+              type="email"
+              v-model="form.email"
+              :placeholder="$t('contact.form.email')"
               required
             >
           </div>
 
           <div class="input-group">
-            <textarea 
-              v-model="form.message" 
-              :placeholder="$t('contact.form.message')" 
+            <textarea
+              v-model="form.message"
+              :placeholder="$t('contact.form.message')"
               class="custom-textarea"
               required
             ></textarea>
@@ -64,7 +64,7 @@
         <div class="icon-box"><img src="@/assets/telefono.png"></div>
         <div class="info-text">
           <span class="label">{{ $t('contact.info.phoneLabel') }}</span>
-          <span class="value">615-625-0165</span>
+          <span class="value">+1 615-625-0165</span>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
         <div class="icon-box"><img src="@/assets/correo.png"></div>
         <div class="info-text">
           <span class="label">{{ $t('contact.info.emailLabel') }}</span>
-          <span class="value">providetexasinsurance@hotmail.com</span>
+          <span class="value">office@providenceinsuranceagency.com </span>
         </div>
       </div>
 
@@ -94,18 +94,20 @@ const form = ref({ name: '', phone: '', email: '', message: '' })
 
 const handleSubmit = () => {
   emailjs.send(
-    'service_pdterzh',   // ← aquí va tu Service ID
-    'template_85tffn5',  // ← aquí va tu Template ID
+    'service_zkx12ry',   // ← aquí va tu Service ID
+    'template_m3822dv',  // ← aquí va tu Template ID
     {
       name: form.value.name,
       phone: form.value.phone,
       email: form.value.email,
       message: form.value.message
     },
-    'bcrazEQ1fOMK-81po'       // ← aquí va tu Public Key (User ID)
+    '2amQ98NgEdwESH--w'       // ← aquí va tu Public Key (User ID)
   ).then(() => {
-    alert('Correo enviado con éxito ✅')
-  }).catch(err => {
+  alert('Correo enviado con éxito ✅')
+  // ← ESTA LÍNEA ES LA ÚNICA MODIFICACIÓN
+  form.value = { name: '', phone: '', email: '', message: '' }
+}).catch(err => {
     console.error(err)
     alert('Error al enviar el correo ❌')
   })

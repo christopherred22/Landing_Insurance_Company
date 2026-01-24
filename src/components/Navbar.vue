@@ -3,11 +3,10 @@
     <div class="navbar-container">
 
       <div class="logo">
-  <RouterLink :to="{ name: 'home', params: { locale } }">
-    <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
-  </RouterLink>
-</div>
-
+        <RouterLink :to="{ name: 'home', params: { locale } }">
+          <img src="@/assets/LogoP.svg" alt="Providence Insurance Agency" />
+        </RouterLink>
+      </div>
 
       <div class="hamburger" @click="isOpen = !isOpen">
         <span></span>
@@ -16,44 +15,39 @@
       </div>
 
       <ul class="nav-links" :class="{ open: isOpen }">
-  <li>
+        <li>
           <RouterLink :to="`/${locale}/home`">
             {{ t('nav.home') }}
           </RouterLink>
+        </li>
 
-  </li>
-
-  <li>
+        <li>
           <RouterLink :to="`/${locale}/services`">
             {{ t('nav.services') }}
           </RouterLink>
+        </li>
 
-  </li>
-
-  <li>
-    <RouterLink :to="`/${locale}/about`">
+        <li>
+          <RouterLink :to="`/${locale}/about`">
             {{ t('nav.about') }}
           </RouterLink>
+        </li>
 
-  </li>
-
-  <li>
+        <li>
           <RouterLink :to="`/${locale}/contact`">
             {{ t('nav.contact') }}
           </RouterLink>
         </li>
-
-</ul>
+      </ul>
 
       <div class="language-section">
         <div class="language-switcher" @click="toggleLanguage">
           <span class="globe-icon">
-            <!-- TU SVG -->
-            <svg width="22" height="22" viewBox="0 -1 22 22" fill="none"
+            <svg width="24" height="24" viewBox="0 -1 22 22" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0)">
                 <path d="M11 1.22217C6.58172 1.22217 3 4.80389 3 9.22217C3 13.6405 6.58172 17.2222 11 17.2222C15.4183 17.2222 19 13.6405 19 9.22217C19 4.80389 15.4183 1.22217 11 1.22217Z"
-                  fill="white"/>
+                  fill="currentColor"/>
               </g>
             </svg>
           </span>
@@ -98,41 +92,44 @@ const toggleLanguage = () => {
 }
 </script>
 
-
-
 <style scoped>
 .navbar {
-  background-color: #ffffff;
-  height: 80px;
+  background-color: #012148;
+  height: 110px;
   display: flex;
   align-items: center;
-  /* ESTO HACE QUE EL MENÚ BAJE CON EL SCROLL */
   position: sticky;
   top: 0;
   z-index: 1000;
-  /* Sombra sutil para despegarlo del contenido */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px rgba(1, 33, 72, 0.3);
+  border-radius: 0 0 35px 35px;
+  margin-bottom: 20px;
 }
 
 .navbar-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .logo img {
-  height: 50px; /* Ajusta según tu logo */
+  height: 70px;
   width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 45px;
   margin: 0;
   padding: 0;
 }
@@ -140,34 +137,37 @@ const toggleLanguage = () => {
 .nav-links a {
   position: relative;
   text-decoration: none;
-  color: #333333;
-  font-weight: 500;
-  font-size: 1rem;
-  padding-bottom: 8px;
-  transition: color 0.3s ease;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  padding-bottom: 10px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
 }
 
-/* TEXTO ROJO */
 .nav-links a:hover,
 .nav-links a.router-link-active {
-  color: #c1121f; /* ROJO */
+  color: #fbbf24;
+  transform: translateY(-3px);
+  text-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
 }
 
-/* LINEA INFERIOR */
 .nav-links a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 2px;
-  background-color: #c1121f;
+  height: 4px;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(251, 191, 36, 0.5);
 }
 
-/* ACTIVAR LINEA */
 .nav-links a:hover::after,
 .nav-links a.router-link-active::after {
   transform: scaleX(1);
@@ -176,67 +176,144 @@ const toggleLanguage = () => {
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
 }
 
 .hamburger span {
-  width: 25px;
+  width: 30px;
   height: 3px;
-  background: #333;
-  border-radius: 2px;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
+.language-section {
+  margin-left: 20px;
+}
 
-/* PILL DE IDIOMA */
 .language-switcher {
-  background-color: #CBD5E0; /* Gris claro similar a la imagen */
-  padding: 8px 16px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  padding: 12px 22px;
   border-radius: 50px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  border: 2px solid transparent;
+}
+
+.language-switcher:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .lang-text {
-  font-weight: bold;
-  color: white;
-  font-size: 0.9rem;
+  font-weight: 700;
+  color: #012148;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 .globe-icon {
-  font-size: 1rem;
-  color: white;
+  font-size: 1.2rem;
+  color: #012148;
   display: flex;
   align-items: center;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .navbar {
+    height: 85px;
+    border-radius: 0 0 25px 25px;
+  }
+
+  .navbar-container {
+    padding: 0 20px;
+  }
+
+  .logo img {
+    height: 55px;
+  }
+
   .hamburger {
     display: flex;
+    z-index: 1001;
   }
 
   .nav-links {
     position: absolute;
-    top: 80px;
+    top: 85px;
     left: 0;
     width: 100%;
-    background: white;
+    background: #012148;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px 0;
+    gap: 25px;
+    padding: 35px 0;
     display: none;
+    box-shadow: 0 6px 20px rgba(1, 33, 72, 0.4);
+    border-radius: 0 0 30px 30px;
+  }
+
+  .nav-links a {
+    font-size: 1.3rem;
   }
 
   .nav-links.open {
     display: flex;
   }
 
+  .language-section {
+    position: absolute;
+    top: 22px;
+    right: 75px;
+    margin-left: 0;
+  }
+
   .language-switcher {
-    display: none;
+    padding: 10px 16px;
+  }
+
+  .lang-text {
+    font-size: 0.9rem;
+  }
+
+  .globe-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .language-section {
+    right: 65px;
+    top: 20px;
+  }
+
+  .language-switcher {
+    padding: 8px 12px;
+  }
+
+  .lang-text {
+    font-size: 0.8rem;
   }
 }
 </style>

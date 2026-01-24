@@ -1,35 +1,68 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="es">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta charset="UTF-8" />
+
+    <!-- TITLE SEO -->
+    <title>Providence Insurance | Seguros Confiables en Estados Unidos</title>
+
+    <!-- META SEO BÁSICO -->
+    <meta name="description" content="Providence Insurance ofrece seguros de auto, hogar, vida y negocios en Estados Unidos. Atención personalizada y cotizaciones rápidas." />
+    <meta name="keywords" content="seguros en Estados Unidos, insurance USA, seguro de auto, seguro de vida, seguro de hogar, seguros comerciales" />
+    <meta name="author" content="Providence Insurance" />
+
+    <!-- VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FAVICON -->
+    <link rel="icon" href="/icon.svg" />
+
+    <!-- OPEN GRAPH (Facebook / WhatsApp) -->
+    <meta property="og:title" content="Providence Insurance | Seguros Confiables en USA" />
+    <meta property="og:description" content="Protege lo que más importa con Providence Insurance. Seguros de auto, hogar, vida y negocios." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.tudominio.com" />
+    <meta property="og:image" content="https://www.tudominio.com/og-image.jpg" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Providence Insurance | Seguros en USA" />
+    <meta name="twitter:description" content="Cotiza seguros confiables y accesibles en Estados Unidos." />
+    <meta name="twitter:image" content="https://www.tudominio.com/og-image.jpg" />
+
+    <!-- GOOGLE TRANSLATE (bien para SEO multilenguaje) -->
+    <script type="text/javascript">
+      window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'es',
+            includedLanguages: 'en,es',
+            autoDisplay: false
+          },
+          'google_translate_element'
+        )
+      }
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+      .goog-te-banner-frame.skiptranslate,
+      .goog-te-gadget {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+      }
+      .goog-text-highlight {
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+    </style>
   </head>
+
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
-
-    <script type="text/javascript">
-  window.googleTranslateElementInit = function () {
-    new google.translate.TranslateElement(
-      {
-        pageLanguage: 'es',
-        includedLanguages: 'en,es',
-        autoDisplay: false
-      },
-      'google_translate_element'
-    )
-  }
-</script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<style>
-  /* Ocultar la barra de Google y los widgets feos */
-  .goog-te-banner-frame.skiptranslate, .goog-te-gadget { display: none !important; }
-  body { top: 0px !important; }
-  .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
-</style>
   </body>
 </html>

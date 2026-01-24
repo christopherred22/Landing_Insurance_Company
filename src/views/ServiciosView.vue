@@ -6,13 +6,13 @@
         <h1>{{ t('services.hero.title') }}</h1>
         <p class="hero-sub">{{ t('services.hero.subtitle') }}</p>
         <button class="btn-expert">
-                   <RouterLink
-    :to="`/${locale}/contact`"
-    class="btn-expert"
-  >
-    {{ $t('services.hero.cta') }}
-              </RouterLink>
-        </button>
+                             <RouterLink
+                                 :to="`/${locale}/contact`"
+                                     class="btn-expert"
+                                       >
+                                           {{ $t('services.hero.cta') }}
+                                                         </RouterLink>
+                                                                 </button>
 
 
 
