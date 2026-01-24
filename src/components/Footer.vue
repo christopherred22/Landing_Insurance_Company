@@ -4,7 +4,7 @@
       <div class="footer-col brand-col">
               <div class="footer-logo">
   <RouterLink :to="{ name: 'home', params: { locale } }">
-    <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
+    <img src="@/assets/logoP.svg" alt="Providence Insurance Agency" />
   </RouterLink>
 </div>
         <p class="brand-description">
