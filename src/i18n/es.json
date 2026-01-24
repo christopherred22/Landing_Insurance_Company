@@ -20,7 +20,8 @@
     "experience": {
       "title": "Con más de 15 años de experiencia",
       "text": "Creemos firmemente que los seguros y los trámites no tienen por qué ser complicados. Nuestro objetivo es explicarte todo de manera sencilla y transparente.",
-      "quote": "Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo."
+      "quote": "Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo.",
+      "gallery": "MÁS INFORMACIÓN"
     },
 
     "values": {
@@ -60,7 +61,7 @@
       "phoneLabel": "TELÉFONO",
       "emailLabel": "CORREO ELECTRÓNICO",
       "locationLabel": "UBICACIÓN",
-      "locationValue": "Calle Lassy 2101, Ennis, Texas 75119"
+      "locationValue": "214 N Lowry St, Smyrna, TN 37167"
     }
   },
 
@@ -174,7 +175,7 @@
       "sms": "<strong>Divulgación por SMS:</strong><br>Al suscribirse a los mensajes de texto de Providence Insurance Agency, LLC, usted acepta recibir mensajes recurrentes. Pueden aplicarse tarifas por mensajes y datos. Responda STOP para cancelar o HELP para más información.",
       "rights": {
         "title": "Tus opciones:",
-        "text": "Puede acceder, corregir o eliminar su información. Escríbanos a <a href='mailto:office@providenceinsuranceagency.com'>office@providenceinsuranceagency.com</a> o llámenos al (615) 625-0165."
+        "text": "Puede acceder, corregir o eliminar su información. Escríbanos a <a href='mailto:office@providenceinsuranceagency.com'>office@providenceinsuranceagency.com</a> o llámenos al +1 615-625-0165."
       },
       "changes": {
         "title": "Cambios de política:",
