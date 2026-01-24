@@ -52,7 +52,7 @@
 
 <section class="gallery-section">
   <div class="container">
-    <h2 class="gallery-title animate-on-scroll">{{ $t('home.why.items.experience.gallery') }}</h2>
+    <h2 class="gallery-title animate-on-scroll">{{ $t('about.experience.gallery') }}</h2>
 
     <div class="gallery-grid">
       <div class="video-wrapper animate-on-scroll">
