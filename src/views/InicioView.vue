@@ -217,7 +217,7 @@ const locale = computed(() => {
 .landing-page {
   font-family: 'Poppins', sans-serif;
   color: #333;
-  background-image: url('@/assets/background-lines.png');
+
   background-size: cover;
   background-attachment: fixed;
 }
