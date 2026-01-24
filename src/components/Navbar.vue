@@ -4,7 +4,7 @@
 
       <div class="logo">
         <RouterLink :to="{ name: 'home', params: { locale } }">
-          <img src="@/assets/logoP.png" alt="Providence Insurance Agency" />
+          <img src="@/assets/Logo_White.svg" alt="Providence Insurance Agency" />
         </RouterLink>
       </div>
 

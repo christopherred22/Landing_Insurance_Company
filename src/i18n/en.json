@@ -21,7 +21,8 @@
     "experience": {
       "title": "Over 15 years of experience",
       "text": "We believe insurance and paperwork don’t have to be complicated. Our mission is to make everything simple and transparent for you.",
-      "quote": "Better to have it and not need it, than to need it and not have it."
+      "quote": "Better to have it and not need it, than to need it and not have it.",
+      "gallery": "MORE INFORMATION"
     },
 
     "values": {
@@ -61,7 +62,7 @@
       "phoneLabel": "PHONE",
       "emailLabel": "EMAIL",
       "locationLabel": "LOCATION",
-      "locationValue": "2101 Lassy Street, Ennis, Texas 75119"
+      "locationValue": "214 N Lowry St, Smyrna, TN 37167"
     }
   },
   "home": {

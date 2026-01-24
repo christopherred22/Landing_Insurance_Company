@@ -20,9 +20,14 @@
               {{ $t('home.hero.actions.contact') }}
             </RouterLink>
 
-            <button class="btn-secondary">
-              {{ $t('home.hero.actions.whatsapp') }}
-            </button>
+              <a
+    href="https://wa.me/16156250165"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-secondary"
+  >
+    {{ $t('home.hero.actions.whatsapp') }}
+  </a>
           </div>
         </div>
 

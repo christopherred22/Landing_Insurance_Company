@@ -64,7 +64,7 @@
         <div class="icon-box"><img src="@/assets/telefono.png"></div>
         <div class="info-text">
           <span class="label">{{ $t('contact.info.phoneLabel') }}</span>
-          <span class="value">615-625-0165</span>
+          <span class="value">+1 615-625-0165</span>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
         <div class="icon-box"><img src="@/assets/correo.png"></div>
         <div class="info-text">
           <span class="label">{{ $t('contact.info.emailLabel') }}</span>
-          <span class="value">providetexasinsurance@hotmail.com</span>
+          <span class="value">office@providenceinsuranceagency.com </span>
         </div>
       </div>
 

@@ -20,7 +20,8 @@
     "experience": {
       "title": "Con más de 15 años de experiencia",
       "text": "Creemos firmemente que los seguros y los trámites no tienen por qué ser complicados. Nuestro objetivo es explicarte todo de manera sencilla y transparente.",
-      "quote": "Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo."
+      "quote": "Es mejor tenerlo y no necesitarlo, que necesitarlo y no tenerlo.",
+      "gallery": "MÁS INFORMACIÓN"
     },
 
     "values": {
@@ -60,7 +61,7 @@
       "phoneLabel": "TELÉFONO",
       "emailLabel": "CORREO ELECTRÓNICO",
       "locationLabel": "UBICACIÓN",
-      "locationValue": "Calle Lassy 2101, Ennis, Texas 75119"
+      "locationValue": "214 N Lowry St, Smyrna, TN 37167"
     }
   },
 
