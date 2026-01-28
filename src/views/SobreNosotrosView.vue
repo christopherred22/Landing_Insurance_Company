@@ -173,108 +173,6 @@ onMounted(() => {
 
 <style scoped>
 /* =====================================================
-   GALLERY SECTION
-   ===================================================== */
-.gallery-section {
-  padding: 120px 0;
-  background-color: #F6F9FD;
-}
-
-.gallery-title {
-  font-size: 55px;
-  font-weight: 800;
-  color: #012148;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  /* Aspect ratio 9:16 para videos verticales de TikTok */
-  aspect-ratio: 9 / 16;
-  /* Altura mínima para asegurar que se vea completo */
-  min-height: 600px;
-  max-height: 800px;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  background: #000;
-}
-
-.video-wrapper:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 16px;
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  .video-wrapper {
-    min-height: 550px;
-    max-height: 700px;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    gap: 30px;
-  }
-
-  .video-wrapper {
-    min-height: 600px;
-    max-height: 750px;
-  }
-
-  .gallery-title {
-    font-size: 42px;
-    margin-bottom: 40px;
-  }
-
-  .gallery-section {
-    padding: 80px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .video-wrapper {
-    min-height: 500px;
-    max-height: 650px;
-  }
-
-  .gallery-title {
-    font-size: 36px;
-  }
-}
-
-
-
-/* =====================================================
    VARIABLES (SCOPED TO THIS VIEW)
    ===================================================== */
 :root {
@@ -312,8 +210,6 @@ onMounted(() => {
 /* =====================================================
    HERO
    ===================================================== */
-
-/* HERO */
 .hero-section {
   width: 100%;
   min-height: 600px;
@@ -332,6 +228,7 @@ onMounted(() => {
   width: 100%;
   padding: 0 80px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .hero-section h1 {
@@ -339,6 +236,7 @@ onMounted(() => {
   font-weight: 900;
   color: #012148;
   margin-bottom: 24px;
+  line-height: 1.1;
 }
 
 .subtitle {
@@ -346,6 +244,7 @@ onMounted(() => {
   font-weight: 300;
   max-width: 900px;
   margin: 0 auto;
+  line-height: 1.4;
 }
 
 /* =====================================================
@@ -361,6 +260,7 @@ onMounted(() => {
   color: #012148;
   max-width: 700px;
   margin-bottom: 60px;
+  line-height: 1.2;
 }
 
 .grid-two-cols {
@@ -394,6 +294,7 @@ onMounted(() => {
   align-items: center;
   cursor: pointer;
   transition: all 0.4s ease;
+  width: 100%;
 }
 
 .video-placeholder:hover {
@@ -417,11 +318,13 @@ onMounted(() => {
   font-weight: 800;
   color: #012148;
   margin-bottom: 24px;
+  line-height: 1.2;
 }
 
 .experience-content p {
   font-size: 30px;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 .quote {
@@ -432,6 +335,7 @@ onMounted(() => {
   font-weight: 600;
   color: #012148;
   font-style: italic;
+  line-height: 1.5;
 }
 
 /* =====================================================
@@ -454,16 +358,21 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  min-height: 600px;
+  max-height: 800px;
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  background: #000;
 }
 
 .video-wrapper:hover {
@@ -477,6 +386,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
+  border: none;
   border-radius: 16px;
 }
 
@@ -493,11 +403,13 @@ onMounted(() => {
   font-size: 55px;
   color: #012148;
   margin-bottom: 24px;
+  line-height: 1.2;
 }
 
 .values-header p {
   font-size: 30px;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 .values-grid {
@@ -532,11 +444,13 @@ onMounted(() => {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 16px;
+  line-height: 1.3;
 }
 
 .value-card p {
   font-size: 20px;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 /* =====================================================
@@ -553,18 +467,17 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-/* Delay gradual para las cards de valores */
 .values-grid .value-card:nth-child(2) { transition-delay: 0.2s; }
 .values-grid .value-card:nth-child(3) { transition-delay: 0.4s; }
 
-/* Delay gradual para los videos de galería */
 .gallery-grid .video-wrapper:nth-child(2) { transition-delay: 0.2s; }
 .gallery-grid .video-wrapper:nth-child(3) { transition-delay: 0.4s; }
 
 /* =====================================================
    RESPONSIVE
    ===================================================== */
-/* RESPONSIVE */
+
+/* TABLETS */
 @media (max-width: 1200px) {
   .container,
   .hero-container {
@@ -575,40 +488,111 @@ onMounted(() => {
     font-size: 72px;
   }
 
+  .subtitle {
+    font-size: 28px;
+  }
+
+  .intro-section h2 {
+    font-size: 48px;
+  }
+
+  .grid-two-cols p {
+    font-size: 26px;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .video-wrapper {
+    min-height: 550px;
+    max-height: 700px;
   }
 }
 
+/* TABLETS Y MÓVILES */
 @media (max-width: 992px) {
   .grid-two-cols,
   .experience-grid,
   .values-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .hero-section {
     min-height: 420px;
   }
 
+  .experience-content,
+  .video-placeholder {
+    text-align: center;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
+    max-width: 500px;
     gap: 30px;
+  }
+
+  .video-wrapper {
+    min-height: 600px;
+    max-height: 750px;
   }
 }
 
-@media (max-width: 600px) {
+/* MÓVILES */
+@media (max-width: 768px) {
+  .container,
+  .hero-container {
+    padding: 0 20px;
+  }
+
+  .hero-section {
+    min-height: 400px;
+    padding: 40px 0;
+  }
+
   .hero-section h1 {
     font-size: 48px;
   }
 
   .subtitle {
     font-size: 20px;
+    padding: 0 10px;
   }
 
-  .container,
-  .hero-container {
-    padding: 0 20px;
+  .intro-section,
+  .experience-section,
+  .values-section {
+    padding: 80px 0;
+  }
+
+  .intro-section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .grid-two-cols {
+    gap: 30px;
+  }
+
+  .grid-two-cols p {
+    font-size: 18px;
+  }
+
+  .experience-content h3 {
+    font-size: 32px;
+  }
+
+  .experience-content p {
+    font-size: 18px;
+  }
+
+  .quote {
+    font-size: 16px;
+    padding-left: 20px;
+    margin-top: 30px;
   }
 
   .gallery-title {
@@ -617,7 +601,252 @@ onMounted(() => {
   }
 
   .gallery-section {
-    padding: 80px 0;
+    padding: 80px 20px;
+  }
+
+  .values-header h2 {
+    font-size: 36px;
+  }
+
+  .values-header p {
+    font-size: 18px;
+  }
+
+  .value-card h4 {
+    font-size: 24px;
+  }
+
+  .value-card p {
+    font-size: 16px;
+  }
+
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .icon-circle svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* OPTIMIZACIÓN ESPECÍFICA PARA iPHONE 13 Y SIMILARES (390px - 430px) */
+@media (min-width: 360px) and (max-width: 430px) {
+  .hero-section {
+    min-height: 350px;
+    padding: 30px 0;
+    background-attachment: scroll;
+  }
+
+  .hero-container {
+    padding: 0 15px;
+  }
+
+  .hero-section h1 {
+    font-size: 38px;
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 0 5px;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .intro-section,
+  .experience-section,
+  .values-section {
+    padding: 60px 0;
+  }
+
+  .intro-section h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .grid-two-cols {
+    gap: 25px;
+  }
+
+  .grid-two-cols p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .experience-grid {
+    gap: 30px;
+  }
+
+  .video-placeholder {
+    border-radius: 16px;
+    min-height: 200px;
+  }
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+    font-size: 22px;
+  }
+
+  .experience-content h3 {
+    font-size: 26px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .experience-content p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .quote {
+    font-size: 14px;
+    padding-left: 15px;
+    margin-top: 20px;
+    border-left-width: 4px;
+  }
+
+  .gallery-section {
+    padding: 60px 15px;
+  }
+
+  .gallery-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    max-width: 100%;
+    gap: 25px;
+  }
+
+  .video-wrapper {
+    min-height: 500px;
+    max-height: 650px;
+    border-radius: 12px;
+  }
+
+  .values-section {
+    padding: 60px 0;
+  }
+
+  .values-header {
+    margin-bottom: 50px;
+  }
+
+  .values-header h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+  }
+
+  .values-header p {
+    font-size: 16px;
+  }
+
+  .values-grid {
+    gap: 30px;
+  }
+
+  .value-card {
+    padding: 15px 10px;
+  }
+
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+  }
+
+  .icon-circle svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .value-card h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .value-card p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* MÓVILES PEQUEÑOS (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .hero-section h1 {
+    font-size: 34px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .intro-section h2 {
+    font-size: 28px;
+  }
+
+  .grid-two-cols p {
+    font-size: 15px;
+  }
+
+  .experience-content h3 {
+    font-size: 24px;
+  }
+
+  .experience-content p {
+    font-size: 15px;
+  }
+
+  .gallery-title {
+    font-size: 28px;
+  }
+
+  .video-wrapper {
+    min-height: 450px;
+    max-height: 600px;
+  }
+
+  .values-header h2 {
+    font-size: 28px;
+  }
+
+  .value-card h4 {
+    font-size: 18px;
+  }
+
+  .value-card p {
+    font-size: 13px;
+  }
+}
+
+/* LANDSCAPE MÓVIL */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 300px;
+    padding: 25px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .intro-section,
+  .experience-section,
+  .values-section,
+  .gallery-section {
+    padding: 50px 0;
   }
 }
 </style>
