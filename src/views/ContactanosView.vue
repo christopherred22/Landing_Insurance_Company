@@ -130,7 +130,7 @@ onMounted(() => {
 </script>
 
 
-<style>
+<style scoped>
 .contact-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -144,6 +144,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .content-container {
@@ -157,6 +158,9 @@ onMounted(() => {
 
 .header-section {
   margin-bottom: 30px;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .main-title {
@@ -164,12 +168,14 @@ onMounted(() => {
   font-size: 2.5rem;
   font-weight: 900;
   margin: 0;
+  word-wrap: break-word;
 }
 
 .subtitle {
   color: #666;
   font-size: 1rem;
   margin-top: 5px;
+  word-wrap: break-word;
 }
 
 .card-section {
@@ -184,14 +190,10 @@ onMounted(() => {
   width: 100%;
   padding: 40px 30px;
   border-radius: 30px;
-  /* ← esquinas más rectas, estilo Power BI */
   border: 1px solid #696969;
-  /* ← borde gris claro, muy sutil */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  /* ← sombra suave y profesional */
   box-sizing: border-box;
 }
-
 
 .card-title {
   color: #2a3b8f;
@@ -213,6 +215,7 @@ onMounted(() => {
   padding: 12px 0;
   font-size: 1rem;
   outline: none;
+  box-sizing: border-box;
 }
 
 .custom-textarea {
@@ -223,6 +226,7 @@ onMounted(() => {
   padding: 15px;
   resize: none;
   background: #fdfdfd;
+  box-sizing: border-box;
 }
 
 .input-group textarea {
@@ -246,6 +250,7 @@ onMounted(() => {
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  font-size: 1rem;
 }
 
 .btn-outline {
@@ -256,6 +261,7 @@ onMounted(() => {
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .icon-wrapper {
@@ -263,7 +269,9 @@ onMounted(() => {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: nowrap;
-  /* ← evita que se rompa la línea */
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
 }
 
 .info-item {
@@ -300,7 +308,10 @@ onMounted(() => {
   text-align: left;
   white-space: normal;
   word-wrap: break-word;
+  overflow-wrap: break-word;
   overflow: visible;
+  min-width: 0;
+  flex: 1;
 }
 
 .label {
@@ -314,11 +325,10 @@ onMounted(() => {
   font-weight: bold;
   font-size: 0.9rem;
   line-height: 1.3;
+  word-break: break-word;
 }
 
-/* =====================================================
-   ANIMACIONES
-   ===================================================== */
+/* ANIMACIONES */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(40px);
@@ -330,48 +340,26 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-.expand-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.expand-enter-from {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.arrow {
-  transition: 0.3s;
-}
-
-.arrow.rotated {
-  transform: rotate(180deg);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+/* RESPONSIVE TABLETS */
+@media (max-width: 1024px) {
   .icon-wrapper {
-    flex-wrap: wrap;
+    gap: 15px;
   }
 
   .info-item {
-    flex: 1 1 100%;
-    max-width: 100%;
+    flex: 1 1 200px;
   }
 }
 
-/* OPTIMIZACIÓN ESPECÍFICA PARA iPHONE 13 Y SIMILARES (390px - 430px) */
-@media (min-width: 360px) and (max-width: 430px) {
+/* RESPONSIVE MÓVILES */
+@media (max-width: 768px) {
   .contact-wrapper {
-    padding: 25px 15px;
-    background-attachment: scroll;
-  }
-
-  .content-container {
-    max-width: 100%;
+    padding: 30px 10px;
+    overflow-x: hidden;
   }
 
   .header-section {
-    margin-bottom: 25px;
+    padding: 0 15px;
   }
 
   .main-title {
@@ -381,71 +369,220 @@ onMounted(() => {
 
   .subtitle {
     font-size: 0.9rem;
-    margin-top: 8px;
     padding: 0 5px;
-  }
-
-  .card-section {
-    margin-bottom: 30px;
+    line-height: 1.4;
   }
 
   .contact-card {
     padding: 25px 18px;
-    border-radius: 20px;
   }
 
   .card-title {
     font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .icon-wrapper {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 10px;
+    align-items: stretch;
+  }
+
+  .info-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 12px 10px;
+  }
+
+  .value {
+    font-size: 0.8rem;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    font-size: 0.95rem;
+    padding: 14px;
+  }
+}
+
+/* OPTIMIZACIÓN ESPECÍFICA PARA iPHONE 13 Y SIMILARES (390px - 430px) */
+@media (min-width: 360px) and (max-width: 430px) {
+  .contact-wrapper {
+    padding: 25px 12px;
+    background-attachment: scroll;
+  }
+
+  .content-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .header-section {
     margin-bottom: 20px;
+    padding: 0 12px;
+  }
+
+  .main-title {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    padding: 0 5px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    margin-top: 8px;
+    padding: 0 8px;
+    line-height: 1.4;
+  }
+
+  .card-section {
+    margin-bottom: 25px;
+    padding: 0 5px;
+  }
+
+  .contact-card {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+    line-height: 1.3;
+    padding: 0 5px;
   }
 
   .contact-form {
-    gap: 18px;
+    gap: 16px;
   }
 
   .input-group input {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     padding: 10px 0;
   }
 
   .custom-textarea,
   .input-group textarea {
-    height: 90px;
-    font-size: 0.95rem;
+    height: 85px;
+    font-size: 0.9rem;
     padding: 12px;
   }
 
   .btn-primary,
   .btn-outline {
-    padding: 13px 20px;
-    font-size: 0.9rem;
+    padding: 12px 18px;
+    font-size: 0.88rem;
   }
 
   .icon-wrapper {
-    gap: 12px;
+    gap: 10px;
+    padding: 0 8px;
   }
 
   .info-item {
-    padding: 12px 10px;
+    padding: 10px 8px;
+    gap: 10px;
   }
 
   .icon-box {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
   }
 
   .icon-box img {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .info-text {
+    min-width: 0;
+    max-width: calc(100% - 50px);
   }
 
   .label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+    margin-bottom: 2px;
   }
 
   .value {
+    font-size: 0.78rem;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* MÓVILES PEQUEÑOS (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .contact-wrapper {
+    padding: 20px 10px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+    padding: 0 8px;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    padding: 0 10px;
+  }
+
+  .contact-card {
+    padding: 20px 14px;
+  }
+
+  .card-title {
     font-size: 0.85rem;
-    line-height: 1.4;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    font-size: 0.82rem;
+    padding: 11px 16px;
+  }
+
+  .value {
+    font-size: 0.75rem;
+  }
+
+  .icon-wrapper {
+    padding: 0 5px;
+  }
+}
+
+/* LANDSCAPE MÓVIL */
+@media (max-height: 600px) and (orientation: landscape) {
+  .contact-wrapper {
+    padding: 20px 12px;
+  }
+
+  .header-section {
+    margin-bottom: 15px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .card-section {
+    margin-bottom: 20px;
+  }
+
+  .contact-card {
+    padding: 18px 16px;
+  }
+
+  .contact-form {
+    gap: 14px;
+  }
+
+  .custom-textarea,
+  .input-group textarea {
+    height: 70px;
   }
 }
 </style>
