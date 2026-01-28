@@ -525,6 +525,111 @@ onMounted(() => {
     gap:10px
   }
 
+}
 
+/* OPTIMIZACIÓN ESPECÍFICA PARA iPHONE 13 Y SIMILARES (390px - 430px) */
+@media (min-width: 360px) and (max-width: 430px) {
+  .hero-services {
+    padding: 60px 15px 30px;
+  }
+
+  .hero-inner h1 {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  .btn-expert {
+    font-size: 15px;
+    padding: 11px 24px;
+    margin-bottom: 40px;
+  }
+
+  /* NAVEGACIÓN PRINCIPAL - AJUSTE CRÍTICO */
+  .main-nav-minimal {
+    gap: 6px;
+    padding: 0 10px;
+    margin-top: 35px;
+  }
+
+  .main-nav-minimal button {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 3px;
+  }
+
+  .separator {
+    font-size: 14px;
+    margin: 0 2px;
+  }
+
+  /* SUB NAVEGACIÓN */
+  .sub-nav {
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .sub-nav button {
+    font-size: 16px;
+  }
+
+  /* CONTENEDOR PRINCIPAL */
+  .services-container {
+    padding: 25px 15px 50px;
+  }
+
+  /* TARJETAS */
+  .service-card {
+    padding: 25px 18px;
+  }
+
+  .service-card h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .icon-circle {
+    width: 75px;
+    height: 75px;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .faq-trigger {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .faq-content {
+    font-size: 13px;
+  }
+
+  .btn-cotiza {
+    font-size: 14px;
+    padding: 7px 28px;
+  }
+}
+
+/* MÓVILES PEQUEÑOS (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .hero-inner h1 {
+    font-size: 34px;
+  }
+
+  .main-nav-minimal button {
+    font-size: 13px;
+  }
+
+  .separator {
+    font-size: 13px;
+  }
+
+  .sub-nav button {
+    font-size: 15px;
+  }
 }
 </style>

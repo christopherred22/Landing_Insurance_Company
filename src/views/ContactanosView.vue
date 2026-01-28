@@ -358,4 +358,94 @@ onMounted(() => {
     max-width: 100%;
   }
 }
+
+/* OPTIMIZACIÓN ESPECÍFICA PARA iPHONE 13 Y SIMILARES (390px - 430px) */
+@media (min-width: 360px) and (max-width: 430px) {
+  .contact-wrapper {
+    padding: 25px 15px;
+    background-attachment: scroll;
+  }
+
+  .content-container {
+    max-width: 100%;
+  }
+
+  .header-section {
+    margin-bottom: 25px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    padding: 0 5px;
+  }
+
+  .card-section {
+    margin-bottom: 30px;
+  }
+
+  .contact-card {
+    padding: 25px 18px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .input-group input {
+    font-size: 0.95rem;
+    padding: 10px 0;
+  }
+
+  .custom-textarea,
+  .input-group textarea {
+    height: 90px;
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    padding: 13px 20px;
+    font-size: 0.9rem;
+  }
+
+  .icon-wrapper {
+    gap: 12px;
+  }
+
+  .info-item {
+    padding: 12px 10px;
+  }
+
+  .icon-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-box img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .label {
+    font-size: 0.7rem;
+  }
+
+  .value {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
 </style>

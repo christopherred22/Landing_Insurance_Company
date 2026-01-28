@@ -17,12 +17,13 @@ const router = createRouter({
       top: 0,
       behavior: 'smooth'
     }
-  },routes: [
+  },
+  routes: [
     {
       path: '/:locale(es|en)',
       component: LocaleLayout,
       children: [
-        { path: '/', name: 'home', component: InicioView },
+        { path: '', name: 'home', component: InicioView },  // Changed from '/' to ''
         { path: 'services', name: 'services', component: ServiciosView },
         { path: 'about', name: 'about', component: SobreNosotrosView },
         { path: 'contact', name: 'contact', component: ContactanosView },

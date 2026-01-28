@@ -16,25 +16,25 @@
 
       <ul class="nav-links" :class="{ open: isOpen }">
         <li>
-          <RouterLink :to="`/`" @click="closeMenu">
+          <RouterLink :to="{ name: 'home', params: { locale } }" @click="closeMenu">
             {{ t('nav.home') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/services`" @click="closeMenu">
+          <RouterLink :to="{ name: 'services', params: { locale } }" @click="closeMenu">
             {{ t('nav.services') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/about`" @click="closeMenu">
+          <RouterLink :to="{ name: 'about', params: { locale } }" @click="closeMenu">
             {{ t('nav.about') }}
           </RouterLink>
         </li>
 
         <li>
-          <RouterLink :to="`/${locale}/contact`" @click="closeMenu">
+          <RouterLink :to="{ name: 'contact', params: { locale } }" @click="closeMenu">
             {{ t('nav.contact') }}
           </RouterLink>
         </li>
@@ -79,7 +79,7 @@ const locale = computed<'es' | 'en'>(() => {
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
-  console.log('Menu toggled:', isOpen.value) // Debug
+  console.log('Menu toggled:', isOpen.value)
 }
 
 const closeMenu = () => {
@@ -87,10 +87,35 @@ const closeMenu = () => {
 }
 
 const toggleLanguage = () => {
-  const newLocale = locale.value === 'es' ? 'en' : 'es'
+  const currentLocale = locale.value
+  const newLocale = currentLocale === 'es' ? 'en' : 'es'
+
+  console.log('=== LANGUAGE SWITCH DEBUG ===')
+  console.log('Current locale:', currentLocale)
+  console.log('New locale:', newLocale)
+  console.log('Current route name:', route.name)
+  console.log('Current route params:', route.params)
+  console.log('Current route path:', route.path)
+
+  // Update i18n locale
   i18nLocale.value = newLocale
-  const newPath = route.fullPath.replace(/^\/(es|en)/, `/${newLocale}`)
-  router.push(newPath)
+
+  // Navigate to the same route with new locale
+  const targetRoute = {
+    name: route.name || 'home',
+    params: { locale: newLocale },
+    query: route.query
+  }
+
+  console.log('Target route:', targetRoute)
+
+  router.push(targetRoute).then(() => {
+    console.log('Navigation successful')
+    console.log('New route path:', route.path)
+  }).catch((error) => {
+    console.error('Navigation error:', error)
+  })
+
   closeMenu()
 }
 </script>
@@ -159,7 +184,7 @@ const toggleLanguage = () => {
 }
 
 .nav-links a:hover,
-.nav-links a.router-link-active {
+.nav-links a.router-link-exact-active {
   color: #fbbf24;
   transform: translateY(-3px);
   text-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
@@ -181,7 +206,7 @@ const toggleLanguage = () => {
 }
 
 .nav-links a:hover::after,
-.nav-links a.router-link-active::after {
+.nav-links a.router-link-exact-active::after {
   transform: scaleX(1);
 }
 
