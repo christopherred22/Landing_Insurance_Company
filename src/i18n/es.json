@@ -155,7 +155,7 @@
 
     "location": {
       "title": "Ubicación",
-      "addressLine1": "Calle Lowry 214 N,",
+      "addressLine1": "214 N, Lowry Street",
       "addressLine2": "Smyrna TN 37167"
     },
 
@@ -259,7 +259,7 @@
       },
 
       "general-liability": {
-        "title": "Responsabilidad General",
+        "title": "General Liability",
         "cover": "Daños a terceros y lesiones corporales.",
         "why": "Protege tu negocio de demandas.",
         "who": "Empresas y contratistas."

@@ -1,5 +1,5 @@
 <template>
-  <footer class="main-footer">
+  <footer class="main-footer notranslate">
     <div class="footer-container">
       <div class="footer-col brand-col">
               <div class="footer-logo">
