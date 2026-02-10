@@ -12,7 +12,7 @@
     <meta name="author" content="Providence Insurance" />
 
       <!-- Deshabilitar Google Translate -->
-  <meta name="google" content="notranslate">
+        <meta name="google" content="notranslate">
 
     <!-- VIEWPORT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,12 +61,21 @@
         background-color: transparent !important;
         box-shadow: none !important;
       }
+
+          .goog-te-banner-frame,
+    .goog-te-balloon-frame,
+    .goog-te-spinner-pos {
+      display: none !important;
+    }
+    body {
+      top: 0 !important;
+    }
     </style>
   </head>
 
   <body>
-    <div id="app" class="notranslate"></div>
-
+    <div id="app" ></div>
+    <body class="notranslate" translate="no"></body>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
