@@ -45,13 +45,17 @@
 
       <div class="footer-col compliance-col">
         <h4>{{ t('footer.compliance.title') }}</h4>
-          <ul>
-            <li>
-              <a href="#" @click.prevent="showPrivacy = true">
-                {{ t('footer.compliance.privacy') }}
-              </a>
-            </li>
-          </ul>
+        <ul>
+          <li>
+            <button
+              type="button"
+              @click="showPrivacy = true"
+              class="privacy-link"
+            >
+              {{ t('footer.compliance.privacy') }}
+            </button>
+          </li>
+        </ul>
       </div>
 
       <div class="footer-col contact-col">
@@ -252,6 +256,29 @@ ul li a:hover { color: #012148; font-weight: bold; }
 /* =========================
     OVERLAY PRIVACIDAD
 ========================= */
+.privacy-link {
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  color: #333333;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.privacy-link:hover {
+  color: #012148;
+  font-weight: bold;
+}
+
+
+
+
+
+
 :global(.privacy-overlay) {
   position: fixed;
   top: 0;
@@ -328,6 +355,7 @@ ul li a:hover { color: #012148; font-weight: bold; }
 
 .footer-mail { color: #FCDC67; text-decoration: underline; }
 
+
 /* Transición */
 :global(.fade-enter-active),
 :global(.fade-leave-active) {
@@ -353,4 +381,33 @@ ul li a:hover { color: #012148; font-weight: bold; }
 @media (max-width: 600px) {
   .footer-container { grid-template-columns: 1fr; }
 }
+</style>
+
+<style>
+/* SIN scoped para el modal */
+.privacy-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(1, 33, 72, 0.98) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.privacy-modal {
+  width: 100%;
+  max-width: 900px;
+  height: 85vh;
+  color: white;
+  position: relative;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+/* ... resto de estilos del modal ... */
 </style>
