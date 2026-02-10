@@ -109,10 +109,10 @@
       <div
         v-if="showPrivacy"
         class="privacy-overlay"
-        @click.self="handleCloseModal"
+        @click.self="showPrivacy = false"
       >
         <div class="privacy-modal">
-          <button class="close-btn" @click="handleCloseModal">✕</button>
+          <button class="close-btn" @click="showPrivacy = false">✕</button>
 
           <div class="modal-content">
             <div class="icon-header">
@@ -123,39 +123,15 @@
 
             <div class="title-section">
               <span class="line"></span>
-              <h2>{{ t('footer.privacy.title') }}</h2>
+              <h2 v-html="privacyTitle"></h2>
               <span class="line"></span>
             </div>
 
-            <div class="text-body">
-              <p>{{ t('footer.privacy.intro') }}</p>
-
-              <h3 class="section-title">{{ t('footer.privacy.collect.title') }}</h3>
-              <p v-html="t('footer.privacy.collect.text')"></p>
-
-              <h3 class="section-title">{{ t('footer.privacy.use.title') }}</h3>
-              <p>{{ t('footer.privacy.use.text') }}</p>
-
-              <p class="sms-note" v-html="t('footer.privacy.sms')"></p>
-
-              <h3 class="section-title">{{ t('footer.privacy.rights.title') }}</h3>
-              <p v-html="t('footer.privacy.rights.text')"></p>
-
-              <h3 class="section-title">{{ t('footer.privacy.changes.title') }}</h3>
-              <p>{{ t('footer.privacy.changes.text') }}</p>
-
-              <p class="update-date">
-                {{ t('footer.privacy.updated') }}
-              </p>
-            </div>
+            <div class="text-body" v-html="privacyHTML"></div>
           </div>
         </div>
       </div>
     </Transition>
-        <!-- INDICADOR DE DEBUG (borrar después) -->
-    <div v-if="showPrivacy" style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 999999;">
-      MODAL DEBERÍA ESTAR VISIBLE
-    </div>
 
   </footer>
 </template>
@@ -170,21 +146,54 @@ const route = useRoute()
 
 const showPrivacy = ref(false)
 
+ // Renderizar TODO el HTML del modal de una vez
+const privacyTitle = computed(() => {
+  return locale.value === 'es' ? 'Política de Privacidad' : 'Privacy Policy'
+})
 
-// Función para abrir el modal con debug
-const handlePrivacyClick = () => {
-  console.log('🔵 Clic en Privacy button')
-  console.log('🔵 showPrivacy ANTES:', showPrivacy.value)
-  showPrivacy.value = true
-  console.log('🔵 showPrivacy DESPUÉS:', showPrivacy.value)
-}
+const privacyHTML = computed(() => {
+  if (locale.value === 'es') {
+    return `
+      <p>En Providence Insurance Agency, valoramos su privacidad y nos comprometemos a proteger su información personal.</p>
 
-// Función para cerrar el modal con debug
-const handleCloseModal = () => {
-  console.log('🔴 Cerrando modal')
-  showPrivacy.value = false
-}
+      <h3 class="section-title">Información que recopilamos</h3>
+      <p>Recopilamos información personal como nombre, dirección, correo electrónico, número de teléfono e información financiera necesaria para brindarle nuestros servicios de seguros.</p>
 
+      <h3 class="section-title">Cómo usamos su información</h3>
+      <p>Utilizamos su información para procesar solicitudes, proporcionar cotizaciones, gestionar pólizas y comunicarnos con usted sobre nuestros servicios.</p>
+
+      <p class="sms-note"><strong>Consentimiento de SMS:</strong> Al proporcionar su número de teléfono, acepta recibir mensajes de texto relacionados con sus pólizas de seguro. Pueden aplicarse tarifas de mensajes y datos. Puede optar por no participar en cualquier momento respondiendo STOP.</p>
+
+      <h3 class="section-title">Sus derechos</h3>
+      <p>Tiene derecho a acceder, corregir o eliminar su información personal. Para ejercer estos derechos, contáctenos en <a href="mailto:info@providenceinsurance.com" class="footer-mail">info@providenceinsurance.com</a>.</p>
+
+      <h3 class="section-title">Cambios a esta política</h3>
+      <p>Podemos actualizar esta política de privacidad periódicamente. Le notificaremos sobre cambios significativos.</p>
+
+      <p class="update-date">Última actualización: Enero 2025</p>
+    `
+  } else {
+    return `
+      <p>At Providence Insurance Agency, we value your privacy and are committed to protecting your personal information.</p>
+
+      <h3 class="section-title">Information We Collect</h3>
+      <p>We collect personal information such as name, address, email, phone number, and financial information necessary to provide our insurance services.</p>
+
+      <h3 class="section-title">How We Use Your Information</h3>
+      <p>We use your information to process applications, provide quotes, manage policies, and communicate with you about our services.</p>
+
+      <p class="sms-note"><strong>SMS Consent:</strong> By providing your phone number, you consent to receive text messages related to your insurance policies. Message and data rates may apply. You may opt out at any time by replying STOP.</p>
+
+      <h3 class="section-title">Your Rights</h3>
+      <p>You have the right to access, correct, or delete your personal information. To exercise these rights, contact us at <a href="mailto:info@providenceinsurance.com" class="footer-mail">info@providenceinsurance.com</a>.</p>
+
+      <h3 class="section-title">Changes to This Policy</h3>
+      <p>We may update this privacy policy periodically. We will notify you of significant changes.</p>
+
+      <p class="update-date">Last Updated: January 2025</p>
+    `
+  }
+})
 
 
 
