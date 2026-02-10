@@ -105,11 +105,14 @@
           <p>{{ t('footer.bottom') }}</p>
         </div>
 
-    <Teleport to="body">
     <Transition name="fade">
-      <div v-if="showPrivacy" class="privacy-overlay" @click.self="showPrivacy = false">
+      <div
+        v-if="showPrivacy"
+        class="privacy-overlay"
+        @click.self="handleCloseModal"
+      >
         <div class="privacy-modal">
-          <button class="close-btn" @click="showPrivacy = false">✕</button>
+          <button class="close-btn" @click="handleCloseModal">✕</button>
 
           <div class="modal-content">
             <div class="icon-header">
@@ -124,32 +127,36 @@
               <span class="line"></span>
             </div>
 
-              <div class="text-body">
-                  <p>{{ t('footer.privacy.intro') }}</p>
+            <div class="text-body">
+              <p>{{ t('footer.privacy.intro') }}</p>
 
-                  <h3 class="section-title">{{ t('footer.privacy.collect.title') }}</h3>
-                  <p v-html="t('footer.privacy.collect.text')"></p>
+              <h3 class="section-title">{{ t('footer.privacy.collect.title') }}</h3>
+              <p v-html="t('footer.privacy.collect.text')"></p>
 
-                  <h3 class="section-title">{{ t('footer.privacy.use.title') }}</h3>
-                  <p>{{ t('footer.privacy.use.text') }}</p>
+              <h3 class="section-title">{{ t('footer.privacy.use.title') }}</h3>
+              <p>{{ t('footer.privacy.use.text') }}</p>
 
-                  <p class="sms-note" v-html="t('footer.privacy.sms')"></p>
+              <p class="sms-note" v-html="t('footer.privacy.sms')"></p>
 
-                  <h3 class="section-title">{{ t('footer.privacy.rights.title') }}</h3>
-                  <p v-html="t('footer.privacy.rights.text')"></p>
+              <h3 class="section-title">{{ t('footer.privacy.rights.title') }}</h3>
+              <p v-html="t('footer.privacy.rights.text')"></p>
 
-                  <h3 class="section-title">{{ t('footer.privacy.changes.title') }}</h3>
-                  <p>{{ t('footer.privacy.changes.text') }}</p>
+              <h3 class="section-title">{{ t('footer.privacy.changes.title') }}</h3>
+              <p>{{ t('footer.privacy.changes.text') }}</p>
 
-                  <p class="update-date">
-                    {{ t('footer.privacy.updated') }}
-                  </p>
-              </div>
+              <p class="update-date">
+                {{ t('footer.privacy.updated') }}
+              </p>
             </div>
           </div>
         </div>
+      </div>
     </Transition>
-    </Teleport>
+        <!-- INDICADOR DE DEBUG (borrar después) -->
+    <div v-if="showPrivacy" style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 999999;">
+      MODAL DEBERÍA ESTAR VISIBLE
+    </div>
+
   </footer>
 </template>
 
@@ -163,17 +170,41 @@ const route = useRoute()
 
 const showPrivacy = ref(false)
 
+
+// Función para abrir el modal con debug
+const handlePrivacyClick = () => {
+  console.log('🔵 Clic en Privacy button')
+  console.log('🔵 showPrivacy ANTES:', showPrivacy.value)
+  showPrivacy.value = true
+  console.log('🔵 showPrivacy DESPUÉS:', showPrivacy.value)
+}
+
+// Función para cerrar el modal con debug
+const handleCloseModal = () => {
+  console.log('🔴 Cerrando modal')
+  showPrivacy.value = false
+}
+
+
+
+
 watch(showPrivacy, async (val) => {
+  console.log('👁️ WATCH showPrivacy cambió a:', val)
   if (val) {
     await nextTick()
+    document.body.style.overflow = 'hidden'
     const modal = document.querySelector('.privacy-modal')
+    console.log('👁️ Modal encontrado en DOM:', modal)
     if (modal) modal.scrollTop = 0
+  } else {
+    document.body.style.overflow = ''
   }
 })
 
 watch(
   () => route.fullPath,
   () => {
+    console.log('🔄 Ruta cambió, cerrando modal')
     showPrivacy.value = false
   }
 )
@@ -274,9 +305,126 @@ ul li a:hover { color: #012148; font-weight: bold; }
   font-weight: bold;
 }
 
+/* Estilos básicos del modal */
+.privacy-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(1, 33, 72, 0.98) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 20px;
+}
 
+.privacy-modal {
+  width: 100%;
+  max-width: 900px;
+  height: 85vh;
+  color: white;
+  position: relative;
+  overflow-y: auto;
+  padding: 40px;
+  background-color: rgba(1, 33, 72, 1);
+}
 
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10;
+}
 
+.icon-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.title-section h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.line {
+  height: 1px;
+  background-color: white;
+  flex-grow: 1;
+  opacity: 0.6;
+}
+
+.text-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 25px 0 10px 0;
+  color: white;
+}
+
+.sms-note {
+  margin: 20px 0;
+}
+
+.update-date {
+  margin-top: 40px;
+  font-weight: bold;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 15px;
+}
+
+/* Transiciones */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Scrollbar */
+.privacy-modal::-webkit-scrollbar {
+  width: 5px;
+}
+
+.privacy-modal::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .title-section h2 {
+    font-size: 1.5rem;
+  }
+  .line {
+    display: none;
+  }
+}
 
 
 :global(.privacy-overlay) {
