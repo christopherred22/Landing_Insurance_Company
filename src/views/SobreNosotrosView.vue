@@ -33,9 +33,9 @@
     <section class="experience-section">
       <div class="container">
         <div class="experience-grid">
-          <div class="video-placeholder animate-on-scroll">
-            <div class="play-button">▶</div>
-          </div>
+          <div class="image-placeholder animate-on-scroll">
+  <img src="@/assets/logo_aboutus.png" alt="About Us" />
+</div>
 
           <div class="experience-content animate-on-scroll">
             <h3>{{ $t('about.experience.title') }}</h3>
@@ -284,33 +284,23 @@ onMounted(() => {
   gap: 100px;
   align-items: center;
 }
-
-.video-placeholder {
+.image-placeholder {
   border-radius: 24px;
-  aspect-ratio: 16 / 9;
-  background: #e5e5e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
+  overflow: hidden;
   width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
-.video-placeholder:hover {
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.image-placeholder:hover img {
   transform: scale(1.02);
-}
-
-.play-button {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .experience-content h3 {
