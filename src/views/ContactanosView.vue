@@ -88,7 +88,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 
 const form = ref({ name: '', phone: '', email: '', message: '' })
 
