@@ -50,37 +50,38 @@
       </div>
     </section>
 
-<section class="gallery-section">
+<section class="gallery-section" v-if="tiktokLinks.length">
   <div class="container">
-    <h2 class="gallery-title animate-on-scroll">{{ $t('about.experience.gallery') }}</h2>
+    <h2 class="gallery-title">{{ $t('about.experience.gallery') }}</h2>
 
     <div class="gallery-grid">
-      <div class="video-wrapper animate-on-scroll">
+      <template v-for="link in tiktokLinks" :key="link.id">
+        <!-- Full video URLs get TikTok's real playable embed, in-page. -->
         <iframe
-          src="https://www.tiktok.com/embed/v2/7596071056423537934"
+          v-if="videoIdFor(link.url)"
+          class="video-wrapper"
+          :src="`https://www.tiktok.com/embed/v2/${videoIdFor(link.url)}`"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
         ></iframe>
-      </div>
 
-      <div class="video-wrapper animate-on-scroll">
-        <iframe
-          src="https://www.tiktok.com/embed/v2/7583031120564882701"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <div class="video-wrapper animate-on-scroll">
-        <iframe
-          src="https://www.tiktok.com/embed/v2/7581931550812409143"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        ></iframe>
-      </div>
+        <!-- Profile / short links have no single video to play — link out instead. -->
+        <a
+          v-else
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-wrapper"
+        >
+          <img v-if="previews[link.id]?.thumbnail_url" :src="previews[link.id].thumbnail_url" alt="" />
+          <div v-else class="video-fallback">🎵</div>
+          <div class="video-overlay">
+            <strong>{{ previews[link.id]?.author_name || 'TikTok' }}</strong>
+            <span>Ver en TikTok ↗</span>
+          </div>
+        </a>
+      </template>
     </div>
   </div>
 </section>
@@ -136,7 +137,12 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, reactive, computed, watch } from 'vue'
+import { useRealtimeTable } from '@/composables/useRealtimeTable'
+import { fetchTiktokOembed } from '@/lib/tiktokOembed'
+import { extractTiktokVideoId } from '@/lib/validators'
+
+const videoIdFor = extractTiktokVideoId
 
 onMounted(() => {
   // Animaciones scroll
@@ -155,20 +161,28 @@ onMounted(() => {
   )
 
   elements.forEach(el => observer.observe(el))
-
-  // Cargar script de TikTok
-  if (!window.tiktokEmbedLoaded) {
-    const script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
-    script.async = true;
-    script.onload = () => {
-      window.tiktokEmbedLoaded = true;
-    };
-    document.body.appendChild(script);
-  } else if (window.tiktok) {
-    window.tiktok.reset();
-  }
 })
+
+// Gallery pulls from the same admin-managed TikTok links as the footer —
+// previously this section had 3 hardcoded video IDs that couldn't be
+// changed without editing code.
+const { rows: tiktokRows } = useRealtimeTable('tiktok_links', 'position')
+const tiktokLinks = computed(() =>
+  tiktokRows.value.filter((r) => r.active).sort((a, b) => a.position - b.position),
+)
+
+const previews = reactive({})
+watch(
+  tiktokLinks,
+  async (links) => {
+    for (const link of links) {
+      // Video links render as a real iframe (see template) — no oEmbed needed.
+      if (previews[link.id] || videoIdFor(link.url)) continue
+      previews[link.id] = (await fetchTiktokOembed(link.url)) ?? {}
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>
@@ -354,6 +368,7 @@ onMounted(() => {
 
 .video-wrapper {
   position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 9 / 16;
   min-height: 600px;
@@ -370,14 +385,45 @@ onMounted(() => {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-.video-wrapper iframe {
+.video-wrapper img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: none;
-  border-radius: 16px;
+  object-fit: cover;
+}
+
+.video-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  background: #111;
+}
+
+.video-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+
+.video-overlay strong {
+  font-size: 18px;
+}
+
+.video-overlay span {
+  font-size: 14px;
+  opacity: 0.85;
 }
 
 /* =====================================================

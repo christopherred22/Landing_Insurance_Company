@@ -50,8 +50,29 @@
             ></textarea>
           </div>
 
+          <div class="services-interest">
+            <p class="services-label">{{ $t('contact.form.servicesLabel') }}</p>
+            <div class="services-pills">
+              <button
+                v-for="svc in serviceOptions"
+                :key="svc.key"
+                type="button"
+                class="pill"
+                :class="{ selected: form.services.includes(svc.key) }"
+                @click="toggleService(svc.key)"
+              >
+                {{ $t(svc.label) }}
+              </button>
+            </div>
+          </div>
+
           <button type="submit" class="btn-primary">{{ $t('contact.form.submit') }}</button>
-          <button type="button" class="btn-outline">{{ $t('contact.form.whatsapp') }}</button>
+          <a
+            href="https://wa.me/16156250165"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-outline"
+          >{{ $t('contact.form.whatsapp') }}</a>
         </form>
 
         </div>
@@ -90,24 +111,36 @@
 import { ref, onMounted } from 'vue'
 import emailjs from '@emailjs/browser'
 
-const form = ref({ name: '', phone: '', email: '', message: '' })
+const form = ref({ name: '', phone: '', email: '', message: '', services: [] })
+
+const serviceOptions = [
+  { key: 'insurance', label: 'contact.form.services.insurance' },
+  { key: 'taxes',     label: 'contact.form.services.taxes' },
+  { key: 'notary',    label: 'contact.form.services.notary' },
+]
+
+const toggleService = (key) => {
+  const idx = form.value.services.indexOf(key)
+  if (idx === -1) form.value.services.push(key)
+  else form.value.services.splice(idx, 1)
+}
 
 const handleSubmit = () => {
   emailjs.send(
-    'service_zkx12ry',   // ← aquí va tu Service ID
-    'template_m3822dv',  // ← aquí va tu Template ID
+    'service_zkx12ry',
+    'template_m3822dv',
     {
       name: form.value.name,
       phone: form.value.phone,
       email: form.value.email,
-      message: form.value.message
+      message: form.value.message,
+      services: form.value.services.join(', ') || 'No especificado'
     },
-    '2amQ98NgEdwESH--w'       // ← aquí va tu Public Key (User ID)
+    '2amQ98NgEdwESH--w'
   ).then(() => {
-  alert('Correo enviado con éxito ✅')
-  // ← ESTA LÍNEA ES LA ÚNICA MODIFICACIÓN
-  form.value = { name: '', phone: '', email: '', message: '' }
-}).catch(err => {
+    alert('Correo enviado con éxito ✅')
+    form.value = { name: '', phone: '', email: '', message: '', services: [] }
+  }).catch(err => {
     console.error(err)
     alert('Error al enviar el correo ❌')
   })
@@ -254,6 +287,7 @@ onMounted(() => {
 }
 
 .btn-outline {
+  display: block;
   background: white;
   color: #1b264f;
   border: 1.5px solid #1b264f;
@@ -262,6 +296,44 @@ onMounted(() => {
   font-weight: bold;
   cursor: pointer;
   font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.services-interest {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.services-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+  font-weight: 600;
+}
+
+.services-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1.5px solid #1b264f;
+  background: white;
+  color: #1b264f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill.selected {
+  background: #1b264f;
+  color: white;
 }
 
 .icon-wrapper {

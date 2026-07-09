@@ -1,19 +1,26 @@
 <template>
   <v-app>
-    <Navbar class="menu-fixed" />
+    <Navbar v-if="!isAdminRoute" class="menu-fixed" />
 
-    <v-main class="main-layout">
+    <v-main :class="{ 'main-layout': !isAdminRoute }">
       <RouterView />
     </v-main>
 
-    <Footer />
+    <Footer v-if="!isAdminRoute" />
 
   </v-app>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue' // Ya lo tenías importado, ahora lo usamos
+
+// The admin panel is an internal tool, not a public marketing page —
+// it shouldn't be wrapped in the public site's nav/footer/language toggle.
+const route = useRoute()
+const isAdminRoute = computed(() => route.path.startsWith('/admin'))
 </script>
 
 <style>

@@ -31,17 +31,28 @@
           </div>
         </div>
 
-        <div class="hero-image">
+        <div class="hero-image" v-if="heroSlides.length">
           <div class="carousel-container">
-            <div class="carousel-track">
-              <img src="@/assets/family.png" alt="Family" class="rounded-img" />
-              <img src="@/assets/workers.png" alt="Insurance" class="rounded-img" />
-              <img src="@/assets/bakers.png" alt="Notary" class="rounded-img" />
+            <div
+              class="carousel-track"
+              :style="{ transform: `translateX(-${slideIndex * 100}%)`, transition: 'transform 0.7s ease' }"
+            >
+              <img
+                v-for="(slide, i) in heroSlides"
+                :key="i"
+                :src="slide.image_url"
+                :alt="slide.label ?? ''"
+                class="rounded-img"
+              />
             </div>
             <div class="carousel-dots">
-              <span class="dot active"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span
+                v-for="(slide, i) in heroSlides"
+                :key="i"
+                class="dot"
+                :class="{ active: i === slideIndex }"
+                @click="slideIndex = i"
+              ></span>
             </div>
           </div>
         </div>
@@ -186,8 +197,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useRealtimeTable } from '@/composables/useRealtimeTable'
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
@@ -208,6 +220,28 @@ const route = useRoute()
 const locale = computed(() => {
   return route.params.locale === 'en' ? 'en' : 'es'
 })
+
+interface BannerImage {
+  id: string
+  label: string | null
+  image_url: string
+  active: boolean
+  sort_order: number
+}
+
+const { rows: banners } = useRealtimeTable<BannerImage>('banner_images', 'sort_order')
+const heroSlides = computed(() => banners.value.filter((b) => b.active))
+
+const slideIndex = ref(0)
+watch(heroSlides, () => { slideIndex.value = 0 })
+
+let timer: ReturnType<typeof setInterval> | undefined
+onMounted(() => {
+  timer = setInterval(() => {
+    if (heroSlides.value.length) slideIndex.value = (slideIndex.value + 1) % heroSlides.value.length
+  }, 4000)
+})
+onUnmounted(() => clearInterval(timer))
 </script>
 
 <style scoped>
@@ -313,17 +347,9 @@ const locale = computed(() => {
   border-radius: 40px;
 }
 
-@keyframes slide-animation {
-  0%, 25% { transform: translateX(0%); }
-  33%, 58% { transform: translateX(-100%); }
-  66%, 91% { transform: translateX(-200%); }
-  100% { transform: translateX(0%); }
-}
-
 .carousel-track {
   display: flex;
   width: 100%;
-  animation: slide-animation 12s infinite ease-in-out;
 }
 
 .carousel-track img {
@@ -348,6 +374,7 @@ const locale = computed(() => {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .dot.active {

@@ -51,15 +51,15 @@
       <!-- SERVICES -->
       <div class="services-grid">
         <div
-          v-for="(service, index) in filteredServices"
-          :key="index"
+          v-for="service in filteredServices"
+          :key="service.id"
           class="service-card"
         >
           <div class="icon-circle">
-            <component :is="service.icon" />
+            <img v-if="service.icon_url" :src="service.icon_url" class="service-icon" alt="" />
           </div>
 
-          <h3>{{ t(service.titleKey) }}</h3>
+          <h3>{{ titleFor(service) }}</h3>
 
           <!-- FAQ -->
           <div class="faq-list">
@@ -70,21 +70,21 @@
             >
               <button
                 class="faq-trigger"
-                @click="toggleFaq(service.titleKey + faq.key)"
+                @click="toggleFaq(service.id + faq.key)"
               >
                 <span>{{ t(faq.label) }}</span>
                 <span
                   class="arrow"
-                  :class="{ rotated: activeFaq === service.titleKey + faq.key }"
+                  :class="{ rotated: activeFaq === service.id + faq.key }"
                 >⌄</span>
               </button>
 
               <transition name="expand">
                 <div
-                  v-if="activeFaq === service.titleKey + faq.key"
+                  v-if="activeFaq === service.id + faq.key"
                   class="faq-content"
                 >
-                  {{ t(service[faq.key]) }}
+                  {{ fieldFor(service, faq.key) }}
                 </div>
               </transition>
             </div>
@@ -123,13 +123,20 @@ type MainCategory = 'insurance' | 'taxes' | 'notary'
 type SubCategory = 'personal' | 'commercial'
 
 interface Service {
-  titleKey: string
+  id: string
   category: MainCategory
-  subCategory: SubCategory
-  icon: any
-  coverKey: string
-  whyKey: string
-  whoKey: string
+  sub_category: SubCategory
+  active: boolean
+  icon_url: string | null
+  title_es: string
+  title_en: string
+  cover_es: string
+  cover_en: string
+  why_es: string
+  why_en: string
+  who_es: string
+  who_en: string
+  sort_order: number
 }
 
 /* ---------------- STATE ---------------- */
@@ -156,105 +163,34 @@ const selectMainCategory = (key: MainCategory) => {
 
 /* ---------------- FAQ ---------------- */
 const faqKeys = [
-  { key: 'coverKey', label: 'services.faq.cover' },
-  { key: 'whyKey', label: 'services.faq.why' },
-  { key: 'whoKey', label: 'services.faq.who' }
+  { key: 'cover', label: 'services.faq.cover' },
+  { key: 'why', label: 'services.faq.why' },
+  { key: 'who', label: 'services.faq.who' }
 ] as const
 
 const toggleFaq = (id: string) => {
   activeFaq.value = activeFaq.value === id ? null : id
 }
 
-/* ---------------- ICONS ---------------- */
-/* ================= ICONS (TUS ICONOS) ================= */
-import IconCar from '@/components/icons/IconCar.vue'
-import IconLife from '@/components/icons/IconLife.vue'
-import IconInquilino from '@/components/icons/IconInquilino.vue'
-import IconCasa from '@/components/icons/IconCasa.vue'
-import IconUmbrella from '@/components/icons/IconUmbrella.vue'
-import IconSalud from '@/components/icons/IconSalud.vue'
-import IconLiability from '@/components/icons/IconLiability.vue'
-import IconWComp from '@/components/icons/IconWComp.vue'
-import IconAComercial from '@/components/icons/IconAComercial.vue'
-import IconEUmbrella from '@/components/icons/IconEUmbrella.vue'
-import IconBOwners from '@/components/icons/IconBOwners.vue'
-import IconW2 from '@/components/icons/IconW2.vue'
-import IconNEC from '@/components/icons/IconNEC.vue'
-import IconLLiability from '@/components/icons/IconLLiability.vue'
-import IconSociedades from '@/components/icons/IconSociedades.vue'
-import IconChurch from '@/components/icons/IconChurch.vue'
-import IconCoprSC from '@/components/icons/IconCoprSC.vue'
-import IconBodas from '@/components/icons/IconBodas.vue'
-import IconViaje from '@/components/icons/IconViaje.vue'
-import IconPostillados from '@/components/icons/IconApostillados.vue'
-import IconCertificaciones from '@/components/icons/IconCertificaciones.vue'
-import IconPGen from '@/components/icons/IconPGen.vue'
-import IconTLegal from '@/components/icons/IconTlegal.vue'
-import IconTraduccion from '@/components/icons/IconTraduccion.vue'
-import IconApostillados from '@/components/icons/IconApostillados.vue'
-import IconCompania from '@/components/icons/IconCompania.vue'
-import IconRCompanias from '@/components/icons/IconRCompanias.vue'
-import IconContabilidad from '@/components/icons/IconContabilidad.vue'
-import IconTlegal from '@/components/icons/IconTlegal.vue'
+/* ---------------- DATA (Supabase) ---------------- */
+import { useRealtimeTable } from '@/composables/useRealtimeTable'
 
-/* ================= SERVICES (25 SERVICIOS) ================= */
-const services = ref<Service[]>([
-  // ===== INSURANCE / PERSONAL =====
-  { titleKey: 'services.items.auto.title', category: 'insurance', subCategory: 'personal', icon: IconCar, coverKey: 'services.items.auto.cover', whyKey: 'services.items.auto.why', whoKey: 'services.items.auto.who' },
-  { titleKey: 'services.items.life.title', category: 'insurance', subCategory: 'personal', icon: IconLife, coverKey: 'services.items.life.cover', whyKey: 'services.items.life.why', whoKey: 'services.items.life.who' },
-  { titleKey: 'services.items.health.title', category: 'insurance', subCategory: 'personal', icon: IconSalud, coverKey: 'services.items.health.cover', whyKey: 'services.items.health.why', whoKey: 'services.items.health.who' },
-  { titleKey: 'services.items.renters.title', category: 'insurance', subCategory: 'personal', icon: IconInquilino, coverKey: 'services.items.renters.cover', whyKey: 'services.items.renters.why', whoKey: 'services.items.renters.who' },
-  { titleKey: 'services.items.home.title', category: 'insurance', subCategory: 'personal', icon: IconCasa, coverKey: 'services.items.home.cover', whyKey: 'services.items.home.why', whoKey: 'services.items.home.who' },
-  { titleKey: 'services.items.umbrella.title', category: 'insurance', subCategory: 'personal', icon: IconUmbrella, coverKey: 'services.items.umbrella.cover', whyKey: 'services.items.umbrella.why', whoKey: 'services.items.umbrella.who' },
+const { rows: services } = useRealtimeTable<Service>('services', 'sort_order')
 
-  // ===== INSURANCE / COMMERCIAL =====
-  { titleKey: 'services.items.general-liability.title', category: 'insurance', subCategory: 'commercial', icon: IconLiability, coverKey: 'services.items.general-liability.cover', whyKey: 'services.items.general-liability.why', whoKey: 'services.items.general-liability.who' },
-  { titleKey: 'services.items.workers-comp.title', category: 'insurance', subCategory: 'commercial', icon: IconWComp, coverKey: 'services.items.workers-comp.cover', whyKey: 'services.items.workers-comp.why', whoKey: 'services.items.workers-comp.who' },
-  { titleKey: 'services.items.commercial-auto.title', category: 'insurance', subCategory: 'commercial', icon: IconAComercial, coverKey: 'services.items.commercial-auto.cover', whyKey: 'services.items.commercial-auto.why', whoKey: 'services.items.commercial-auto.who' },
-  { titleKey: 'services.items.employer-umbrella.title', category: 'insurance', subCategory: 'commercial', icon: IconEUmbrella, coverKey: 'services.items.employer-umbrella.cover', whyKey: 'services.items.employer-umbrella.why', whoKey: 'services.items.employer-umbrella.who' },
-  { titleKey: 'services.items.business-owners.title', category: 'insurance', subCategory: 'commercial', icon: IconBOwners, coverKey: 'services.items.business-owners.cover', whyKey: 'services.items.business-owners.why', whoKey: 'services.items.business-owners.who' },
-
-  // ===== TAXES  Personales=====
-  { titleKey: 'services.items.w2.title', category: 'taxes', subCategory: 'personal', icon: IconW2, coverKey: 'services.items.w2.cover', whyKey: 'services.items.w2.why', whoKey: 'services.items.w2.who' },
-  { titleKey: 'services.items.non-owned.title', category: 'taxes', subCategory: 'personal', icon: IconNEC, coverKey: 'services.items.non-owned.cover', whyKey: 'services.items.non-owned.why', whoKey: 'services.items.non-owned.who' },
-
-  // ===== TAXES  Comerciales=====
-  { titleKey: 'services.items.local-liability.title', category: 'taxes', subCategory: 'commercial', icon: IconLLiability, coverKey: 'services.items.local-liability.cover', whyKey: 'services.items.local-liability.why', whoKey: 'services.items.local-liability.who' },
-  { titleKey: 'services.items.society.title', category: 'taxes', subCategory: 'commercial', icon: IconSociedades, coverKey: 'services.items.society.cover', whyKey: 'services.items.society.why', whoKey: 'services.items.society.who' },
-  { titleKey: 'services.items.corp.title', category: 'taxes', subCategory: 'commercial', icon: IconCoprSC, coverKey: 'services.items.corp.cover', whyKey: 'services.items.corp.why', whoKey: 'services.items.corp.who' },
-  { titleKey: 'services.items.church.title', category: 'taxes', subCategory: 'commercial', icon: IconChurch, coverKey: 'services.items.church.cover', whyKey: 'services.items.church.why', whoKey: 'services.items.church.who' },
-
-
-  // ===== NOTARY =====
-  { titleKey: 'services.items.travel.title', category: 'notary', subCategory: 'personal', icon: IconViaje, coverKey: 'services.items.travel.cover', whyKey: 'services.items.travel.why', whoKey: 'services.items.travel.who' },
-  { titleKey: 'services.items.weddings.title', category: 'notary', subCategory: 'personal', icon: IconBodas, coverKey: 'services.items.weddings.cover', whyKey: 'services.items.weddings.why', whoKey: 'services.items.weddings.who' },
-  { titleKey: 'services.items.apostille.title', category: 'notary', subCategory: 'personal', icon: IconApostillados, coverKey: 'services.items.apostille.cover', whyKey: 'services.items.apostille.why', whoKey: 'services.items.apostille.who' },
-  { titleKey: 'services.items.certifications.title', category: 'notary', subCategory: 'personal', icon: IconCertificaciones, coverKey: 'services.items.certifications.cover', whyKey: 'services.items.certifications.why', whoKey: 'services.items.certifications.who' },
-  { titleKey: 'services.items.legal-procedures.title', category: 'notary', subCategory: 'personal', icon: IconPGen, coverKey: 'services.items.legal-procedures.cover', whyKey: 'services.items.legal-procedures.why', whoKey: 'services.items.legal-procedures.who' },
-  { titleKey: 'services.items.Tlegal.title', category: 'notary', subCategory: 'personal', icon: IconTlegal, coverKey: 'services.items.Tlegal.cover', whyKey: 'services.items.Tlegal.why', whoKey: 'services.items.Tlegal.who' },
-  { titleKey: 'services.items.legal-translation.title', category: 'notary', subCategory: 'personal', icon: IconTraduccion, coverKey: 'services.items.legal-translation.cover', whyKey: 'services.items.legal-translation.why', whoKey: 'services.items.legal-translation.who' },
-
-  // ==== NOTARY COMERCIAL ====
-
-
-  { titleKey: 'services.items.accounting.title', category: 'notary', subCategory: 'commercial', icon: IconContabilidad, coverKey: 'services.items.accounting.cover', whyKey: 'services.items.accounting.why', whoKey: 'services.items.accounting.who' },
-  { titleKey: 'services.items.companies.title', category: 'notary', subCategory: 'commercial', icon: IconCompania, coverKey: 'services.items.companies.cover', whyKey: 'services.items.companies.why', whoKey: 'services.items.companies.who' },
-  { titleKey: 'services.items.rep-companies.title', category: 'notary', subCategory: 'commercial', icon: IconRCompanias, coverKey: 'services.items.rep-companies.cover', whyKey: 'services.items.rep-companies.why', whoKey: 'services.items.rep-companies.who' },
-
-
-
-
-
-])
-
+const titleFor = (s: Service) => (locale.value === 'en' ? s.title_en : s.title_es)
+const fieldFor = (s: Service, prefix: 'cover' | 'why' | 'who') =>
+  locale.value === 'en' ? s[`${prefix}_en`] : s[`${prefix}_es`]
 
 /* ---------------- FILTER ---------------- */
 const filteredServices = computed(() =>
-  services.value.filter(
-    s =>
-      s.category === mainCategory.value &&
-      s.subCategory === subCategory.value
-  )
+  services.value
+    .filter(
+      s =>
+        s.active &&
+        s.category === mainCategory.value &&
+        s.sub_category === subCategory.value
+    )
+    .sort((a, b) => a.sort_order - b.sort_order)
 )
 
 /* ---------------- ANIMATION ---------------- */
@@ -414,6 +350,12 @@ onMounted(() => {
 
 .service-card:hover .icon-circle {
   transform: scale(1.1) rotate(5deg); /* Movimiento ligero sin cambiar color */
+}
+
+.service-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
 }
 
 /* --- BOTÓN ¡COTIZA YA! (Mantener forma pequeña) --- */

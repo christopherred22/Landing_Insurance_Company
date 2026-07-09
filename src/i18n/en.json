@@ -55,7 +55,13 @@
       "email": "Email Address",
       "message": "Message",
       "submit": "Send Message",
-      "whatsapp": "Contact us via WhatsApp"
+      "whatsapp": "Contact us via WhatsApp",
+      "servicesLabel": "What service are you interested in?",
+      "services": {
+        "insurance": "Insurance",
+        "taxes": "Taxes",
+        "notary": "Notary"
+      }
     },
 
     "info": {

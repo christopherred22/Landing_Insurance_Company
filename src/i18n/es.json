@@ -54,7 +54,13 @@
       "email": "Correo electrónico",
       "message": "Mensaje",
       "submit": "Enviar Mensaje",
-      "whatsapp": "Escríbenos por WhatsApp"
+      "whatsapp": "Escríbenos por WhatsApp",
+      "servicesLabel": "¿En qué servicio estás interesado?",
+      "services": {
+        "insurance": "Seguros",
+        "taxes": "Impuestos",
+        "notary": "Notariado"
+      }
     },
 
     "info": {
